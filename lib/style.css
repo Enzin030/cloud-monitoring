@@ -50,3 +50,9 @@
 h1, h2, h3 {
     letter-spacing: -0.015em;
 }
+
+/* Material Icons 修正 */
+.material-symbols-outlined {
+    font-display: block;
+    vertical-align: middle;
+}
