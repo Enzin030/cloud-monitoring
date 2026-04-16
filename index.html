@@ -17,12 +17,12 @@
     </style>
     <script src="lib/layout.js"></script>
 </head>
-<body class="bg-surface font-body text-on-surface flex overflow-hidden h-screen">
+<body class="bg-surface font-body text-on-surface flex overflow-hidden h-screen w-screen">
     <!-- Sidebar Placeholder -->
     <div id="sidebar-placeholder"></div>
 
     <!-- Main Content Area -->
-    <main class="ml-64 flex-1 flex flex-col h-screen relative bg-surface overflow-hidden">
+    <main class="flex-1 flex flex-col h-screen relative bg-surface overflow-hidden">
         <!-- Header Placeholder -->
         <div id="header-placeholder"></div>
 
@@ -60,60 +60,35 @@
                     </div>
                     <!-- Video Bento Grid -->
                     <div class="grid grid-cols-2 gap-4">
-                        <!-- Feed 1: Normal -->
-                        <div class="relative group bg-primary rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-primary/50 transition-all">
-                            <img class="w-full video-aspect object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="High angle view of a modern colorful playroom in a daycare with soft natural lighting through large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
+                        <div class="relative group bg-primary rounded-xl overflow-hidden shadow-lg border-2 border-transparent">
+                            <img class="w-full video-aspect object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full flex items-center space-x-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                <span class="text-[10px] font-bold text-primary tracking-wide">CAM-01: 遊戲室 A</span>
-                            </div>
-                            <div class="absolute bottom-4 left-4 text-white">
-                                <p class="text-[10px] font-medium opacity-80">14:22:15 UTC+8</p>
-                            </div>
+                            <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full flex items-center space-x-2 text-primary font-bold text-[10px]">CAM-01: 遊戲室 A</div>
                         </div>
-                        <!-- Feed 2: ALERT FEED -->
-                        <div class="relative group bg-error/20 rounded-xl overflow-hidden shadow-lg border-4 border-error ring-4 ring-error/20">
-                            <div class="absolute inset-0 bg-error/40 flex flex-col items-center justify-center z-10">
-                                <span class="material-symbols-outlined text-6xl text-white mb-2 animate-pulse">visibility_off</span>
-                                <p class="text-white font-black text-xl font-headline drop-shadow-md">AI 告警：鏡頭遭遮蔽</p>
+                        <div class="relative group bg-error/20 rounded-xl overflow-hidden shadow-lg border-4 border-error ring-4 ring-error/20 text-white">
+                            <div class="absolute inset-0 bg-error/40 flex flex-col items-center justify-center z-10 text-white">
+                                <span class="material-symbols-outlined text-6xl animate-pulse">visibility_off</span>
+                                <p class="font-black text-xl font-headline">AI 告警：鏡頭遭遮蔽</p>
                             </div>
-                            <img class="w-full video-aspect object-cover grayscale opacity-50 blur-[2px]" data-alt="Grainy low light surveillance footage of a camera lens being covered by a dark cloth-like texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
-                            <div class="absolute top-4 left-4 bg-error text-white px-3 py-1 rounded-full flex items-center space-x-2 z-20">
-                                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
-                                <span class="text-[10px] font-black tracking-wide">緊急：CAM-04 走廊</span>
-                            </div>
+                            <img class="w-full video-aspect object-cover grayscale opacity-50 blur-[2px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
+                            <div class="absolute top-4 left-4 bg-error px-3 py-1 rounded-full text-[10px] font-black z-20">緊急：CAM-04 走廊</div>
                         </div>
-                        <!-- Feed 3: Normal -->
                         <div class="relative group bg-primary rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-primary/50 transition-all">
-                            <img class="w-full video-aspect object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="Empty office or classroom space with minimalist furniture and high-key studio lighting aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBauw-3L8pQW1RKR_SeoZbL1HHnKVkixy3Urc81_-Wj4rmCihxQJVq9aaeowpD0jt2WSgeeaKkUSVvgDixrm3Msb7oLZ4bGKBxcrWM19gqUx7rI9QVuEqPAd6SSjnwxesi2sOizjteC7yVpNR9MUShPqkKOJkcCGH1uBmWMq_Bd9OrNbH7XXg_IGs7H1cO_zyVoeEJASau3h-sAluAPPfWCSvidXxab8vRQdWqlsOErtgom9AF2vekqAgKmS1shZLjlG72lbfUBGogq"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full flex items-center space-x-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                <span class="text-[10px] font-bold text-primary tracking-wide">CAM-02: 出入口</span>
-                            </div>
+                             <img class="w-full video-aspect object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBauw-3L8pQW1RKR_SeoZbL1HHnKVkixy3Urc81_-Wj4rmCihxQJVq9aaeowpD0jt2WSgeeaKkUSVvgDixrm3Msb7oLZ4bGKBxcrWM19gqUx7rI9QVuEqPAd6SSjnwxesi2sOizjteC7yVpNR9MUShPqkKOJkcCGH1uBmWMq_Bd9OrNbH7XXg_IGs7H1cO_zyVoeEJASau3h-sAluAPPfWCSvidXxab8vRQdWqlsOErtgom9AF2vekqAgKmS1shZLjlG72lbfUBGogq"/>
+                             <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full text-primary font-bold text-[10px]">CAM-02: 出入口</div>
                         </div>
-                        <!-- Feed 4: Normal -->
                         <div class="relative group bg-primary rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-primary/50 transition-all">
-                            <img class="w-full video-aspect object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="Wide angle view of a sun-drenched classroom area with empty wooden desks and children's drawings on the walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTY4xAgb7kTMNZvaBu8QbUFyCZodU6pIIug4OIJbioPXKIkCRFd2sDhdATm1z7qTGsPaCaFhg1r15UFCAlgFFu94hI8ZA9FYgtiNGuT0iskoHXFaf1IBQYB-L_nV6_NW7g2dW8uBjENF9gXjEoDoxhRS98lI3Qnb68tPfXm2f0mRN9FTO-n11LGFEXChLBj0yhIbhpUfo3HFoZkCBNAA4jJJCxZub32BU6ma_crqmGImyoxm2gqYH8VVz7XxXbFiP15gzFkw_cyOpd"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full flex items-center space-x-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                <span class="text-[10px] font-bold text-primary tracking-wide">CAM-03: 廚房區域</span>
-                            </div>
+                             <img class="w-full video-aspect object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTY4xAgb7kTMNZvaBu8QbUFyCZodU6pIIug4OIJbioPXKIkCRFd2sDhdATm1z7qTGsPaCaFhg1r15UFCAlgFFu94hI8ZA9FYgtiNGuT0iskoHXFaf1IBQYB-L_nV6_NW7g2dW8uBjENF9gXjEoDoxhRS98lI3Qnb68tPfXm2f0mRN9FTO-n11LGFEXChLBj0yhIbhpUfo3HFoZkCBNAA4jJJCxZub32BU6ma_crqmGImyoxm2gqYH8VVz7XxXbFiP15gzFkw_cyOpd"/>
+                             <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full text-primary font-bold text-[10px]">CAM-03: 廚房區域</div>
                         </div>
                     </div>
                 </div>
-                <!-- Right: Alert Detail Panel -->
-                <aside class="w-80 flex flex-col space-y-6">
-                    <!-- Alert Breakdown -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+                <!-- Right Panel -->
+                <aside class="w-80 flex flex-col space-y-6 shrink-0">
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col h-full border border-outline-variant/10">
                         <div class="bg-error p-4 text-white">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="font-bold font-headline text-sm tracking-tight">告警詳情</h3>
-                                <span class="px-2 py-0.5 bg-white/20 rounded-md text-[9px] font-bold">緊急</span>
-                            </div>
-                            <p class="text-xs opacity-90">主監控線路偵測到視線遮蔽物。</p>
+                            <h3 class="font-bold text-sm text-white">告警詳情</h3>
+                            <p class="text-xs opacity-90 text-white">主監控線路偵測到視線遮蔽物。</p>
                         </div>
                         <div class="p-4 space-y-4 flex-1">
                             <div class="space-y-3">
@@ -122,55 +97,20 @@
                                     <span class="text-error font-bold">鏡頭遭遮蔽</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[11px] border-b border-slate-100 pb-2">
-                                    <span class="text-slate-500 font-semibold">位置</span>
-                                    <span class="text-primary font-bold">主走廊 (CAM-04)</span>
-                                </div>
-                                <div class="flex justify-between items-center text-[11px] border-b border-slate-100 pb-2">
                                     <span class="text-slate-500 font-semibold">時間戳記</span>
                                     <span class="text-primary font-bold">2023.10.27 14:22:08</span>
                                 </div>
-                                <div class="flex justify-between items-center text-[11px] border-b border-slate-100 pb-2">
-                                    <span class="text-slate-500 font-semibold">AI 信心度</span>
-                                    <span class="text-primary font-bold">98.4%</span>
-                                </div>
                             </div>
-                            <div class="pt-4">
-                                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">AI 診斷分析</p>
-                                <div class="bg-surface-container-low p-3 rounded-lg border-l-4 border-error">
-                                    <p class="text-xs text-on-surface leading-relaxed italic">
-                                        "偵測到物理性遮擋。影像資料傳輸量掉落超過 85% 閾值。模式比對顯示可能為人為遮蔽（布料或噴霧）。"
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="pt-6 space-y-2">
-                                <button class="w-full bg-primary py-2.5 rounded-lg text-white text-xs font-bold hover:shadow-lg active:scale-[0.98] transition-all">
-                                    派遣應變小組
-                                </button>
-                                <button class="w-full border-2 border-outline-variant/30 py-2.5 rounded-lg text-primary text-xs font-bold hover:bg-slate-50 transition-all">
-                                    誤報 / 忽略
-                                </button>
-                            </div>
+                            <button class="w-full bg-primary py-2.5 rounded-lg text-white text-xs font-bold">派遣應變小組</button>
                         </div>
                         <div class="p-4 bg-slate-50 border-t border-slate-100">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase mb-3">歷史事件 (24小時)</p>
-                            <div class="space-y-3">
-                                <div class="flex items-center space-x-3 group cursor-pointer">
-                                    <div class="w-2 h-2 rounded-full bg-tertiary"></div>
-                                    <div class="flex-1">
-                                        <p class="text-[11px] font-bold text-primary">異常活動</p>
-                                        <p class="text-[9px] text-slate-500">遊戲室 B • 上午 10:15</p>
-                                    </div>
-                                    <span class="material-symbols-outlined text-slate-300 group-hover:text-primary text-sm transition-colors">chevron_right</span>
-                                </div>
-                                <div class="flex items-center space-x-3 group cursor-pointer opacity-60">
-                                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
-                                    <div class="flex-1">
-                                        <p class="text-[11px] font-bold text-primary">已解決：非營業時間進入</p>
-                                        <p class="text-[9px] text-slate-500">主大門 • 上午 04:30</p>
-                                    </div>
-                                    <span class="material-symbols-outlined text-slate-300 group-hover:text-primary text-sm transition-colors">chevron_right</span>
-                                </div>
-                            </div>
+                             <p class="text-[10px] font-bold text-slate-400 uppercase mb-3">歷史事件</p>
+                             <div class="space-y-3">
+                                 <div class="flex items-center space-x-3 text-primary">
+                                     <div class="w-2 h-2 rounded-full bg-tertiary"></div>
+                                     <p class="text-[11px] font-bold">異常活動</p>
+                                 </div>
+                             </div>
                         </div>
                     </div>
                 </aside>
@@ -182,19 +122,3 @@
     </main>
 </body>
 </html>
-
-<div class="flex items-center space-x-3 group cursor-pointer opacity-60">
-<div class="w-2 h-2 rounded-full bg-slate-300"></div>
-<div class="flex-1">
-<p class="text-[11px] font-bold text-primary">已解決：非營業時間進入</p>
-<p class="text-[9px] text-slate-500">主大門 • 上午 04:30</p>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary text-sm transition-colors">chevron_right</span>
-</div>
-</div>
-</div>
-</div>
-</aside>
-</div>
-</main>
-</body></html>
