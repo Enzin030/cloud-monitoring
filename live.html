@@ -14,17 +14,16 @@
 
     <main class="flex-1 overflow-y-auto p-12 w-full custom-scrollbar">
         <div class="space-y-10">
-            <!-- 標題與麵包屑 左右對齊 -->
-            <div class="flex items-center justify-between border-b border-slate-100 pb-10">
-                <div class="space-y-1">
-                    <h2 class="text-5xl font-black text-slate-800 font-headline tracking-tighter">監控控制台</h2>
-                    <p class="text-slate-400 font-bold text-sm">歷史回放調閱與交互式監控</p>
-                </div>
-                <div class="flex items-center text-xs text-slate-400 font-bold space-x-2 bg-slate-50 px-6 py-2.5 rounded-full border border-slate-100">
-                    <span class="material-symbols-outlined text-[14px]">home</span>
-                    <span>首頁</span>
-                    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-                    <span class="text-slate-900 font-black tracking-tight">監控控制台</span>
+            <!-- 標題與麵包屑並排佈局 -->
+            <div class="border-b border-slate-100 pb-8 space-y-3">
+                <div class="flex items-end gap-6">
+                    <h2 class="text-4xl font-black text-slate-900 tracking-tight">監控控制台</h2>
+                    <div class="flex items-center text-sm text-slate-400 font-bold space-x-2 mb-1.5">
+                        <span class="material-symbols-outlined text-[16px]">home</span>
+                        <span>首頁</span>
+                        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                        <span class="text-slate-800 font-black tracking-tight">監控控制台</span>
+                    </div>
                 </div>
             </div>
 
@@ -51,10 +50,14 @@
                         </div>
                         
                         <div class="flex flex-col">
-                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">日期回溯</span>
-                            <div class="flex items-center bg-slate-50 px-6 py-3 rounded-xl border border-slate-100 space-x-4">
+                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">調閱時間區段</span>
+                            <div class="flex items-center bg-slate-50 px-5 py-3 rounded-xl border border-slate-100 space-x-3">
                                 <span class="material-symbols-outlined text-accent text-lg">calendar_month</span>
                                 <input type="date" value="2023-11-20" class="bg-transparent border-none p-0 text-sm font-black text-slate-800 focus:ring-0">
+                                <span class="text-slate-300 font-black px-1">-</span>
+                                <input type="time" value="08:00" class="bg-transparent border-none p-0 text-sm font-black text-slate-800 focus:ring-0">
+                                <span class="text-slate-300 font-bold px-1 text-xs">至</span>
+                                <input type="time" value="12:00" class="bg-transparent border-none p-0 text-sm font-black text-slate-800 focus:ring-0">
                             </div>
                         </div>
                     </div>
@@ -81,26 +84,25 @@
                     </div>
 
                     <!-- 下方區間選擇器 & 匯出按鈕 -->
-                    <div class="lux-card p-12 bg-slate-50/50 border border-slate-100 space-y-10">
-                        <div class="flex items-center justify-between">
-                             <div class="flex items-center space-x-10">
-                                <button class="material-symbols-outlined text-4xl text-slate-400 hover:text-slate-900">fast_rewind</button>
-                                <div class="w-24 h-24 rounded-full bg-slate-900 flex items-center justify-center text-white shadow-lux group cursor-pointer hover:scale-105 transition-all">
-                                    <span class="material-symbols-outlined text-5xl">play_arrow</span>
-                                </div>
-                                <button class="material-symbols-outlined text-4xl text-slate-400 hover:text-slate-900">fast_forward</button>
+                    <div class="lux-card p-10 bg-slate-50/50 border border-slate-100 space-y-10">
+                        <div class="flex items-center justify-between w-full">
+                             <!-- Play Button 放最左 -->
+                             <div class="w-16 h-16 rounded-[1.25rem] bg-slate-900 border-2 border-slate-800 flex items-center justify-center text-white shadow-lux group cursor-pointer hover:bg-slate-800 hover:scale-105 transition-all flex-shrink-0">
+                                 <span class="material-symbols-outlined text-4xl">play_arrow</span>
                              </div>
                              
-                             <!-- 匯出移至此處 -->
-                             <div class="flex flex-col items-end gap-4">
+                             <!-- 匯出範圍按鈕縮小，置中 -->
+                             <button class="flex items-center px-6 py-3 bg-accent text-white rounded-xl text-xs font-black shadow-lg shadow-blue-500/20 hover:bg-blue-600 transition-all mx-auto">
+                                 <span class="material-symbols-outlined mr-2 text-sm">download</span>
+                                 匯出選取範圍錄影庫
+                             </button>
+
+                             <!-- 時間碼顯示 放最右 -->
+                             <div class="text-right flex-shrink-0 flex items-center gap-6">
                                 <div class="text-right">
                                     <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">播放時段計時</p>
-                                    <p class="text-4xl font-black text-slate-900 tracking-tighter">01:45:22</p>
+                                    <p class="text-3xl font-black text-slate-900 tracking-tighter mt-1 tabular-nums font-mono">01:45:22 <span class="text-slate-300 text-2xl font-bold ml-1">/ 03:00</span></p>
                                 </div>
-                                <button class="flex items-center px-8 py-4 bg-accent text-white rounded-2xl text-sm font-black shadow-lg hover:shadow-accent/40 transition-all active:scale-95">
-                                    <span class="material-symbols-outlined mr-2">download_for_offline</span>
-                                    匯出選取範圍錄影庫
-                                </button>
                              </div>
                         </div>
 
@@ -129,16 +131,21 @@
 
                 <!-- Right: Side Info -->
                 <div class="col-span-12 lg:col-span-3 space-y-8">
-                    <div class="lux-card p-8 space-y-8">
-                        <h3 class="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] border-b border-slate-50 pb-4">同場所關聯設備</h3>
+                    <div class="lux-card p-8 space-y-6">
+                        <div class="border-b border-slate-100 pb-4">
+                            <h3 class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1.5">同場所關聯設備</h3>
+                            <span class="text-sm font-black text-slate-900 flex items-center">
+                                <span class="material-symbols-outlined text-sm mr-1.5 text-accent">pin_drop</span>北屯區 - 北屯中心
+                            </span>
+                        </div>
                         <div class="space-y-4">
                             <div class="p-5 bg-slate-50 border-2 border-slate-900 rounded-[1.5rem] shadow-sm">
-                                <p class="text-[10px] font-black text-slate-400 tracking-widest mb-1 uppercase">ID: CAM-00104</p>
-                                <p class="text-sm font-black text-slate-900">北屯中心 • 正門大門區</p>
+                                <p class="text-[10px] font-black text-accent tracking-widest mb-1 uppercase">ID: CAM-00104</p>
+                                <p class="text-sm font-black text-slate-900">正門大門區</p>
                             </div>
-                            <div class="p-5 border border-slate-100 rounded-[1.5rem] hover:bg-slate-50 cursor-pointer transition-colors">
+                            <div class="p-5 border border-slate-100 rounded-[1.5rem] hover:bg-slate-50 cursor-pointer transition-colors backdrop-blur-sm">
                                 <p class="text-[10px] font-black text-slate-400 tracking-widest mb-1 uppercase">ID: CAM-00105</p>
-                                <p class="text-sm font-bold text-slate-700">北屯中心 • 後側遊戲場</p>
+                                <p class="text-sm font-bold text-slate-700">後側遊戲場</p>
                             </div>
                         </div>
                     </div>
