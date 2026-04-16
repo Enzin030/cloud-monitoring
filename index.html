@@ -3,30 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>兒托監管雲 - 儀表板</title>
+    <title>兒托監管雲 - 精緻控制台</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@48,400,0,0" />
-    <style>
-      /* 強制確保圖示字體套用 */
-      .material-symbols-outlined {
-        font-family: 'Material Symbols Outlined' !important;
-        font-weight: normal;
-        font-style: normal;
-        font-size: 24px;
-        line-height: 1;
-        letter-spacing: normal;
-        text-transform: none;
-        display: inline-block;
-        white-space: nowrap;
-        word-wrap: normal;
-        direction: ltr;
-        -webkit-font-smoothing: antialiased;
-      }
-    </style>
     <script src="lib/config.js"></script>
     <script src="lib/layout.js"></script>
   </head>
-  <body class="bg-surface font-body text-on-surface flex flex-col overflow-hidden h-screen w-screen">
+  <body class="bg-surface font-body text-on-surface flex flex-col h-screen overflow-hidden">
     <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
 
@@ -35,121 +17,147 @@
         <div id="sidebar-placeholder"></div>
 
         <!-- Scrollable content area -->
-        <main class="flex-1 overflow-y-auto p-10 w-full space-y-10 bg-surface-container-low custom-scrollbar">
-            <!-- Breadcrumbs / Page Title -->
-            <div class="space-y-1">
-                <div class="flex items-center text-xs text-slate-400 font-medium space-x-2">
-                    <span>社會局首頁</span>
-                    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-                    <span class="text-primary font-bold">控制台儀表板</span>
-                </div>
-                <h2 class="text-3xl font-black text-primary font-headline tracking-tight">儀表板總覽</h2>
-            </div>
-
-            <div class="grid grid-cols-12 gap-6">
-                <!-- Left: Monitoring Grid -->
-                <div class="col-span-12 lg:col-span-9 space-y-6">
-                    <!-- Statistics Cards -->
-                    <div class="grid grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-xl border border-outline-variant/10 shadow-sm flex items-center space-x-4 transition-transform hover:scale-[1.02]">
-                            <div class="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
-                                <span class="material-symbols-outlined">hub</span>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">立案中心</p>
-                                <p class="text-xl font-bold text-primary">24 間</p>
-                            </div>
+        <main class="flex-1 overflow-y-auto p-12 w-full custom-scrollbar">
+            <div class="grid grid-cols-12 gap-12">
+                <!-- Left: Video Grid & Player -->
+                <div class="col-span-12 lg:col-span-8 space-y-10">
+                    <div class="flex items-end justify-between">
+                        <div class="space-y-2">
+                          <h2 class="text-5xl font-extrabold text-on-surface font-headline tracking-tighter">託育室監錄概況</h2>
+                          <p class="text-on-surface-variant font-bold flex items-center">
+                              <span class="w-2 h-2 rounded-full bg-primary mr-2"></span>
+                              錄影存檔中 • 北屯中心南側區域
+                          </p>
                         </div>
-                        <div class="bg-white p-6 rounded-xl border border-error/20 shadow-sm flex items-center space-x-4 border-l-4 border-l-error">
-                            <div class="w-12 h-12 rounded-lg bg-error/5 flex items-center justify-center text-error">
-                                <span class="material-symbols-outlined">warning</span>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">即時告警</p>
-                                <p class="text-xl font-bold text-error">3 件</p>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl border border-outline-variant/10 shadow-sm flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
-                                <span class="material-symbols-outlined">videocam</span>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">設備狀態</p>
-                                <p class="text-xl font-bold text-emerald-600">98.5% 在線</p>
-                            </div>
+                        <div class="flex items-center bg-white p-1 rounded-full shadow-card border border-black/5">
+                            <button class="px-6 py-2 bg-primary text-white font-extrabold rounded-full shadow-pill text-sm">即時預覽</button>
+                            <button class="px-6 py-2 text-on-surface-variant font-bold text-sm hover:text-primary transition-colors">歷史回放</button>
                         </div>
                     </div>
 
-                    <!-- Toolbar -->
-                    <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-outline-variant/10">
-                        <div class="flex items-center space-x-4">
-                            <div class="flex items-center space-x-2 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/10">
-                                <span class="material-symbols-outlined text-sm text-primary">apartment</span>
-                                <select class="bg-transparent border-none text-sm font-bold p-0 focus:ring-0 text-primary">
-                                    <option>台中市全區中心總覽</option>
-                                    <option>北區託育中心聯盟</option>
-                                </select>
+                    <!-- Video Grid (參照 Lumina Care) -->
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="relative group lux-card overflow-hidden">
+                            <img class="w-full aspect-[1.4] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
+                            <div class="absolute top-6 left-6 video-tag px-3 py-1.5 flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                <span class="text-[10px] font-black text-white tracking-widest uppercase">CAM 01 • 嬰兒床區</span>
                             </div>
                         </div>
-                        <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-600 transition-colors">
-                            匯出今日日誌
-                        </button>
+                        <div class="relative group lux-card overflow-hidden">
+                            <img class="w-full aspect-[1.4] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
+                            <div class="absolute top-6 left-6 video-tag px-3 py-1.5 flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                <span class="text-[10px] font-black text-white tracking-widest uppercase">CAM 02 • 遊戲室</span>
+                            </div>
+                        </div>
+                        <div class="relative group lux-card overflow-hidden">
+                            <img class="w-full aspect-[1.4] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSzC-NC041V0Wsm2BB5cvNeEaGhDs0Cd9efJRXqIz8x3VzWMJluYE3rFaTAnDLIsVqbkVpZvyy5VAoqlNj-DFfI2qhodq4Ogo2TGn6aEVXgYjTqOoZkk0BBhmoL--TzUfVZ0bO7-tRUdJtY0krO22zs2611JYUzXQxzbqsfaYLULE16yShiHz-CEDPZ3HgOfmAUpjLorcQIp4kDSad32HrimBbb8EFI9YhsZdzfNI9NMpFkb9GlqVoPQz1hnr1IY2GRRt7sRZlDcYu"/>
+                            <div class="absolute top-6 left-6 video-tag px-3 py-1.5 flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                <span class="text-[10px] font-black text-white tracking-widest uppercase">CAM 03 • 走廊區域</span>
+                            </div>
+                        </div>
+                        <!-- Add Camera (參照 Lumina Care) -->
+                        <div class="lux-card border-2 border-dashed border-primary/20 flex flex-col items-center justify-center space-y-4 opacity-60 hover:opacity-100 transition-all cursor-pointer">
+                            <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-3xl">add</span>
+                            </div>
+                            <span class="text-sm font-bold text-primary">新增監視器畫面</span>
+                        </div>
                     </div>
 
-                    <!-- Video Grid -->
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="relative group bg-black rounded-xl overflow-hidden shadow-lg border border-outline-variant/10 aspect-video">
-                            <img class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
-                            <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold flex items-center space-x-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                <span>CAM-01 晨星教室</span>
+                    <!-- Playback Controls (參照 Lumina Care) -->
+                    <div class="lux-card p-10 space-y-8">
+                        <div class="flex items-center justify-center space-x-12">
+                            <span class="material-symbols-outlined text-3xl text-on-surface cursor-pointer">skip_previous</span>
+                            <div class="w-16 h-16 bg-primary rounded-full shadow-pill flex items-center justify-center text-white cursor-pointer active:scale-90 transition-all">
+                                <span class="material-symbols-outlined text-4xl">play_arrow</span>
                             </div>
+                            <span class="material-symbols-outlined text-3xl text-on-surface cursor-pointer">skip_next</span>
                         </div>
-                        <div class="relative group bg-error/10 rounded-xl overflow-hidden shadow-lg border-2 border-error aspect-video">
-                            <div class="absolute inset-0 bg-error/20 flex flex-col items-center justify-center z-10 text-center p-4">
-                                <span class="material-symbols-outlined text-5xl text-error mb-2 animate-pulse">visibility_off</span>
-                                <p class="text-error font-black text-lg">鏡頭遭遮蔽</p>
-                                <p class="text-error/80 text-xs font-bold">CAM-02 走廊區域</p>
+                        <div class="relative">
+                            <div class="h-4 bg-surface-container rounded-full overflow-hidden">
+                                <div class="absolute h-full bg-primary/30 w-1/3 left-1/4 rounded-full"></div>
+                                <div class="absolute h-full bg-primary/30 w-24 left-2/3 rounded-full"></div>
                             </div>
-                            <img class="w-full h-full object-cover grayscale opacity-40 blur-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
+                            <div class="absolute -top-3 left-[35%] w-1.5 h-10 bg-primary rounded-full shadow-pill"></div>
+                            <div class="flex justify-between mt-4 text-[11px] font-extrabold text-on-surface-variant tracking-widest opacity-60">
+                                <span>08:00 AM</span>
+                                <span>10:00 AM</span>
+                                <span>12:00 PM</span>
+                                <span>02:00 PM</span>
+                                <span>04:00 PM</span>
+                                <span>06:00 PM</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Activity Logs -->
-                <aside class="col-span-12 lg:col-span-3">
-                    <div class="bg-white rounded-xl shadow-sm border border-outline-variant/10 flex flex-col h-full overflow-hidden">
-                        <div class="p-5 border-b border-slate-50">
-                            <h3 class="font-bold text-sm text-primary flex items-center">
-                                <span class="material-symbols-outlined mr-2 text-lg">history</span>
-                                即時告警日誌
-                            </h3>
+                <!-- Right: Activity Log & Conditions -->
+                <div class="col-span-12 lg:col-span-4 space-y-10">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-2xl font-extrabold text-on-surface font-headline tracking-tighter">監控日誌</h3>
+                            <button class="text-xs font-bold text-primary hover:underline">清除全部</button>
                         </div>
-                        <div class="p-5 space-y-6 flex-1 overflow-y-auto custom-scrollbar">
-                            <div class="space-y-4">
-                                <div class="flex gap-3">
-                                    <div class="min-w-[4px] bg-error rounded-full"></div>
-                                    <div>
-                                        <p class="text-[10px] font-bold text-error mb-0.5">14:52 • 異常中止</p>
-                                        <p class="text-xs font-semibold text-slate-700">CAM-04 連線失敗</p>
-                                        <p class="text-[10px] text-slate-400">晨星分校</p>
+                        <div class="space-y-5">
+                            <!-- Card 1 (Movement Detected) -->
+                            <div class="bg-white p-6 rounded-2xl shadow-card border-l-4 border-l-primary flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 transition-transform hover:rotate-12">
+                                    <span class="material-symbols-outlined">directions_run</span>
+                                </div>
+                                <div class="flex-1 space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="text-sm font-black text-on-surface">偵測到異常動態</h4>
+                                        <span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-black rounded uppercase tracking-widest">LIVE</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant leading-relaxed">CAM 01 (遊戲室) 偵測到大幅度活動。請確認幼兒狀態。</p>
+                                    <div class="flex items-center justify-between mt-4">
+                                        <span class="text-[10px] font-bold text-on-surface-variant">14:24:05</span>
+                                        <button class="px-4 py-1.5 bg-primary text-white text-[10px] font-black rounded-lg shadow-pill uppercase tracking-widest">跳轉</button>
                                     </div>
                                 </div>
-                                <div class="flex gap-3">
-                                    <div class="min-w-[4px] bg-emerald-500 rounded-full"></div>
-                                    <div>
-                                        <p class="text-[10px] font-bold text-emerald-500 mb-0.5">14:48 • 系統資訊</p>
-                                        <p class="text-xs font-semibold text-slate-700">案號 #882 處理完畢</p>
-                                        <p class="text-[10px] text-slate-400">處理人：何管理員</p>
+                            </div>
+                            <!-- Card 2 (Audio Alert) -->
+                            <div class="bg-white p-6 rounded-2xl shadow-card flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full bg-on-surface/5 flex items-center justify-center text-on-surface/60 shrink-0">
+                                    <span class="material-symbols-outlined">volume_up</span>
+                                </div>
+                                <div class="flex-1 space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="text-sm font-black text-on-surface">異常聲音警示</h4>
+                                        <span class="px-2 py-0.5 bg-surface-container text-on-surface-variant text-[10px] font-black rounded uppercase tracking-widest">HISTORIC</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant leading-relaxed">CAM 02 (午睡室) 偵測到高頻哭鬧聲。</p>
+                                    <div class="flex items-center justify-between mt-4">
+                                        <span class="text-[10px] font-bold text-on-surface-variant">14:12:30</span>
+                                        <button class="px-4 py-1.5 bg-surface-container text-on-surface-variant text-[10px] font-black rounded-lg uppercase tracking-widest">紀錄</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4 bg-slate-50">
-                            <button class="w-full py-2.5 text-xs font-bold text-slate-500 border border-slate-200 rounded-lg hover:bg-white transition-colors">查看完整紀錄</button>
+                        <button class="w-full py-4 bg-surface-container text-on-surface-variant font-extrabold rounded-2xl text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-all">匯出當日報表</button>
+                    </div>
+
+                    <!-- Room Conditions (參照 Lumina Care) -->
+                    <div class="bg-primary/5 p-8 rounded-[2.5rem] border border-primary/10 space-y-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="material-symbols-outlined text-primary">thermostat</span>
+                            <h3 class="text-sm font-extrabold text-primary uppercase tracking-widest">當前環境數值</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white p-6 rounded-3xl shadow-soft text-center space-y-1">
+                                <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">溫度</p>
+                                <p class="text-2xl font-black text-on-surface">24.5°C</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl shadow-soft text-center space-y-1">
+                                <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">濕度</p>
+                                <p class="text-2xl font-black text-on-surface">45%</p>
+                            </div>
                         </div>
                     </div>
-                </aside>
+                </div>
             </div>
             
             <!-- Footer Placeholder -->
