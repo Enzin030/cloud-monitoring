@@ -1,24 +1,36 @@
-<header class="bg-white sticky top-0 z-50 w-full border-b border-outline-variant/10 flex justify-between items-center px-6 py-2 shadow-sm">
-    <div class="flex items-center space-x-4">
-        <img src="assets/images/logo.png" alt="Logo" class="w-14 h-14 object-contain">
+<header class="glass sticky top-0 z-50 w-full flex justify-between items-center px-10 py-3 shadow-premium">
+    <div class="flex items-center space-x-5">
+        <div class="relative">
+            <div class="absolute inset-0 bg-primary/10 blur-xl rounded-full"></div>
+            <img src="assets/images/logo.png" alt="Logo" class="relative w-12 h-12 object-contain filter drop-shadow-md">
+        </div>
         <div class="flex flex-col">
-            <h1 class="text-lg font-bold text-primary font-headline tracking-tighter leading-tight">臺中市社會局</h1>
-            <p class="text-base font-semibold text-slate-400 font-headline leading-tight">兒托監管雲</p>
+            <h1 class="text-xl font-black text-primary font-headline tracking-tighter leading-none mb-1">臺中市社會局</h1>
+            <p class="text-sm font-bold text-slate-400 font-headline tracking-widest uppercase opacity-80">兒托監管雲</p>
         </div>
     </div>
     
-    <div class="flex items-center space-x-4">
-        <!-- 管理員 Tag -->
-        <div class="flex items-center space-x-1.5 px-3 py-1 bg-primary/5 text-primary rounded-full border border-primary/10">
-            <span class="material-symbols-outlined text-[16px]">account_circle</span>
-            <span class="text-xs font-black tracking-wider text-primary">管理員</span>
+    <div class="flex items-center space-x-6">
+        <!-- Status Indicator -->
+        <div class="hidden md:flex items-center px-4 py-2 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100/50">
+            <span class="relative flex h-2 w-2 mr-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-[11px] font-black tracking-widest uppercase">系統防護中</span>
+        </div>
+
+        <div class="h-6 w-px bg-slate-200"></div>
+
+        <!-- Role Badge -->
+        <div class="flex items-center space-x-2 px-3 py-1.5 bg-primary/5 text-primary rounded-md border border-primary/10">
+            <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+            <span class="text-xs font-black tracking-wider">最高管理員</span>
         </div>
         
-        <div class="w-px h-6 bg-slate-200 mx-2"></div>
-        
-        <!-- 登出按鈕 -->
-        <button class="flex items-center space-x-2 px-4 py-2 bg-slate-100 text-slate-600 rounded-lg text-sm font-bold hover:bg-error hover:text-white transition-all active:scale-95 group">
-            <span class="material-symbols-outlined text-sm group-hover:rotate-12 transition-transform">logout</span>
+        <!-- Logout Button -->
+        <button class="flex items-center space-x-2 px-5 py-2.5 bg-slate-900 text-white rounded-lg text-xs font-black tracking-widest uppercase hover:bg-error transition-all active:scale-95 group shadow-lg shadow-slate-900/10">
+            <span class="material-symbols-outlined text-sm group-hover:rotate-45 transition-transform duration-500">logout</span>
             <span>登出</span>
         </button>
     </div>
