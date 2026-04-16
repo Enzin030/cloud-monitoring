@@ -1,26 +1,45 @@
-<aside class="w-64 bg-surface-container-low flex flex-col p-4 space-y-2 border-r border-outline-variant/10 shrink-0 h-full overflow-y-auto custom-scrollbar">
+<aside class="w-64 bg-slate-900 flex flex-col p-4 space-y-2 shrink-0 h-full overflow-y-auto custom-scrollbar">
+    <style>
+        .nav-item { color: rgba(255, 255, 255, 0.6); }
+        .nav-item:hover { color: white; background: rgba(255, 255, 255, 0.05); }
+        .nav-item.active { color: white; background: rgba(255, 255, 255, 0.1); }
+        .nav-item .material-symbols-outlined { font-size: 20px; }
+    </style>
+    
     <nav class="flex-1 space-y-1" id="main-nav">
         <div class="px-4 py-2 mb-2">
-            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">主選單</p>
+            <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">主選單</p>
         </div>
+        
         <a href="index.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300" data-page="index">
             <span class="material-symbols-outlined">dashboard</span>
             <span class="font-semibold text-sm">首頁儀表板</span>
         </a>
+        
         <a href="live.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300" data-page="live">
             <span class="material-symbols-outlined">videocam</span>
             <span class="font-semibold text-sm">監控控制台</span>
         </a>
+        
         <a href="alert.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300" data-page="alert">
             <span class="material-symbols-outlined">report_problem</span>
             <span class="font-semibold text-sm">異常告警追蹤</span>
         </a>
-        <div class="pt-4 mt-4 border-t border-outline-variant/10 px-4 py-2">
-            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">系統管理</p>
+        
+        <div class="pt-6 mt-6 border-t border-white/5 px-4 py-2">
+            <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">系統管理</p>
         </div>
+        
         <a href="account.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300" data-page="account">
             <span class="material-symbols-outlined">manage_accounts</span>
             <span class="font-semibold text-sm">帳號管理</span>
         </a>
     </nav>
+    
+    <div class="mt-auto px-4 py-4">
+        <div class="flex items-center space-x-2 text-slate-500 text-[10px]">
+            <span class="material-symbols-outlined text-sm">info</span>
+            <span>系統版本 v1.2.0</span>
+        </div>
+    </div>
 </aside>
