@@ -13,57 +13,55 @@
     <div id="header-placeholder"></div>
 
     <main class="flex-1 overflow-y-auto p-12 w-full custom-scrollbar">
-        <div class="space-y-10">
-            <!-- 標題與麵包屑 左右對齊 -->
-            <div class="flex items-end justify-between border-b border-slate-100 pb-8">
-                <div>
+        <div class="space-y-12">
+            <!-- 標題與麵包屑 左右對齊 (與系統管理樣式同步) -->
+            <div class="flex items-center justify-between border-b border-slate-100 pb-10">
+                <div class="space-y-1">
                     <h2 class="text-5xl font-black text-slate-800 font-headline tracking-tighter">異常告警追蹤</h2>
-                    <p class="text-slate-400 font-bold mt-2">系統主動偵測之違規、遮蔽與故障事件流水線</p>
+                    <p class="text-slate-400 font-bold text-sm">主動偵測事件之流水線與處理追蹤</p>
                 </div>
-                <div class="flex items-center text-xs text-slate-400 font-bold space-x-2 bg-slate-50 px-4 py-2 rounded-full">
+                <div class="flex items-center text-xs text-slate-400 font-bold space-x-2 bg-slate-50 px-6 py-2.5 rounded-full border border-slate-100">
                     <span class="material-symbols-outlined text-[14px]">home</span>
                     <span>首頁</span>
                     <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-                    <span class="text-slate-900">異常告警追蹤</span>
+                    <span class="text-slate-900 font-black tracking-tight">異常告警追蹤</span>
                 </div>
             </div>
 
             <!-- Filter Panel -->
             <section class="lux-card p-10 flex flex-col md:flex-row items-end justify-between gap-8">
-                <div class="flex-1 grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
+                <div class="flex-1 grid grid-cols-1 md:grid-cols-4 gap-8 w-full">
                     <div class="space-y-3">
-                        <label class="text-[10px] font-black text-slate-410 uppercase tracking-widest">日期範圍</label>
-                        <input class="w-full bg-slate-50 border-none rounded-xl py-3 px-5 text-sm font-bold text-slate-800 focus:ring-2 focus:ring-slate-100" type="text" value="2023.10.12 - 10.19"/>
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">時間區段</label>
+                        <input class="w-full bg-slate-50 border-none rounded-2xl py-3.5 px-6 text-sm font-black text-slate-900 focus:ring-2 focus:ring-slate-100" type="text" value="2023.10.12 - 10.19"/>
                     </div>
                     <div class="space-y-3">
-                        <label class="text-[10px] font-black text-slate-410 uppercase tracking-widest">兒托中心</label>
-                        <select class="w-full bg-slate-50 border-none rounded-xl py-3 px-5 text-sm font-bold text-slate-800 focus:ring-2 focus:ring-slate-100">
-                            <option>所有場所</option>
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">兒托場所</label>
+                        <select class="w-full bg-slate-50 border-none rounded-2xl py-3.5 px-6 text-sm font-black text-slate-900 focus:ring-2 focus:ring-slate-100">
+                            <option>全區場所</option>
                             <option>北屯中心</option>
                         </select>
                     </div>
                     <div class="space-y-3">
-                        <label class="text-[10px] font-black text-slate-410 uppercase tracking-widest">告警類型</label>
-                        <select class="w-full bg-slate-50 border-none rounded-xl py-3 px-5 text-sm font-bold text-slate-800 focus:ring-2 focus:ring-slate-100">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">事件類別</label>
+                        <select class="w-full bg-slate-50 border-none rounded-xl py-3.5 px-6 text-sm font-black text-slate-900 focus:ring-2 focus:ring-slate-100">
                             <option>所有類型</option>
                             <option>鏡頭遮蔽</option>
-                            <option>訊號中斷</option>
                         </select>
                     </div>
                     <div class="space-y-3">
-                        <label class="text-[10px] font-black text-slate-410 uppercase tracking-widest">處理狀態</label>
-                        <div class="flex bg-slate-100 p-1 rounded-xl">
-                            <button class="flex-1 py-2 rounded-lg text-[11px] font-black bg-white text-slate-900 shadow-sm">待處理</button>
-                            <button class="flex-1 py-2 rounded-lg text-[11px] font-bold text-slate-500">待審核</button>
-                            <button class="flex-1 py-2 rounded-lg text-[11px] font-bold text-slate-500">已審核</button>
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">處理進度</label>
+                        <div class="flex bg-slate-100 p-1.5 rounded-2xl">
+                            <button class="flex-1 py-2 rounded-xl text-[11px] font-black bg-white text-slate-900 shadow-sm border border-black/5">待處理</button>
+                            <button class="flex-1 py-2 rounded-xl text-[11px] font-bold text-slate-500">待審核</button>
+                            <button class="flex-1 py-2 rounded-xl text-[11px] font-bold text-slate-500">已結案</button>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 匯出按鈕移到最右側 -->
-                <button class="px-8 py-3 bg-slate-900 text-white rounded-xl text-sm font-black shadow-lg hover:bg-slate-800 transition-all flex items-center shrink-0">
-                    <span class="material-symbols-outlined mr-2">file_download</span>
-                    匯出報表
+                <button class="px-10 py-4 bg-slate-900 text-white rounded-[1.5rem] text-sm font-black shadow-lux hover:bg-slate-800 transition-all flex items-center shrink-0">
+                    <span class="material-symbols-outlined mr-3">file_download</span>
+                    匯出清單
                 </button>
             </section>
 
@@ -72,96 +70,61 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-slate-50/50 border-b border-slate-100">
-                            <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">時間 / 序號</th>
-                            <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">位置場所</th>
-                            <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">類型狀態</th>
-                            <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">嚴重度</th>
-                            <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">執行動作</th>
+                            <th class="px-10 py-7 text-[10px] font-black text-slate-400 uppercase tracking-widest">時間與設備序號</th>
+                            <th class="px-10 py-7 text-[10px] font-black text-slate-400 uppercase tracking-widest">區域場所</th>
+                            <th class="px-10 py-7 text-[10px] font-black text-slate-400 uppercase tracking-widest">偵測類型</th>
+                            <th class="px-10 py-7 text-[10px] font-black text-slate-400 uppercase tracking-widest">緊急程度</th>
+                            <th class="px-10 py-7 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">核定執行</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-50">
-                        <tr class="hover:bg-slate-50/50 transition-all">
-                            <td class="px-8 py-6">
-                                <p class="text-sm font-black text-slate-800">2023.10.19 14:22</p>
-                                <p class="text-[11px] text-slate-400 font-bold uppercase">SN: CAM-BT-0091</p>
+                        <tr class="hover:bg-slate-50/50 transition-all group">
+                            <td class="px-10 py-8">
+                                <p class="text-[10px] font-black text-accent uppercase tracking-widest mb-1 leading-none">ID: CAM-00213</p>
+                                <p class="text-sm font-black text-slate-900 tracking-tight">2023.10.19 14:22</p>
                             </td>
-                            <td class="px-8 py-6">
+                            <td class="px-10 py-8">
                                 <p class="text-sm font-bold text-slate-900">北屯中心</p>
-                                <p class="text-[11px] text-slate-400">大班教室 (CAM-04)</p>
+                                <p class="text-[11px] text-slate-400 font-medium">大班教室區域</p>
                             </td>
-                            <td class="px-8 py-6">
-                                <div class="flex items-center gap-3">
-                                    <span class="px-3 py-1 bg-red-50 text-red-600 text-[10px] font-black rounded-full border border-red-100">鏡頭遮蔽</span>
-                                    <span class="text-[11px] font-bold text-slate-400">待回報</span>
-                                </div>
+                            <td class="px-10 py-8">
+                                <span class="px-4 py-1.5 bg-red-50 text-red-600 text-[10px] font-black rounded-full border border-red-100">鏡頭遮蔽 (待回報)</span>
                             </td>
-                            <td class="px-8 py-6">
+                            <td class="px-10 py-8">
                                 <span class="flex items-center text-red-600 text-[11px] font-black">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600 mr-2"></span>
+                                    <div class="w-2 h-2 rounded-full bg-red-600 mr-3 shadow-sm shadow-red-200"></div>
                                     緊急
                                 </span>
                             </td>
-                            <td class="px-8 py-6 text-right">
-                                <button class="px-4 py-2 bg-slate-900 text-white text-[11px] font-black rounded-lg hover:bg-slate-800">通知場所回報</button>
+                            <td class="px-10 py-8 text-right">
+                                <button class="px-6 py-2.5 bg-slate-900 text-white text-[11px] font-black rounded-xl hover:bg-slate-800 shadow-lg shadow-slate-200">通知場所回報</button>
                             </td>
                         </tr>
-                        <tr class="hover:bg-slate-50/50 transition-all">
-                            <td class="px-8 py-6">
-                                <p class="text-sm font-black text-slate-800">2023.10.19 12:05</p>
-                                <p class="text-[11px] text-slate-400 font-bold uppercase">SN: CAM-TP-0122</p>
+                        <tr class="hover:bg-slate-50/50 transition-all group">
+                            <td class="px-10 py-8">
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 leading-none">ID: CAM-00455</p>
+                                <p class="text-sm font-black text-slate-900 tracking-tight">2023.10.19 12:05</p>
                             </td>
-                            <td class="px-8 py-6">
+                            <td class="px-10 py-8">
                                 <p class="text-sm font-bold text-slate-900">太平中心</p>
-                                <p class="text-[11px] text-slate-400">備餐區 (CAM-07)</p>
+                                <p class="text-[11px] text-slate-400 font-medium">備餐區入口</p>
                             </td>
-                            <td class="px-8 py-6">
-                                <div class="flex items-center gap-3">
-                                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-black rounded-full border border-slate-200">訊號中斷</span>
-                                    <span class="text-[11px] font-bold text-slate-400">待報修</span>
-                                </div>
+                            <td class="px-10 py-8">
+                                <span class="px-4 py-1.5 bg-slate-100 text-slate-600 text-[10px] font-black rounded-full border border-slate-200">訊號中斷 (待報修)</span>
                             </td>
-                            <td class="px-8 py-6">
-                                <span class="flex items-center text-slate-500 text-[11px] font-black">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-500 mr-2"></span>
+                            <td class="px-10 py-8">
+                                <span class="flex items-center text-slate-400 text-[11px] font-black">
+                                    <div class="w-2 h-2 rounded-full bg-slate-300 mr-3"></div>
                                     一般
                                 </span>
                             </td>
-                            <td class="px-8 py-6 text-right">
-                                <button class="px-4 py-2 border border-slate-900 text-slate-900 text-[11px] font-black rounded-lg hover:bg-slate-900 hover:text-white transition-all">通知廠商報修</button>
+                            <td class="px-10 py-8 text-right">
+                                <button class="px-6 py-2.5 border-2 border-slate-900 text-slate-900 text-[11px] font-black rounded-xl hover:bg-slate-900 hover:text-white transition-all">通知廠商報修</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </section>
-            
-            <!-- 模擬報修單區塊 (抽屜或下方清單) -->
-            <div class="grid grid-cols-12 gap-10">
-                <div class="col-span-12 lg:col-span-4">
-                    <div class="lux-card bg-slate-900 p-8 text-white space-y-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-sm font-black uppercase tracking-widest text-slate-400">系統報修單 (模擬)</h3>
-                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 rounded text-slate-300">#REQ-20231019</span>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="border-b border-slate-800 pb-4">
-                                <p class="text-[9px] font-bold text-slate-500 uppercase">故障設備序號</p>
-                                <p class="text-lg font-black tracking-tighter">CAM-TP-0122 • 太平中心</p>
-                            </div>
-                            <div class="border-b border-slate-800 pb-4">
-                                <p class="text-[9px] font-bold text-slate-500 uppercase">故障描述</p>
-                                <p class="text-sm font-medium">心跳包中斷超過 15 分鐘，經偵測後確認非網路波動，判定為硬體斷電或鏡頭損壞。</p>
-                            </div>
-                            <div class="flex justify-between items-end pt-4">
-                                <div>
-                                    <p class="text-[9px] font-bold text-slate-500 uppercase">處理狀態</p>
-                                    <p class="text-accent text-sm font-black">主動聯繫廠商中...</p>
-                                </div>
-                                <button class="bg-white text-slate-900 px-6 py-2 rounded-lg text-xs font-black">列印報修單</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div id="footer-placeholder" class="mt-20"></div>
