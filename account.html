@@ -14,55 +14,83 @@
 
     <main class="flex-1 overflow-y-auto p-12 w-full custom-scrollbar">
         <div class="space-y-12">
-            <!-- 標題與麵包屑並排佈局 -->
+            <!-- 標題與麵包屑 -->
             <div class="border-b border-slate-100 pb-8 space-y-3">
                 <div class="flex items-end gap-6">
-                    <h2 class="text-3xl font-medium text-slate-900 tracking-tight">系統管理</h2>
-                    <div class="flex items-center text-sm text-slate-400 font-medium space-x-2 mb-1.5">
+                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">系統管理</h2>
+                    <div class="flex items-center text-sm text-slate-400 font-bold space-x-2 mb-1.5">
                         <span class="material-symbols-outlined text-[16px]">home</span>
                         <span>首頁</span>
                         <span class="material-symbols-outlined text-[16px]">chevron_right</span>
-                        <span class="text-slate-800 font-medium tracking-tight">系統管理</span>
+                        <span class="text-slate-800 font-bold tracking-tight">系統管理</span>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-12 gap-10">
+            <div class="grid grid-cols-12 gap-12">
                 <div class="col-span-12 lg:col-span-8">
+                    <!-- 改為 帳號管理 -->
                     <section class="lux-card overflow-hidden">
                       <div class="p-8 border-b border-slate-50 flex items-center justify-between">
-                         <h3 class="font-medium text-slate-900 tracking-tight flex items-center text-lg">
-                           <span class="material-symbols-outlined mr-3 text-accent transition-all group-hover:scale-110">security</span>
-                           管理權限稽核矩陣
+                         <h3 class="font-bold text-slate-900 tracking-tight flex items-center text-lg">
+                           <span class="material-symbols-outlined mr-3 text-accent">manage_accounts</span>
+                           帳號權限管理
                          </h3>
-                         <button class="px-5 py-2 bg-slate-900 text-white text-[11px] font-medium rounded-xl shadow-lg">新增人員</button>
+                         <button class="px-5 py-2 bg-slate-900 text-white text-[11px] font-bold rounded-xl shadow-lg hover:bg-slate-800 transition-all">新增帳號</button>
                       </div>
                       
                       <div class="overflow-x-auto">
                         <table class="w-full text-left">
-                          <thead class="bg-slate-50/50 text-[10px] font-medium text-slate-400 uppercase tracking-widest border-b border-slate-100">
+                          <thead class="bg-slate-50/50 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100">
                             <tr>
                               <th class="px-8 py-5">管理員名稱</th>
-                              <th class="px-8 py-5">職責角色</th>
-                              <th class="px-8 py-5">授權管轄範圍</th>
-                              <th class="px-8 py-5">帳號狀態</th>
+                              <th class="px-8 py-5">群組角色</th>
+                              <th class="px-8 py-5">管轄範圍</th>
+                              <th class="px-8 py-5">狀態</th>
+                              <th class="px-8 py-5 text-right">操作</th>
                             </tr>
                           </thead>
                           <tbody class="divide-y divide-slate-50">
                             <tr class="hover:bg-slate-50/30 transition-all">
                               <td class="px-8 py-6">
-                                <p class="text-sm font-medium text-slate-900">陳大明</p>
-                                <p class="text-[10px] text-slate-410 font-medium">STAFF_ID: ADM-022</p>
+                                <p class="text-sm font-bold text-slate-900">陳大明</p>
+                                <p class="text-[10px] text-slate-400 font-bold">USER_ID: ADM-022</p>
                               </td>
                               <td class="px-8 py-6">
-                                <span class="px-3 py-1 bg-slate-100 text-slate-900 text-[10px] font-medium rounded-lg">總管中心管理員</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-900 text-[10px] font-bold rounded-lg uppercase">Super Admin</span>
                               </td>
-                              <td class="px-8 py-6 text-sm font-medium text-slate-600">全區中心管轄</td>
+                              <td class="px-8 py-6 text-sm font-bold text-slate-600">全區中心管轄</td>
                               <td class="px-8 py-6">
-                                <span class="flex items-center text-emerald-600 text-[11px] font-medium">
-                                    <div class="w-2 h-2 rounded-full bg-emerald-500 mr-2 shadow-sm shadow-emerald-200"></div>
+                                <span class="flex items-center text-emerald-600 text-[11px] font-bold">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></div>
                                     已授權啟用
                                 </span>
+                              </td>
+                              <td class="px-8 py-6 text-right">
+                                <button class="text-slate-400 hover:text-slate-900 transition-colors">
+                                    <span class="material-symbols-outlined text-xl">edit</span>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/30 transition-all">
+                              <td class="px-8 py-6">
+                                <p class="text-sm font-bold text-slate-900">王智慧</p>
+                                <p class="text-[10px] text-slate-400 font-bold">USER_ID: ADM-035</p>
+                              </td>
+                              <td class="px-8 py-6">
+                                <span class="px-3 py-1 bg-slate-100 text-slate-900 text-[10px] font-bold rounded-lg uppercase">District Admin</span>
+                              </td>
+                              <td class="px-8 py-6 text-sm font-bold text-slate-600">北屯區、太平區</td>
+                              <td class="px-8 py-6">
+                                <span class="flex items-center text-emerald-600 text-[11px] font-bold">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></div>
+                                    已授權啟用
+                                </span>
+                              </td>
+                              <td class="px-8 py-6 text-right">
+                                <button class="text-slate-400 hover:text-slate-900 transition-colors">
+                                    <span class="material-symbols-outlined text-xl">edit</span>
+                                </button>
                               </td>
                             </tr>
                           </tbody>
@@ -70,9 +98,65 @@
                       </div>
                     </section>
                 </div>
+
+                <div class="col-span-12 lg:col-span-4 space-y-8">
+                    <!-- 群組權限設定 -->
+                    <section class="lux-card p-8 space-y-6">
+                        <div class="border-b border-slate-100 pb-4">
+                            <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">群組權限架構</h3>
+                            <p class="text-sm font-bold text-slate-900">角色模型與功能存取控制</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between group cursor-pointer hover:border-accent transition-all">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center mr-4 text-accent">
+                                        <span class="material-symbols-outlined">admin_panel_settings</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-900">系統開發維護組</p>
+                                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Full Permissions</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-300 group-hover:text-accent transition-all">chevron_right</span>
+                            </div>
+                            
+                            <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between group cursor-pointer hover:border-accent transition-all">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center mr-4 text-slate-400">
+                                        <span class="material-symbols-outlined">supervisor_account</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-900">社會局管理員</p>
+                                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Monitoring & Alerts</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-300 group-hover:text-accent transition-all">chevron_right</span>
+                            </div>
+
+                            <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between group cursor-pointer hover:border-accent transition-all">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center mr-4 text-slate-400">
+                                        <span class="material-symbols-outlined">home_work</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-900">兒托場所聯絡人</p>
+                                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Limited Access</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-300 group-hover:text-accent transition-all">chevron_right</span>
+                            </div>
+                        </div>
+
+                        <button class="w-full py-4 border-2 border-slate-900 text-slate-900 text-xs font-bold rounded-2xl hover:bg-slate-900 hover:text-white transition-all active:scale-95">
+                            管理所有角色權限
+                        </button>
+                    </section>
+                </div>
             </div>
         </div>
 
+        <!-- Footer Placeholder -->
         <div id="footer-placeholder" class="mt-20"></div>
     </main>
   </body>
