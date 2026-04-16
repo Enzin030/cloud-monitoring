@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>告警歷史與稽核 | 兒托監管雲</title>
+    <title>告警歷史與稽核 | </title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -18,26 +18,25 @@
     </style>
     <script src="lib/layout.js"></script>
 </head>
-<body class="bg-surface font-body text-on-surface flex overflow-hidden h-screen w-screen">
-    <!-- Sidebar Placeholder -->
-    <div id="sidebar-placeholder"></div>
+<body class="bg-surface font-body text-on-surface flex flex-col overflow-hidden h-screen w-screen">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
 
-    <!-- Main Content Area -->
-    <main class="flex-1 flex flex-col h-screen relative bg-surface overflow-hidden">
-        <!-- Header Placeholder -->
-        <div id="header-placeholder"></div>
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar Placeholder -->
+        <div id="sidebar-placeholder"></div>
 
         <!-- Scrollable content area -->
-        <div class="flex-1 overflow-y-auto p-8 w-full space-y-8 bg-surface-container-low custom-scrollbar">
+        <main class="flex-1 overflow-y-auto p-8 w-full space-y-8 bg-surface-container-low custom-scrollbar">
             <!-- Breadcrumbs / Page Title -->
             <div class="space-y-1">
                 <div class="flex items-center text-xs text-slate-500 font-medium space-x-2">
-                    <span>告警紀錄</span>
+                    <span class="material-symbols-outlined text-[12px]">home</span>
+                    <span>首頁</span>
                     <span class="material-symbols-outlined text-[12px]">chevron_right</span>
-                    <span class="text-primary font-bold">歷史稽核</span>
+                    <span>異常告警追蹤</span>
                 </div>
-                <h2 class="text-3xl font-black text-primary font-headline tracking-tight">告警歷史與稽核</h2>
-                <p class="text-sm text-secondary font-medium">轄區雲端網路內所有觸發之安全告警記錄</p>
+                <h2 class="text-3xl font-black text-primary font-headline tracking-tight">異常告警追蹤</h2>
             </div>
 
             <div class="flex flex-col gap-6">
@@ -130,7 +129,7 @@
 
             <!-- Footer Placeholder -->
             <div id="footer-placeholder"></div>
-        </div>
-    </main>
+        </main>
+    </div>
 </body>
 </html>
