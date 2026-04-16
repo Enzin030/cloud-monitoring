@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-
+<html class="light" lang="zh-TW">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>帳戶設定 | 兒托監管雲</title>
+    <title>權限控管與系統設定 | 兒托監管雲</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -12,10 +12,13 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c3c6d1; border-radius: 10px; }
     </style>
     <script src="lib/layout.js"></script>
 </head>
-<body class="bg-surface font-body text-on-surface flex overflow-hidden h-screen">
+<body class="bg-surface font-body text-on-surface flex overflow-hidden h-screen w-screen">
     <!-- Sidebar Placeholder -->
     <div id="sidebar-placeholder"></div>
 
@@ -25,7 +28,7 @@
         <div id="header-placeholder"></div>
 
         <!-- Scrollable content area -->
-        <div class="flex-1 overflow-y-auto p-8 w-full space-y-8 bg-surface-container-low">
+        <div class="flex-1 overflow-y-auto p-8 w-full space-y-8 bg-surface-container-low custom-scrollbar">
             <!-- Breadcrumbs / Page Title -->
             <div class="space-y-1">
                 <div class="flex items-center text-xs text-slate-500 font-medium space-x-2">
@@ -33,246 +36,64 @@
                     <span class="material-symbols-outlined text-[12px]">chevron_right</span>
                     <span class="text-primary font-bold">權限控管</span>
                 </div>
-                <h2 class="text-3xl font-black text-primary font-headline tracking-tight">權限控管與系統設定</h2>
+                <h2 class="text-3xl font-black text-primary font-headline tracking-tight">系統設定</h2>
+                <p class="text-sm text-secondary font-medium">權限分配、AI 模型參數與數據存留策略</p>
             </div>
-<!-- Bento Grid Layout -->
-<div class="grid grid-cols-12 gap-8">
-<!-- Section 1: Permission Settings (Table Focus) -->
-<section class="col-span-12 lg:col-span-8 space-y-4">
-<div class="flex justify-between items-end mb-2">
-<div>
-<h3 class="text-xl font-bold text-primary font-headline">權限設定</h3>
-<p class="text-sm text-slate-500">管理行政人員與機構主管的使用權限。</p>
-</div>
-<button class="flex items-center px-4 py-2 bg-primary text-white rounded-md text-sm font-bold shadow-sm hover:shadow-md transition-shadow">
-<span class="material-symbols-outlined text-sm mr-2">person_add</span>
-                        新增使用者
-                    </button>
-</div>
-<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low text-slate-600 text-xs font-bold uppercase tracking-wider">
-<th class="px-6 py-4">使用者身份</th>
-<th class="px-6 py-4">角色</th>
-<th class="px-6 py-4">存取權限</th>
-<th class="px-6 py-4">最後活動</th>
-<th class="px-6 py-4 text-right">操作</th>
-</tr>
-</thead>
-<tbody class="text-sm divide-y divide-slate-100">
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-6 py-4 flex items-center space-x-3">
-<div class="w-9 h-9 rounded-full bg-slate-200 overflow-hidden">
-<img alt="Social Bureau Staff" class="h-full w-full object-cover" data-alt="headshot of a female government official with professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg9LFv4OS91_TcyPo-F3hMLdCDuse-3RXEX6v4ezSC2E0hdVZy7twi-bNezQ10M8kS5wcxoqcAl1N4-91EBWu-IDKX0_BQnDhQtW9Hjt_hg2ugFlNCx7QAV378VuDsSKTtqSW74UdoAdTGz7vwZeMSixuaDqqcLK4wW97jm1O6kqTTkLaKd0X3SQZzBuRwl8KHr9qy1hsTqWE0EffSA3nI89fRYHEDEEx3s8e3sBeLTgezGKGx-9c4l7tCyArJtQKM5VuhuqkOIUr4"/>
-</div>
-<div>
-<div class="font-bold text-primary">陳麗華</div>
-<div class="text-xs text-slate-500">lihua.c@social.gov.tw</div>
-</div>
-</td>
-<td class="px-6 py-4">
-<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold uppercase">社會局</span>
-</td>
-<td class="px-6 py-4">
-<div class="flex items-center space-x-1 text-primary">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified_user</span>
-<span class="font-semibold">超級管理員</span>
-</div>
-</td>
-<td class="px-6 py-4 text-slate-500">14 分鐘前</td>
-<td class="px-6 py-4 text-right">
-<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-6 py-4 flex items-center space-x-3">
-<div class="w-9 h-9 rounded-full bg-slate-200 overflow-hidden">
-<img alt="Center Manager" class="h-full w-full object-cover" data-alt="portrait of a middle-aged male school administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW3h0-cLzptAFkrrmNJ2F4JgaTUmqZ6YRWdbnJiOfsa-FjqCEcTuK6slpPZS69GbuiPKBjr1SNBDwzReCPxUIFj8qWHJx281RANUNytaktmU3YQGapLX2pB-LVzeYCVypSesH0394XZXysCVArJ3p3YToi0j0HWMewPleL0IP3AdZQ6iMPlz-tWbXHVecwJr8pYTYaOMAvy1DeQWiDrIVNX6WispLbFzPMS8PYghfPCsDzvpt8CebZTIkWP5WSpQ7qWigerFLi5oV3"/>
-</div>
-<div>
-<div class="font-bold text-primary">林偉廷</div>
-<div class="text-xs text-slate-500">wt.lin@center_a.com</div>
-</div>
-</td>
-<td class="px-6 py-4">
-<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-bold uppercase">機構主管</span>
-</td>
-<td class="px-6 py-4">
-<div class="flex items-center space-x-1 text-slate-600">
-<span class="material-symbols-outlined text-sm">visibility</span>
-<span class="font-medium">本地監控者</span>
-</div>
-</td>
-<td class="px-6 py-4 text-slate-500">2 小時前</td>
-<td class="px-6 py-4 text-right">
-<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-6 py-4 flex items-center space-x-3">
-<div class="w-9 h-9 rounded-full bg-slate-200 overflow-hidden">
-<img alt="Social Bureau Staff" class="h-full w-full object-cover" data-alt="professional woman in corporate attire looking confident" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB6zCwsYXVFZr6OtwABSVvDSkWD-h6Rw32oHvgzd-5cTR_-AhAf7m0ptiJNO6LaRMylnCedXEJ8baagXn8bsN_xOV8qysH7kv-wzUXB28JIM480zvVH_jYcZIrMN1xQ-m9kA4Hf8zjaAHi7GeyiuVlFcwO6Wf7UwPW34DHgGw682dgrDWA_KU8uaPgTi1F4k96ggQcXhp7VerZkgSaSqP2xUoPtwoF4YxI2Z00EkUQ_5z5-RFKtx9z9otW-q3hGcT2nxwsBPSOuBFG"/>
-</div>
-<div>
-<div class="font-bold text-primary">張美玲</div>
-<div class="text-xs text-slate-500">m.chang@social.gov.tw</div>
-</div>
-</td>
-<td class="px-6 py-4">
-<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold uppercase">社會局</span>
-</td>
-<td class="px-6 py-4">
-<div class="flex items-center space-x-1 text-primary">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">shield</span>
-<span class="font-semibold">審核人員</span>
-</div>
-</td>
-<td class="px-6 py-4 text-slate-500">昨天</td>
-<td class="px-6 py-4 text-right">
-<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="px-6 py-4 bg-surface-container-low flex items-center justify-between">
-<span class="text-xs text-slate-500 font-medium">顯示 42 位活躍使用者中的 3 位</span>
-<div class="flex space-x-2">
-<button class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-bold text-slate-400 cursor-not-allowed">上一頁</button>
-<button class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-bold text-primary hover:bg-slate-50">下一頁</button>
-</div>
-</div>
-</div>
-</section>
-<!-- Section 2: AI Alert Sensitivity (Control Panel Focus) -->
-<section class="col-span-12 lg:col-span-4 space-y-6">
-<div>
-<h3 class="text-xl font-bold text-primary font-headline">AI 告警靈敏度</h3>
-<p class="text-sm text-slate-500">微調偵測引擎的判定門檻值。</p>
-</div>
-<div class="bg-surface-container-low rounded-xl p-6 border-b-4 border-primary space-y-8">
-<!-- Masked Image Detection -->
-<div class="space-y-4">
-<div class="flex justify-between items-start">
-<div>
-<h4 class="font-bold text-primary flex items-center">
-<span class="material-symbols-outlined mr-2 text-primary" style="font-variation-settings: 'FILL' 1;">blur_on</span>
-                                    遮蔽偵測
-                                </h4>
-<p class="text-xs text-slate-500">鏡頭被遮擋的感應靈敏度。</p>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between text-xs font-bold text-primary">
-<span>門檻值</span>
-<span>85%</span>
-</div>
-<input class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="85"/>
-<div class="flex justify-between text-[10px] text-slate-400 uppercase font-black">
-<span>寬鬆</span>
-<span>嚴格</span>
-</div>
-</div>
-</div>
-<!-- Abnormal Behavior -->
-<div class="space-y-4">
-<div class="flex justify-between items-start">
-<div>
-<h4 class="font-bold text-primary flex items-center">
-<span class="material-symbols-outlined mr-2 text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
-                                    異常行為偵測
-                                </h4>
-<p class="text-xs text-slate-500">快速移動或具攻擊性肢體動作偵測。</p>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between text-xs font-bold text-primary">
-<span>動作信心度</span>
-<span>60%</span>
-</div>
-<input class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="60"/>
-<div class="flex justify-between text-[10px] text-slate-400 uppercase font-black">
-<span>低</span>
-<span>高</span>
-</div>
-</div>
-</div>
-<!-- Night Vision Sensitivity -->
-<div class="bg-surface-container-lowest p-4 rounded-lg border border-slate-200/50">
-<div class="flex items-center justify-between mb-2">
-<span class="text-sm font-bold text-slate-600">自動影像增益</span>
-<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 0;">nights_stay</span>
-</div>
-<div class="flex space-x-2">
-<button class="flex-1 py-2 text-[10px] font-bold uppercase rounded border border-slate-200 text-slate-400 hover:bg-slate-50">標準</button>
-<button class="flex-1 py-2 text-[10px] font-bold uppercase rounded border-2 border-primary bg-primary/5 text-primary">增強</button>
-</div>
-</div>
-<button class="w-full py-3 bg-primary text-white font-bold rounded-md shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
-                        套用修改
-                    </button>
-</div>
-<!-- Security Badge -->
-<div class="bg-primary p-6 rounded-xl text-white relative overflow-hidden">
-<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/10 text-9xl">encrypted</span>
-<h4 class="font-bold text-lg mb-2 relative z-10">合規模式</h4>
-<p class="text-xs text-white/80 leading-relaxed relative z-10">所有系統變更皆根據公務人員保障法規進行日誌記錄與審計。</p>
-<div class="mt-4 flex items-center text-[10px] font-black tracking-widest uppercase relative z-10">
-<span class="w-2 h-2 rounded-full bg-secondary mr-2"></span>
-                        系統已驗證
-                    </div>
-</div>
-</section>
-<!-- Audit Logs (Asymmetric Bento Element) -->
-<section class="col-span-12 space-y-4">
-<h3 class="text-xl font-bold text-primary font-headline">近期安全事件</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm border-l-4 border-error flex items-start space-x-4">
-<div class="p-2 bg-error-container text-on-error-container rounded-lg">
-<span class="material-symbols-outlined">warning</span>
-</div>
-<div>
-<h5 class="font-bold text-sm text-primary">異常登入嘗試</h5>
-<p class="text-xs text-slate-500 mb-2">IP 192.168.1.45 登入失敗 5 次。</p>
-<span class="text-[10px] bg-slate-100 px-2 py-1 rounded text-slate-400 font-bold uppercase">封鎖 2 小時</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm border-l-4 border-secondary flex items-start space-x-4">
-<div class="p-2 bg-secondary-container text-on-secondary-container rounded-lg">
-<span class="material-symbols-outlined">settings_backup_restore</span>
-</div>
-<div>
-<h5 class="font-bold text-sm text-primary">AI 原則已更新</h5>
-<p class="text-xs text-slate-500 mb-2">靈敏度調升至 85%。</p>
-<span class="text-[10px] bg-slate-100 px-2 py-1 rounded text-slate-400 font-bold uppercase">今天 10:30 AM</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm border-l-4 border-primary flex items-start space-x-4">
-<div class="p-2 bg-primary-fixed text-on-primary-fixed rounded-lg">
-<span class="material-symbols-outlined">person_pin</span>
-</div>
-<div>
-<h5 class="font-bold text-sm text-primary">角色重新分配</h5>
-<p class="text-xs text-slate-500 mb-2">陳麗華 權限提升為管理員。</p>
-<span class="text-[10px] bg-slate-100 px-2 py-1 rounded text-slate-400 font-bold uppercase">2 天前</span>
-</div>
-</div>
-</div>
-</section>
-</div>
-</div>
-</main>
+
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Main Settings Column -->
+                <div class="col-span-12 lg:col-span-8 space-y-8">
+                    <section class="bg-white p-6 rounded-xl border border-outline-variant/10 shadow-sm">
+                        <h3 class="font-bold text-primary mb-6 flex items-center">
+                            <span class="material-symbols-outlined mr-2">person_add</span>
+                            人員權限矩陣
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-100">
+                                    <tr>
+                                        <th class="pb-3">姓名</th>
+                                        <th class="pb-3">角色</th>
+                                        <th class="pb-3">管轄區域</th>
+                                        <th class="pb-3">狀態</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-50">
+                                    <tr class="text-sm">
+                                        <td class="py-4 font-bold text-primary">陳大明</td>
+                                        <td class="py-4">管理員</td>
+                                        <td class="py-4">全中心</td>
+                                        <td class="py-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold">啟用中</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- AI Parameters -->
+                <div class="col-span-12 lg:col-span-4 space-y-8">
+                    <section class="bg-white p-6 rounded-xl border border-outline-variant/10 shadow-sm">
+                        <h3 class="font-bold text-primary mb-6 flex items-center">
+                            <span class="material-symbols-outlined mr-2">psychology</span>
+                            AI 靈敏度調整
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-xs font-bold text-slate-500">遮蔽偵測</span>
+                                    <span class="text-xs font-bold text-primary">85%</span>
+                                </div>
+                                <input class="w-full account-slider accent-primary" max="100" min="0" type="range" value="85"/>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
             <!-- Footer Placeholder -->
             <div id="footer-placeholder"></div>
         </div>
     </main>
 </body>
-</html>
+</html>

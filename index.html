@@ -14,6 +14,9 @@
         }
         .video-aspect { aspect-ratio: 16 / 9; }
         .glass-overlay { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c3c6d1; border-radius: 10px; }
     </style>
     <script src="lib/layout.js"></script>
 </head>
@@ -26,17 +29,28 @@
         <!-- Header Placeholder -->
         <div id="header-placeholder"></div>
 
-        <!-- Monitoring Console -->
-        <div class="flex-1 p-6 overflow-y-auto bg-surface-container-low flex flex-col gap-6">
+        <!-- Scrollable content area -->
+        <div class="flex-1 overflow-y-auto p-8 w-full space-y-8 bg-surface-container-low custom-scrollbar">
+            <!-- Breadcrumbs / Page Title -->
+            <div class="space-y-1">
+                <div class="flex items-center text-xs text-slate-500 font-medium space-x-2">
+                    <span>控制台</span>
+                    <span class="material-symbols-outlined text-[12px]">chevron_right</span>
+                    <span class="text-primary font-bold">即時總覽</span>
+                </div>
+                <h2 class="text-3xl font-black text-primary font-headline tracking-tight">監控儀表板</h2>
+                <p class="text-sm text-secondary font-medium">全園區 AI 即時監控與環境安全狀態</p>
+            </div>
+
             <div class="flex gap-6 flex-1">
                 <!-- Left: Grid View -->
                 <div class="flex-1 space-y-6">
                     <!-- Toolbar -->
-                    <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-outline-variant/10">
                         <div class="flex items-center space-x-4">
                             <div class="flex items-center space-x-2 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/20">
                                 <span class="material-symbols-outlined text-sm text-primary">apartment</span>
-                                <select class="bg-transparent border-none text-sm font-semibold p-0 focus:ring-0">
+                                <select class="bg-transparent border-none text-sm font-semibold p-0 focus:ring-0 text-primary">
                                     <option>晨星托育中心 - 北部分校</option>
                                     <option>小巨人幼兒園</option>
                                     <option>海風早教中心</option>
@@ -44,13 +58,13 @@
                             </div>
                             <div class="flex bg-surface-container-low rounded-lg p-1 border border-outline-variant/10">
                                 <button class="px-3 py-1 bg-white shadow-sm rounded-md text-xs font-bold text-primary">2x2</button>
-                                <button class="px-3 py-1 rounded-md text-xs font-semibold text-slate-500 hover:text-primary transition-colors">3x3</button>
+                                <button class="px-3 py-1 rounded-md text-xs font-semibold text-slate-500">3x3</button>
                             </div>
                         </div>
                         <div class="flex items-center space-x-3">
                             <button class="flex items-center space-x-2 px-3 py-1.5 hover:bg-slate-50 rounded-lg text-sm text-slate-600 border border-outline-variant/10">
                                 <span class="material-symbols-outlined text-lg">filter_list</span>
-                                <span>篩選攝影機</span>
+                                <span>篩選</span>
                             </button>
                             <div class="flex items-center space-x-2 px-3 py-1.5 bg-error/10 rounded-lg">
                                 <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
@@ -63,54 +77,35 @@
                         <div class="relative group bg-primary rounded-xl overflow-hidden shadow-lg border-2 border-transparent">
                             <img class="w-full video-aspect object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full flex items-center space-x-2 text-primary font-bold text-[10px]">CAM-01: 遊戲室 A</div>
+                            <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full text-primary font-bold text-[10px]">CAM-01: 遊戲室 A</div>
                         </div>
-                        <div class="relative group bg-error/20 rounded-xl overflow-hidden shadow-lg border-4 border-error ring-4 ring-error/20 text-white">
-                            <div class="absolute inset-0 bg-error/40 flex flex-col items-center justify-center z-10 text-white">
-                                <span class="material-symbols-outlined text-6xl animate-pulse">visibility_off</span>
-                                <p class="font-black text-xl font-headline">AI 告警：鏡頭遭遮蔽</p>
+                        <div class="relative group bg-error/20 rounded-xl overflow-hidden shadow-lg border-4 border-error ring-4 ring-error/20">
+                            <div class="absolute inset-0 bg-error/40 flex flex-col items-center justify-center z-10">
+                                <span class="material-symbols-outlined text-6xl text-white animate-pulse">visibility_off</span>
+                                <p class="text-white font-black text-xl font-headline">AI 告警：鏡頭遭遮蔽</p>
                             </div>
                             <img class="w-full video-aspect object-cover grayscale opacity-50 blur-[2px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
-                            <div class="absolute top-4 left-4 bg-error px-3 py-1 rounded-full text-[10px] font-black z-20">緊急：CAM-04 走廊</div>
-                        </div>
-                        <div class="relative group bg-primary rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-primary/50 transition-all">
-                             <img class="w-full video-aspect object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBauw-3L8pQW1RKR_SeoZbL1HHnKVkixy3Urc81_-Wj4rmCihxQJVq9aaeowpD0jt2WSgeeaKkUSVvgDixrm3Msb7oLZ4bGKBxcrWM19gqUx7rI9QVuEqPAd6SSjnwxesi2sOizjteC7yVpNR9MUShPqkKOJkcCGH1uBmWMq_Bd9OrNbH7XXg_IGs7H1cO_zyVoeEJASau3h-sAluAPPfWCSvidXxab8vRQdWqlsOErtgom9AF2vekqAgKmS1shZLjlG72lbfUBGogq"/>
-                             <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full text-primary font-bold text-[10px]">CAM-02: 出入口</div>
-                        </div>
-                        <div class="relative group bg-primary rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-primary/50 transition-all">
-                             <img class="w-full video-aspect object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTY4xAgb7kTMNZvaBu8QbUFyCZodU6pIIug4OIJbioPXKIkCRFd2sDhdATm1z7qTGsPaCaFhg1r15UFCAlgFFu94hI8ZA9FYgtiNGuT0iskoHXFaf1IBQYB-L_nV6_NW7g2dW8uBjENF9gXjEoDoxhRS98lI3Qnb68tPfXm2f0mRN9FTO-n11LGFEXChLBj0yhIbhpUfo3HFoZkCBNAA4jJJCxZub32BU6ma_crqmGImyoxm2gqYH8VVz7XxXbFiP15gzFkw_cyOpd"/>
-                             <div class="absolute top-4 left-4 glass-overlay px-3 py-1 rounded-full text-primary font-bold text-[10px]">CAM-03: 廚房區域</div>
                         </div>
                     </div>
                 </div>
                 <!-- Right Panel -->
                 <aside class="w-80 flex flex-col space-y-6 shrink-0">
                     <div class="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col h-full border border-outline-variant/10">
-                        <div class="bg-error p-4 text-white">
-                            <h3 class="font-bold text-sm text-white">告警詳情</h3>
-                            <p class="text-xs opacity-90 text-white">主監控線路偵測到視線遮蔽物。</p>
+                        <div class="bg-primary p-4 text-white">
+                            <h3 class="font-bold text-sm text-white">即時摘要</h3>
+                            <p class="text-xs opacity-90 text-white">目前園區安全等級：正常</p>
                         </div>
                         <div class="p-4 space-y-4 flex-1">
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center text-[11px] border-b border-slate-100 pb-2">
-                                    <span class="text-slate-500 font-semibold">事件類型</span>
-                                    <span class="text-error font-bold">鏡頭遭遮蔽</span>
+                            <div class="space-y-4">
+                                <div class="p-3 bg-surface-container-low rounded-lg">
+                                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">連線中心</p>
+                                    <p class="text-xs font-bold text-primary">晨星托育中心</p>
                                 </div>
-                                <div class="flex justify-between items-center text-[11px] border-b border-slate-100 pb-2">
-                                    <span class="text-slate-500 font-semibold">時間戳記</span>
-                                    <span class="text-primary font-bold">2023.10.27 14:22:08</span>
+                                <div class="p-3 bg-surface-container-low rounded-lg">
+                                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">作用中設備</p>
+                                    <p class="text-xs font-bold text-primary">12 支攝影機</p>
                                 </div>
                             </div>
-                            <button class="w-full bg-primary py-2.5 rounded-lg text-white text-xs font-bold">派遣應變小組</button>
-                        </div>
-                        <div class="p-4 bg-slate-50 border-t border-slate-100">
-                             <p class="text-[10px] font-bold text-slate-400 uppercase mb-3">歷史事件</p>
-                             <div class="space-y-3">
-                                 <div class="flex items-center space-x-3 text-primary">
-                                     <div class="w-2 h-2 rounded-full bg-tertiary"></div>
-                                     <p class="text-[11px] font-bold">異常活動</p>
-                                 </div>
-                             </div>
                         </div>
                     </div>
                 </aside>
