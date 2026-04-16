@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>實時與歷史監控 | 兒托監管雲</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="lib/config.js"></script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .timeline-gradient {
+            background: linear-gradient(90deg, transparent 0%, rgba(186, 26, 26, 0.2) 45%, rgba(186, 26, 26, 0.2) 55%, transparent 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c3c6d1; border-radius: 10px; }
+    </style>
+    <script src="lib/layout.js"></script>
+</head>
+<body class="bg-surface font-body text-on-surface flex overflow-hidden h-screen">
+    <!-- Sidebar Placeholder -->
+    <div id="sidebar-placeholder"></div>
+
+    <!-- Main Content Area -->
+    <main class="ml-64 flex-1 flex flex-col h-screen relative bg-surface overflow-hidden">
+        <!-- Header Placeholder -->
+        <div id="header-placeholder"></div>
+
+        <!-- Scrollable content area -->
+        <div class="flex-1 overflow-y-auto mt-0 pb-20 scroll-smooth custom-scrollbar">
+<span class="font-medium">告警記錄</span>
+</div>
+<div class="flex items-center gap-3 p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg cursor-pointer transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">系統設定</span>
+</div>
+</nav>
+<div class="pt-4 mt-auto border-t border-slate-200 dark:border-slate-800">
+<button class="w-full py-3 bg-gradient-to-b from-[#001e40] to-[#003366] text-white rounded-lg font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">emergency</span>
+                緊急聯絡
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-6 min-h-[calc(100vh-64px)] bg-surface flex flex-col gap-6">
+<!-- Header Controls -->
+<section class="flex flex-wrap items-center justify-between gap-4 bg-surface-container-lowest p-5 rounded-xl shadow-sm">
+<div class="flex items-center gap-6">
+<div>
+<h1 class="text-2xl font-headline font-bold text-primary">即時與歷史片段播放</h1>
+<p class="text-sm text-secondary">全園區即時監控與事件回放管理</p>
+</div>
+<!-- Mode Switch -->
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-sm font-bold bg-white text-primary shadow-sm">
+                        即時模式 (Live)
+                    </button>
+<button class="px-4 py-1.5 rounded-md text-sm font-medium text-slate-500 hover:text-primary transition-colors">
+                        歷史回放 (Playback)
+                    </button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-surface-container-low px-3 py-2 rounded-lg gap-3">
+<span class="material-symbols-outlined text-slate-500 text-lg">calendar_today</span>
+<input class="bg-transparent border-none p-0 text-sm focus:ring-0 font-medium" type="date" value="2023-11-20"/>
+<div class="w-px h-4 bg-outline-variant/30"></div>
+<span class="material-symbols-outlined text-slate-500 text-lg">schedule</span>
+<input class="bg-transparent border-none p-0 text-sm focus:ring-0 font-medium" type="time" value="14:30"/>
+</div>
+<button class="bg-primary text-white px-5 py-2 rounded-lg font-bold hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined">search</span>
+                    檢索
+                </button>
+</div>
+</section>
+<div class="flex flex-1 gap-6 min-h-0">
+<!-- Video Monitoring Grid Area -->
+<div class="flex-1 flex flex-col gap-4">
+<!-- Video Grid (2x2) -->
+<div class="grid grid-cols-2 gap-3 flex-1">
+<!-- Feed 1 -->
+<div class="relative bg-black rounded-xl overflow-hidden aspect-video border-2 border-primary/20 shadow-lg group">
+<img alt="Camera 01 - 大班教室" class="w-full h-full object-cover opacity-90" data-alt="surveillance camera view of a colorful preschool classroom with small tables and chairs, bright daylight from windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSzC-NC041V0Wsm2BB5cvNeEaGhDs0Cd9efJRXqIz8x3VzWMJluYE3rFaTAnDLIsVqbkVpZvyy5VAoqlNj-DFfI2qhodq4Ogo2TGn6aEVXgYjTqOoZkk0BBhmoL--TzUfVZ0bO7-tRUdJtY0krO22zs2611JYUzXQxzbqsfaYLULE16yShiHz-CEDPZ3HgOfmAUpjLorcQIp4kDSad32HrimBbb8EFI9YhsZdzfNI9NMpFkb9GlqVoPQz1hnr1IY2GRRt7sRZlDcYu"/>
+<div class="absolute top-4 left-4 bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                            CAM 01 - 大班教室
+                        </div>
+<div class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40"><span class="material-symbols-outlined text-lg">fullscreen</span></button>
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40"><span class="material-symbols-outlined text-lg">capture</span></button>
+</div>
+</div>
+<!-- Feed 2 -->
+<div class="relative bg-black rounded-xl overflow-hidden aspect-video border border-outline-variant/10 shadow-sm group">
+<img alt="Camera 02 - 戶外遊樂場" class="w-full h-full object-cover opacity-90" data-alt="outdoor playground with safety mats and colorful equipment viewed from a security camera angle, sunny day" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkF_VJs_PEiwltomB7MQ7u8d7Yvi3s2Tjl2SYKCOryXspOQ1o9MNoxzzeB0sIqoueARsIZANlKE3V2mogwIjCiTuBRUuyMv8ngS5trS_V_7FWkG4B4g5CLjycO9al4asvKxSnc-D_w0a1VRbcTz2ZOf8Ih25-D_0765A6ErTeeLco32QgNORYzNHMxHjBf712ox2esa9uIis_aULSTNM-MN1M8VIz5VNswLRRqvBrMimOQY187P6j9FRfTQK3pRSQSe-eetc4GR7tG"/>
+<div class="absolute top-4 left-4 bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+                            CAM 02 - 戶外遊樂場
+                        </div>
+<div class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40"><span class="material-symbols-outlined text-lg">fullscreen</span></button>
+</div>
+</div>
+<!-- Feed 3 -->
+<div class="relative bg-black rounded-xl overflow-hidden aspect-video border border-outline-variant/10 shadow-sm group">
+<img alt="Camera 03 - 醫護室" class="w-full h-full object-cover opacity-90" data-alt="clean medical room in a daycare center with small white cots and organized supplies, overhead soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8KOZUzpv5NPEQU0L0J6alNL12GAgZ7LC4l4KknDoT7Tpx3QM0Yjl6EgHiNqaWFDHcCNwCGDkIROtOO_HG9I6kQYuW0ydNsmqkhRu0XILfOBJQd6le3Zd49tiR2OiuonJvzmQ0Pl70R3Xp4S2jaZf9f0UIrTudBZkBu3Ctr9XGtuBYKOCftHaX_vJEflvy-Lz8tjg0qR2wOufp4Fiel5qnIBfXNXfrrE7EmJ3U48rHOzTPCWxFRTafTA_8nW66XcreyI2sQ5nQPr9L"/>
+<div class="absolute top-4 left-4 bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+                            CAM 03 - 醫護室
+                        </div>
+<div class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40"><span class="material-symbols-outlined text-lg">fullscreen</span></button>
+</div>
+</div>
+<!-- Feed 4 -->
+<div class="relative bg-black rounded-xl overflow-hidden aspect-video border border-outline-variant/10 shadow-sm group">
+<img alt="Camera 04 - 走廊" class="w-full h-full object-cover opacity-90" data-alt="well-lit corridor in a modern school building with child-level lockers and bright flooring, long perspective" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB55SrfoxIq8ZRESEhpiLSP5PP0UHMEDruWShRPr2KwHZpSfyMUasH3ApD_AW4W_ABAvXUfBWQQ1CSeWFDrYXQHcmJeoTN5zHb0bJD8L4uRmln93Py9i3Aa4NjrXoNby0m9lmBPkSIzHQ5XZne54sbvVqVrdYaHHPoh5D-ih1TGMRqgywJMwPT4eDOXEmedIJE0JSdVst5m3AcsWKJfNWxI5-Jv6bFTFpBMfwCbeOf44a4NcPBWHyFcyPMLVMVMjoMeKJdjxypB4BXi"/>
+<div class="absolute top-4 left-4 bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+                            CAM 04 - 走廊
+                        </div>
+<div class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40"><span class="material-symbols-outlined text-lg">fullscreen</span></button>
+</div>
+</div>
+</div>
+<!-- Playback Controls & Timeline -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-md space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">replay_10</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">play_arrow</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">forward_10</span>
+</button>
+<div class="ml-2 flex flex-col">
+<span class="text-xs text-slate-500 font-medium">播放速度</span>
+<select class="text-sm font-bold bg-transparent border-none p-0 focus:ring-0">
+<option>1.0x</option>
+<option>2.0x</option>
+<option>4.0x</option>
+<option>0.5x</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg text-primary bg-primary-fixed-dim/20 font-bold hover:bg-primary-fixed-dim/40 transition-colors">
+<span class="material-symbols-outlined">download</span>
+                                下載片段
+                            </button>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+<!-- Timeline -->
+<div class="relative pt-4">
+<div class="flex justify-between text-[10px] text-slate-400 font-mono mb-1">
+<span>14:00</span>
+<span>14:15</span>
+<span>14:30</span>
+<span>14:45</span>
+<span>15:00</span>
+</div>
+<div class="h-12 bg-surface-container-low rounded-lg relative overflow-hidden flex items-center">
+<!-- Time Markers -->
+<div class="absolute inset-0 flex justify-between px-2 opacity-10">
+<div class="w-px h-full bg-on-surface"></div><div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div><div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div><div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div><div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div><div class="w-px h-full bg-on-surface"></div>
+</div>
+<!-- AI Detection Highlight (Red dot zones) -->
+<div class="absolute h-full w-24 bg-error/20 left-[20%] border-x border-error/30 timeline-gradient"></div>
+<div class="absolute w-2 h-2 rounded-full bg-error left-[25%] shadow-[0_0_8px_rgba(186,26,26,0.6)]"></div>
+<div class="absolute w-2 h-2 rounded-full bg-error left-[28%] shadow-[0_0_8px_rgba(186,26,26,0.6)]"></div>
+<div class="absolute h-full w-16 bg-error/20 left-[65%] border-x border-error/30 timeline-gradient"></div>
+<div class="absolute w-2 h-2 rounded-full bg-error left-[68%] shadow-[0_0_8px_rgba(186,26,26,0.6)]"></div>
+<!-- Current Time Indicator -->
+<div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary z-10">
+<div class="absolute -top-1 -left-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-primary/20"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Panel (Alert Details & Logs) -->
+<aside class="w-80 bg-surface-container-lowest rounded-xl shadow-md flex flex-col overflow-hidden">
+<div class="p-4 border-b border-outline-variant/15 flex items-center justify-between bg-surface-bright">
+<h3 class="font-headline font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-error">warning</span>
+                        異常事件清單
+                    </h3>
+<span class="bg-error-container text-on-error-container text-[10px] px-2 py-0.5 rounded-full font-bold">4 則新告警</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-3">
+<!-- Log Item 1 -->
+<div class="p-3 bg-surface-container-low rounded-lg hover:ring-1 ring-primary/30 transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-slate-500">14:32:15</span>
+<span class="bg-error-container text-on-error-container text-[10px] px-2 py-0.5 rounded-full font-bold">偵測異常</span>
+</div>
+<p class="text-sm font-bold text-primary mb-1">CAM 01 - 跌倒偵測</p>
+<p class="text-xs text-secondary leading-relaxed">偵測到幼兒於活動區域跌倒，停留時間超過 5 秒。</p>
+<div class="mt-3 flex items-center justify-between">
+<button class="text-xs font-bold text-primary flex items-center gap-1 group-hover:underline">
+<span class="material-symbols-outlined text-sm">history_toggle_off</span>
+                                跳轉至該時間點
+                            </button>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+<!-- Log Item 2 -->
+<div class="p-3 bg-surface-container-low rounded-lg hover:ring-1 ring-primary/30 transition-all cursor-pointer group opacity-80">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-slate-500">14:15:02</span>
+<span class="bg-tertiary-container text-on-tertiary-container text-[10px] px-2 py-0.5 rounded-full font-bold">警示</span>
+</div>
+<p class="text-sm font-bold text-primary mb-1">CAM 02 - 區域闖入</p>
+<p class="text-xs text-secondary leading-relaxed">非授權人員進入管制儲藏區域。</p>
+<div class="mt-3 flex items-center justify-between">
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">history_toggle_off</span>
+                                跳轉至該時間點
+                            </button>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+<!-- Log Item 3 -->
+<div class="p-3 bg-surface-container-low rounded-lg hover:ring-1 ring-primary/30 transition-all cursor-pointer group opacity-80">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-slate-500">13:45:50</span>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">一般日誌</span>
+</div>
+<p class="text-sm font-bold text-primary mb-1">系統核心 - 定時檢測</p>
+<p class="text-xs text-secondary leading-relaxed">全區攝影機連線狀態良好，儲存空間剩餘 85%。</p>
+<div class="mt-3 flex items-center justify-between">
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">history_toggle_off</span>
+                                跳轉至該時間點
+                            </button>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+<!-- Log Item 4 -->
+<div class="p-3 bg-surface-container-low rounded-lg hover:ring-1 ring-primary/30 transition-all cursor-pointer group opacity-60">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-slate-500">13:12:10</span>
+<span class="bg-error-container text-on-error-container text-[10px] px-2 py-0.5 rounded-full font-bold">偵測異常</span>
+</div>
+<p class="text-sm font-bold text-primary mb-1">CAM 04 - 人群聚集</p>
+<p class="text-xs text-secondary leading-relaxed">門口區域發生異常人群聚集行為，建議巡檢。</p>
+<div class="mt-3 flex items-center justify-between">
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">history_toggle_off</span>
+                                跳轉至該時間點
+                            </button>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low border-t border-outline-variant/15">
+<button class="w-full py-2.5 text-xs font-bold text-on-surface border border-outline-variant rounded-lg hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">list_alt</span>
+                        查看完整監測日誌
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Contextual FAB (Only for Home/Dashboard intent, suppressed here for detailed view) -->
+<!-- Suppression Logic: Suppressed to prioritize the control canvas -->
+            <!-- Footer Placeholder -->
+            <div id="footer-placeholder"></div>
+        </div>
+    </main>
+</body>
+</html>
