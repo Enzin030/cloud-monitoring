@@ -13,171 +13,174 @@
     <div id="header-placeholder"></div>
 
     <!-- Scrollable content area -->
-    <main class="flex-1 overflow-y-auto p-12 w-full custom-scrollbar">
-        <div class="space-y-12">
-            <!-- 標題與麵包屑 左右對稱佈局 -->
+    <main class="flex-1 overflow-y-auto w-full custom-scrollbar flex">
+        <div class="flex-1 p-12 space-y-12">
+            <!-- 標題與麵包屑 -->
             <div class="flex items-center justify-between border-b border-slate-100 pb-10">
                 <div class="space-y-1">
-                    <h2 class="text-5xl font-black text-slate-900 font-headline tracking-tighter">儀表板總覽</h2>
-                    <p class="text-slate-400 font-bold text-sm">系統即時摘要與關鍵場景佈防監控</p>
+                    <h2 class="text-4xl font-black text-slate-900 font-headline tracking-tighter">儀表板總覽</h2>
+                    <p class="text-slate-400 font-bold text-xs uppercase tracking-widest">Real-time Overview & Strategic Monitoring</p>
                 </div>
-                <div class="flex items-center text-xs text-slate-400 font-bold space-x-2 bg-slate-50 px-6 py-2.5 rounded-full border border-slate-100">
+                <div class="flex items-center text-[10px] text-slate-400 font-black space-x-2 bg-slate-50 px-6 py-2.5 rounded-full border border-slate-100 uppercase tracking-widest">
                     <span class="material-symbols-outlined text-[14px]">home</span>
-                    <span>首頁</span>
+                    <span>Home</span>
                     <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-                    <span class="text-slate-900 font-black tracking-tight">儀表板總覽</span>
+                    <span class="text-slate-900">Dashboard</span>
                 </div>
             </div>
 
-            <div class="grid grid-cols-12 gap-12">
-                <!-- Left: 即時監控區域 -->
-                <div class="col-span-12 lg:col-span-8 space-y-8">
-                    <div class="flex items-end justify-between px-2">
-                        <div class="flex items-center gap-4">
-                            <h3 class="text-2xl font-black text-slate-900 tracking-tight flex items-center">
-                                <span class="w-2.5 h-7 bg-accent rounded-full mr-4 shadow-sm"></span>
-                                即時監控
-                            </h3>
-                        </div>
-
-                        <!-- 篩選與功能跳轉 -->
-                        <div class="flex items-end gap-4">
-                            <div class="flex flex-col">
-                                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">調閱場所</span>
-                                <select class="bg-slate-50 border-none rounded-xl text-sm font-black text-slate-800 py-3 px-6 focus:ring-2 focus:ring-slate-100 min-w-[240px] shadow-sm">
-                                    <option>選擇地點...</option>
-                                    <option selected>北屯中心 - 正門大門區</option>
-                                    <option>太平中心 - 備餐區</option>
-                                </select>
-                            </div>
-                            
-                            <a href="live.html" class="h-[46px] flex items-center px-6 bg-white border border-slate-200 text-slate-900 text-xs font-black rounded-xl hover:bg-slate-50 transition-all shadow-sm active:scale-95">
-                                <span class="material-symbols-outlined mr-2 text-sm text-accent">history</span>
-                                查看歷史回放
-                            </a>
-
-                            <!-- 切換視圖 UI -->
-                            <div class="flex bg-slate-100 p-1.5 rounded-xl ml-2 h-[46px]">
-                                <button class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-white transition-all text-slate-400 hover:text-slate-900">
-                                    <span class="material-symbols-outlined text-sm">crop_square</span>
-                                </button>
-                                <button class="w-9 h-9 flex items-center justify-center rounded-lg bg-white shadow-sm text-slate-900 transition-all border border-black/5">
-                                    <span class="material-symbols-outlined text-sm">grid_view</span>
-                                </button>
-                                <button class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-white transition-all text-slate-400 hover:text-slate-900">
-                                    <span class="material-symbols-outlined text-sm">apps</span>
-                                </button>
-                            </div>
-                        </div>
+            <!-- 即時監控區域 -->
+            <div class="space-y-8">
+                <div class="flex items-end justify-between px-2">
+                    <div class="flex items-center gap-4">
+                        <h3 class="text-2xl font-black text-slate-800 tracking-tight flex items-center">
+                            <span class="w-2.5 h-6 bg-slate-800 rounded-full mr-4 shadow-sm"></span>
+                            即時監控
+                        </h3>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-8" id="monitor-grid">
-                        <!-- 正常畫面 1 -->
-                        <div class="relative lux-card overflow-hidden group">
-                            <img class="w-full aspect-video object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
-                            <div class="absolute top-6 left-6 bg-slate-900/80 backdrop-blur-xl px-4 py-2 rounded-xl text-white flex flex-col border border-white/10">
-                                <span class="text-[9px] font-black text-white/50 uppercase tracking-widest leading-none">ID: CAM-00104</span>
-                                <span class="text-xs font-bold mt-1">南區中心 • 正門大門區</span>
-                            </div>
+                    <div class="flex items-end gap-6 text-right">
+                        <div class="flex flex-col items-end">
+                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2 mr-1">選擇區域中心</span>
+                            <select class="bg-slate-50 border-none rounded-2xl text-xs font-black text-slate-800 py-3.5 px-6 focus:ring-2 focus:ring-slate-100 min-w-[280px] shadow-sm appearance-none cursor-pointer">
+                                <option>選擇行政區 - 場所...</option>
+                                <option selected>北屯區 - 晨星中心</option>
+                                <option>太平區 - 陽光幼兒中心</option>
+                                <option>西屯區 - 快樂兒托所</option>
+                                <option>南區 - 童趣監管站</option>
+                            </select>
                         </div>
+                        
+                        <a href="live.html" class="h-[50px] flex items-center px-8 bg-white border border-slate-200 text-slate-900 text-xs font-black rounded-2xl hover:bg-slate-50 transition-all shadow-sm active:scale-95">
+                            <span class="material-symbols-outlined mr-2 text-sm text-accent transition-colors group-hover:text-blue-600">history</span>
+                            查看歷史回放
+                        </a>
 
-                        <!-- 異常畫面 1 (鏡頭遮蔽) -->
-                        <div class="relative lux-card overflow-hidden ring-4 ring-red-500 ring-inset shadow-2xl">
-                            <div class="absolute inset-0 bg-red-500/10 z-10"></div>
-                            <img class="w-full aspect-video object-cover blur-[1px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
-                            <div class="absolute inset-0 border-[8px] border-red-500 z-20 flex items-center justify-center">
-                                <div class="bg-red-600 text-white px-8 py-3 rounded-full font-black text-sm shadow-2xl flex items-center scale-90">
-                                    <span class="material-symbols-outlined mr-2 animate-bounce font-bold">warning</span>
-                                    鏡頭遮蔽偵測
-                                </div>
-                            </div>
-                            <div class="absolute top-6 left-6 bg-red-600 px-4 py-2 rounded-xl text-white flex flex-col z-30 shadow-lg">
-                                <span class="text-[9px] font-black text-white/50 uppercase tracking-widest leading-none">ID: CAM-00213</span>
-                                <span class="text-xs font-bold mt-1 tracking-tight">北屯中心 • 走廊區域</span>
-                            </div>
-                        </div>
-
-                        <!-- 正常畫面 2 -->
-                        <div class="relative lux-card overflow-hidden">
-                            <img class="w-full aspect-video object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSzC-NC041V0Wsm2BB5cvNeEaGhDs0Cd9efJRXqIz8x3VzWMJluYE3rFaTAnDLIsVqbkVpZvyy5VAoqlNj-DFfI2qhodq4Ogo2TGn6aEVXgYjTqOoZkk0BBhmoL--TzUfVZ0bO7-tRUdJtY0krO22zs2611JYUzXQxzbqsfaYLULE16yShiHz-CEDPZ3HgOfmAUpjLorcQIp4kDSad32HrimBbb8EFI9YhsZdzfNI9NMpFkb9GlqVoPQz1hnr1IY2GRRt7sRZlDcYu"/>
-                             <div class="absolute top-6 left-6 bg-slate-900/80 backdrop-blur-xl px-4 py-2 rounded-xl text-white flex flex-col border border-white/10">
-                                <span class="text-[9px] font-black text-white/50 uppercase tracking-widest leading-none">ID: CAM-00302</span>
-                                <span class="text-xs font-bold mt-1 tracking-tight">西屯中心 • 大型活動場</span>
-                            </div>
-                        </div>
-
-                        <!-- 斷訊畫面模擬 -->
-                        <div class="relative lux-card overflow-hidden bg-slate-950 flex flex-col items-center justify-center space-y-4">
-                            <span class="material-symbols-outlined text-slate-800 text-7xl font-light">videocam_off</span>
-                            <div class="px-5 py-2.5 bg-red-600/10 border border-red-600/50 rounded-xl text-red-500 text-[10px] font-black uppercase tracking-wider flex items-center">
-                                <span class="material-symbols-outlined mr-2 animate-pulse text-sm">signal_disconnected</span>
-                                訊號已中斷 • 待報修
-                            </div>
-                            <div class="absolute top-6 left-6 bg-slate-800 px-4 py-2 rounded-xl text-white flex flex-col">
-                                <span class="text-[9px] font-black text-white/40 uppercase tracking-widest leading-none">ID: CAM-00455</span>
-                                <span class="text-xs font-bold mt-1">太平中心 • 備餐區入口</span>
-                            </div>
+                        <div class="flex bg-slate-100 p-1.5 rounded-2xl h-[50px]">
+                            <button class="w-10 h-10 flex items-center justify-center rounded-xl bg-white shadow-md text-slate-900 border border-black/5">
+                                <span class="material-symbols-outlined text-sm font-bold">grid_view</span>
+                            </button>
+                            <button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/50 transition-all text-slate-400">
+                                <span class="material-symbols-outlined text-sm">apps</span>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: 異常告警追蹤 -->
-                <div class="col-span-12 lg:col-span-4 flex flex-col">
-                    <div class="space-y-8 h-full">
-                        <div class="flex items-center justify-between px-2">
-                            <h3 class="text-xl font-black text-slate-900 tracking-tight">最新告警追蹤</h3>
-                            <a href="alert.html" class="p-2 rounded-full hover:bg-slate-50 transition-all text-slate-400">
-                                <span class="material-symbols-outlined">arrow_forward_ios</span>
-                            </a>
+                <div class="grid grid-cols-2 gap-10">
+                    <!-- 正常畫面 -->
+                    <div class="relative lux-card overflow-hidden group border border-slate-100">
+                        <img class="w-full aspect-video object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
+                        <div class="absolute top-6 left-6 bg-slate-900/80 backdrop-blur-xl px-5 py-3 rounded-2xl text-white flex flex-col border border-white/10 shadow-2xl">
+                            <span class="text-[10px] font-black text-white/50 uppercase tracking-widest leading-none mb-1">ID: CAM-00104</span>
+                            <span class="text-xs font-bold tracking-tight">北屯區 - 晨星中心 • 大門區</span>
                         </div>
-                        
-                        <div class="space-y-6">
-                            <!-- 遮蔽卡片 -->
-                            <div class="bg-white p-7 rounded-[2.5rem] shadow-card border border-slate-50 space-y-5 hover:border-red-100 transition-all group relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-full blur-3xl -mr-16 -mt-16 opacity-50"></div>
-                                <div class="flex items-center justify-between relative z-10">
-                                    <div class="flex items-center space-x-3 text-red-600">
-                                        <div class="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-base font-bold">visibility_off</span>
-                                        </div>
-                                        <span class="text-[11px] font-black uppercase tracking-widest">鏡頭遮蔽偵測</span>
-                                    </div>
-                                    <span class="px-3 py-1 bg-red-50 text-red-600 text-[10px] font-black rounded-full border border-red-100 uppercase">待場所回報</span>
-                                </div>
-                                <div class="space-y-1 relative z-10">
-                                    <p class="text-[10px] font-black text-slate-400 tracking-widest leading-none">ID: CAM-00213</p>
-                                    <p class="text-base font-bold text-slate-900 tracking-tight mt-1">北屯中心 • 走廊區域</p>
-                                    <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">偵測到不明遮蔽物持續 120 秒，系統已自動發送通報簡訊至專責保育員。</p>
-                                </div>
-                                <button class="w-full py-4 bg-slate-900 text-white text-xs font-black rounded-[1.25rem] hover:bg-red-600 transition-all shadow-xl shadow-slate-100 active:scale-95">執行緊急通報</button>
-                            </div>
+                    </div>
 
-                            <!-- 斷訊卡片 -->
-                            <div class="bg-white p-7 rounded-[2.5rem] shadow-card border border-slate-50 space-y-5">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3 text-slate-400">
-                                        <div class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-base">signal_disconnected</span>
-                                        </div>
-                                        <span class="text-[11px] font-black uppercase tracking-widest">訊號中斷事件</span>
-                                    </div>
-                                    <span class="px-3 py-1 bg-slate-50 text-slate-400 text-[10px] font-black rounded-full border border-slate-100 uppercase">待報修</span>
-                                </div>
-                                <div class="space-y-1">
-                                    <p class="text-[10px] font-black text-slate-400 tracking-widest leading-none">ID: CAM-00455</p>
-                                    <p class="text-base font-bold text-slate-900 tracking-tight mt-1">太平中心 • 備餐區入口</p>
-                                    <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">網路連線異常中斷。最後心跳包回傳時間：2023.10.19 12:05。</p>
-                                </div>
-                                <button class="w-full py-4 border-2 border-slate-200 text-slate-900 text-xs font-black rounded-[1.25rem] hover:bg-slate-50 transition-all active:scale-95">生成設備維護單</button>
+                    <!-- 異常畫面 (鏡頭遮蔽) -->
+                    <div class="relative lux-card overflow-hidden ring-4 ring-red-500 ring-inset shadow-2xl">
+                        <div class="absolute inset-0 bg-red-500/10 z-10"></div>
+                        <img class="w-full aspect-video object-cover blur-[1.5px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
+                        <div class="absolute inset-0 border-[10px] border-red-500 z-20 flex items-center justify-center">
+                            <div class="bg-red-600 text-white px-10 py-4 rounded-full font-black text-sm shadow-2xl flex items-center animate-pulse">
+                                <span class="material-symbols-outlined mr-3 font-black">visibility_off</span>
+                                偵測到鏡頭遭遮蔽
                             </div>
+                        </div>
+                        <div class="absolute top-6 left-6 bg-red-600 px-5 py-3 rounded-2xl text-white flex flex-col z-30 shadow-xl">
+                            <span class="text-[10px] font-black text-white/60 uppercase tracking-widest mb-1">ID: CAM-00213</span>
+                            <span class="text-xs font-bold tracking-tight">北屯區 - 晨星中心 • 走廊區域</span>
+                        </div>
+                    </div>
+
+                    <!-- 訊號中斷 (對齊遮蔽樣式) -->
+                    <div class="relative lux-card overflow-hidden ring-4 ring-slate-800 ring-inset shadow-2xl">
+                        <div class="absolute inset-0 bg-slate-900/60 z-10"></div>
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 z-15"></div>
+                        <div class="absolute inset-0 border-[10px] border-slate-800 z-20 flex flex-col items-center justify-center space-y-4">
+                            <span class="material-symbols-outlined text-slate-700 text-7xl font-light">videocam_off</span>
+                            <div class="bg-slate-900 text-white px-10 py-4 rounded-full font-black text-sm shadow-2xl flex items-center border border-slate-700">
+                                <span class="material-symbols-outlined mr-3 text-amber-500 animate-pulse">signal_disconnected</span>
+                                偵測到設備中斷 (待報修)
+                            </div>
+                        </div>
+                        <div class="absolute top-6 left-6 bg-slate-800 px-5 py-3 rounded-2xl text-white flex flex-col z-30 shadow-xl border border-slate-700">
+                            <span class="text-[10px] font-black text-white/50 uppercase tracking-widest mb-1">ID: CAM-00455</span>
+                            <span class="text-xs font-bold tracking-tight">太平區 - 陽光幼兒中心 • 備餐區</span>
+                        </div>
+                    </div>
+
+                    <!-- 正常畫面 2 -->
+                    <div class="relative lux-card overflow-hidden border border-slate-100">
+                         <img class="w-full aspect-video object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSzC-NC041V0Wsm2BB5cvNeEaGhDs0Cd9efJRXqIz8x3VzWMJluYE3rFaTAnDLIsVqbkVpZvyy5VAoqlNj-DFfI2qhodq4Ogo2TGn6aEVXgYjTqOoZkk0BBhmoL--TzUfVZ0bO7-tRUdJtY0krO22zs2611JYUzXQxzbqsfaYLULE16yShiHz-CEDPZ3HgOfmAUpjLorcQIp4kDSad32HrimBbb8EFI9YhsZdzfNI9NMpFkb9GlqVoPQz1hnr1IY2GRRt7sRZlDcYu"/>
+                         <div class="absolute top-6 left-6 bg-slate-900/80 backdrop-blur-xl px-5 py-3 rounded-2xl text-white flex flex-col border border-white/10 shadow-2xl">
+                            <span class="text-[10px] font-black text-white/50 uppercase tracking-widest leading-none mb-1">ID: CAM-00302</span>
+                            <span class="text-xs font-bold mt-1 tracking-tight">西屯區 - 快樂兒托所 • 活動場</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
+        <!-- 側邊欄：最新告警追蹤 (明確區隔) -->
+        <aside class="w-[450px] bg-slate-50 border-l border-slate-100 flex flex-col p-12 space-y-12">
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-black text-slate-800 tracking-tight flex items-center">
+                    <span class="w-2.5 h-6 bg-red-600 rounded-full mr-4 shadow-sm shadow-red-100"></span>
+                    告警追蹤
+                </h3>
+                <a href="alert.html" class="p-3 bg-white rounded-2xl shadow-sm border border-slate-200 text-slate-400 hover:text-slate-900 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-lg">arrow_forward_ios</span>
+                </a>
+            </div>
+
+            <div class="space-y-8 flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                <!-- 遮蔽卡片 -->
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-card border border-slate-100 space-y-6 hover:border-red-200 transition-all group relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-red-600 font-bold">visibility_off</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">ID: CAM-00213</span>
+                                <span class="text-sm font-black text-slate-900 uppercase">鏡頭遮蔽偵測</span>
+                            </div>
+                        </div>
+                        <span class="px-4 py-1.5 bg-red-600 text-white text-[9px] font-black rounded-full uppercase tracking-widest shadow-lg shadow-red-100">待回報</span>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="text-base font-bold text-slate-800 mt-2 tracking-tight">北屯區 - 晨星中心 • 走廊</p>
+                        <p class="text-[11px] text-slate-400 mt-3 leading-relaxed font-medium">系統偵測到畫面異常遮蔽，已自動推送行動告警至南區負責主管。</p>
+                    </div>
+                    <button class="w-full py-4.5 bg-[#1F2937] text-white text-xs font-black rounded-2xl hover:bg-red-600 transition-all shadow-xl shadow-slate-100 active:scale-95">執行緊急通報</button>
+                </div>
+
+                <!-- 斷訊卡片 -->
+                <div class="bg-[#1F2937] p-8 rounded-[2.5rem] shadow-card space-y-6 group">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-slate-300">
+                                <span class="material-symbols-outlined">signal_disconnected</span>
+                            </div>
+                            <div class="flex flex-col text-white">
+                                <span class="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mb-1">ID: CAM-00455</span>
+                                <span class="text-sm font-black uppercase">訊號中斷事件</span>
+                            </div>
+                        </div>
+                        <span class="px-4 py-1.5 bg-slate-800 text-slate-400 text-[9px] font-black rounded-full uppercase tracking-widest border border-white/5">待報修</span>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="text-base font-bold text-white/90 mt-2 tracking-tight">太平區 - 陽光幼兒中心 • 備餐區</p>
+                        <p class="text-[11px] text-white/40 mt-3 leading-relaxed font-medium">設備心跳包遺失，請立即連繫工程維護團隊進行現場檢修。</p>
+                    </div>
+                    <button class="w-full py-4.5 bg-white/10 hover:bg-white/20 text-white text-xs font-black rounded-2xl transition-all border border-white/10 active:scale-95">生成設備維護單</button>
+                </div>
+            </div>
+        </aside>
+
         <!-- Footer Placeholder -->
-        <div id="footer-placeholder" class="mt-20"></div>
+        <div id="footer-placeholder" class="fixed bottom-0 left-0 right-0 pointer-events-none opacity-0"></div>
     </main>
   </body>
 </html>
