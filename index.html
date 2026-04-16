@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>兒托監管雲 - 儀表板總覽</title>
+    <title>兒托監管雲 - 儀表板</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="lib/config.js"></script>
     <script src="lib/layout.js"></script>
@@ -17,124 +17,118 @@
         <div id="sidebar-placeholder"></div>
 
         <!-- Scrollable content area -->
-        <main class="flex-1 overflow-y-auto p-12 w-full space-y-12 bg-surface-container-low custom-scrollbar">
+        <main class="flex-1 overflow-y-auto p-8 w-full space-y-8 bg-surface-container-low custom-scrollbar">
             <!-- Breadcrumbs / Page Title -->
-            <div class="space-y-3">
-                <div class="flex items-center text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] space-x-3">
-                    <span class="hover:text-primary transition-colors cursor-pointer">Society Bureau</span>
-                    <span class="material-symbols-outlined text-[10px] opacity-40">chevron_right</span>
-                    <span class="text-primary">Dashboard</span>
+            <div class="space-y-1">
+                <div class="flex items-center text-xs text-slate-400 font-medium space-x-2">
+                    <span>社會局首頁</span>
+                    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                    <span class="text-primary font-bold">控制台儀表板</span>
                 </div>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <h2 class="text-4xl font-black text-primary font-headline tracking-tighter mb-1">儀表板總覽</h2>
-                        <p class="text-slate-400 font-medium tracking-wide">全區域即時監控數據與異常分析彙整</p>
-                    </div>
-                </div>
+                <h2 class="text-3xl font-black text-primary font-headline tracking-tight">儀表板總覽</h2>
             </div>
 
-            <div class="grid grid-cols-12 gap-8 flex-1">
-                <!-- Left: Grid View -->
-                <div class="col-span-12 lg:col-span-9 space-y-8">
-                    <!-- Global Status Bars -->
+            <div class="grid grid-cols-12 gap-6">
+                <!-- Left: Monitoring Grid -->
+                <div class="col-span-12 lg:col-span-9 space-y-6">
+                    <!-- Statistics Cards -->
                     <div class="grid grid-cols-3 gap-6">
-                        <div class="premium-card p-6 rounded-2xl flex items-center space-x-5">
-                            <div class="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary">
-                                <span class="material-symbols-outlined text-3xl">hub</span>
+                        <div class="bg-white p-6 rounded-xl border border-outline-variant/10 shadow-sm flex items-center space-x-4 transition-transform hover:scale-[1.02]">
+                            <div class="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">hub</span>
                             </div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">託育中心</p>
-                                <p class="text-2xl font-black text-primary font-headline">24 <span class="text-xs font-bold text-slate-300">所</span></p>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">立案中心</p>
+                                <p class="text-xl font-bold text-primary">24 間</p>
                             </div>
                         </div>
-                        <div class="premium-card p-6 rounded-2xl flex items-center space-x-5 border-l-4 border-l-error">
-                            <div class="w-14 h-14 rounded-2xl bg-error/5 flex items-center justify-center text-error">
-                                <span class="material-symbols-outlined text-3xl">warning</span>
+                        <div class="bg-white p-6 rounded-xl border border-error/20 shadow-sm flex items-center space-x-4 border-l-4 border-l-error">
+                            <div class="w-12 h-12 rounded-lg bg-error/5 flex items-center justify-center text-error">
+                                <span class="material-symbols-outlined">warning</span>
                             </div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">目前告警</p>
-                                <p class="text-2xl font-black text-error font-headline">03 <span class="text-xs font-bold text-slate-300">件</span></p>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">即時告警</p>
+                                <p class="text-xl font-bold text-error">3 件</p>
                             </div>
                         </div>
-                        <div class="premium-card p-6 rounded-2xl flex items-center space-x-5">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
-                                <span class="material-symbols-outlined text-3xl">videocam</span>
+                        <div class="bg-white p-6 rounded-xl border border-outline-variant/10 shadow-sm flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+                                <span class="material-symbols-outlined">videocam</span>
                             </div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">設備在線率</p>
-                                <p class="text-2xl font-black text-emerald-600 font-headline">98.5<span class="text-xs font-bold text-slate-300">%</span></p>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">設備狀態</p>
+                                <p class="text-xl font-bold text-emerald-600">98.5% 在線</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Toolbar -->
-                    <div class="flex items-center justify-between bg-white/60 backdrop-blur-md p-5 rounded-2xl border border-white shadow-premium">
-                        <div class="flex items-center space-x-6">
-                            <div class="flex items-center space-x-3 group">
-                                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-primary group-hover:text-white transition-all">
-                                    <span class="material-symbols-outlined">filter_list</span>
-                                </div>
-                                <div>
-                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">區域篩選</p>
-                                    <select class="bg-transparent border-none text-sm font-black p-0 focus:ring-0 text-primary cursor-pointer">
-                                        <option>台中市全區中心</option>
-                                        <option>北區託育聯盟</option>
-                                    </select>
-                                </div>
+                    <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-outline-variant/10">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/10">
+                                <span class="material-symbols-outlined text-sm text-primary">apartment</span>
+                                <select class="bg-transparent border-none text-sm font-bold p-0 focus:ring-0 text-primary">
+                                    <option>台中市全區中心總覽</option>
+                                    <option>北區託育中心聯盟</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <button class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-black tracking-widest uppercase transition-all">數據彙出</button>
-                        </div>
+                        <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-600 transition-colors">
+                            匯出今日日誌
+                        </button>
                     </div>
 
-                    <!-- Video Bento Grid -->
-                    <div class="grid grid-cols-2 gap-8">
-                        <div class="relative group premium-card rounded-2xl overflow-hidden border-2 border-transparent hover:border-primary/20">
-                            <div class="video-overlay absolute inset-0 z-10"></div>
-                            <img class="w-full video-aspect object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
-                            <div class="absolute top-6 left-6 z-20 glass px-4 py-2 rounded-lg text-primary font-black text-[10px] tracking-widest uppercase">CAM-01 • 晨星分校 遊戲室 A</div>
-                            <div class="absolute bottom-6 left-6 z-20 flex items-center space-x-3">
-                                <div class="px-3 py-1 bg-emerald-500 text-white rounded text-[10px] font-black tracking-widest">LIVE</div>
-                                <span class="text-white text-[10px] font-bold opacity-80">14:55:08</span>
+                    <!-- Video Grid -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="relative group bg-black rounded-xl overflow-hidden shadow-lg border border-outline-variant/10 aspect-video">
+                            <img class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8O2MzXTVCuW9sGLxn9iRA6mqnNVKmxgV7OkU1ADbqvkWC3pnswugr39k_06jvDJ94ok6Kx-nAyyNckSsuvCHqtRphrF2YjZxbtew2e1y-dEQLwn6XyDQEJVxsDo1XnKIVAFPBMiLYjVlHz-XUfsSPUe8JF6pyzMspQEvUpA3qpnVDDmiktVINNXIgUqzRlFXGGKD97JVDL0i--Zac_jaqn1Zfo2QeywFaSjEUHIwf2SNshXeXI8_lZW6g5KH0XhnsF1VxVe5AJxJ"/>
+                            <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                <span>CAM-01 晨星教室</span>
                             </div>
                         </div>
-                        <div class="relative group premium-card rounded-2xl overflow-hidden border-2 border-error/50">
-                            <div class="absolute inset-0 bg-error/20 backdrop-blur-[2px] z-20 flex flex-col items-center justify-center p-8 text-center ring-inset ring-4 ring-error/30 animate-pulse">
-                                <span class="material-symbols-outlined text-6xl text-error mb-4">visibility_off</span>
-                                <p class="text-error font-black text-2xl font-headline mb-2 leading-none uppercase">Lens Shielded</p>
-                                <p class="text-error/80 text-xs font-bold font-headline">AI 告警：鏡頭功能遭強行遮蔽</p>
+                        <div class="relative group bg-error/10 rounded-xl overflow-hidden shadow-lg border-2 border-error aspect-video">
+                            <div class="absolute inset-0 bg-error/20 flex flex-col items-center justify-center z-10 text-center p-4">
+                                <span class="material-symbols-outlined text-5xl text-error mb-2 animate-pulse">visibility_off</span>
+                                <p class="text-error font-black text-lg">鏡頭遭遮蔽</p>
+                                <p class="text-error/80 text-xs font-bold">CAM-02 走廊區域</p>
                             </div>
-                            <img class="w-full video-aspect object-cover grayscale opacity-40 blur-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
+                            <img class="w-full h-full object-cover grayscale opacity-40 blur-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oEDNUMyuNkLutZa59a1IXvVjyMFqpYeAja69ppFL1GW4yDXxP2zo0xRsFGw93AnNwx1JEYGE60eaKwShaiaJucIK87rabz5IddKsurmqiKTyS7K33EQAUvw5uWv_C7zzPRrPEUtI_oQvnS6hCNUMORCr-kX-UelNO-4jgSPSbT-ZFybDeokcfGGZVq9_Zwt9x_OAxlpvBYtCiwQZUGdOHbbmyv2wGWvZiNh3RL28uCaQEXVtLiT-9AvdcA45ssYSbjuG6-VJKuL7"/>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Panel: Intelligent Feed -->
-                <aside class="col-span-12 lg:col-span-3 h-full">
-                    <div class="premium-card rounded-2xl overflow-hidden flex flex-col h-full bg-slate-900 border-none">
-                        <div class="p-8 border-b border-white/5 space-y-1">
-                            <h3 class="font-black text-sm text-white tracking-widest uppercase">Security Feed</h3>
-                            <p class="text-[11px] text-white/40 font-medium tracking-wide">系統即時安全日誌系統</p>
+                <!-- Right: Activity Logs -->
+                <aside class="col-span-12 lg:col-span-3">
+                    <div class="bg-white rounded-xl shadow-sm border border-outline-variant/10 flex flex-col h-full overflow-hidden">
+                        <div class="p-5 border-b border-slate-50">
+                            <h3 class="font-bold text-sm text-primary flex items-center">
+                                <span class="material-symbols-outlined mr-2 text-lg">history</span>
+                                即時告警日誌
+                            </h3>
                         </div>
-                        <div class="p-8 space-y-8 flex-1 overflow-y-auto custom-scrollbar">
-                            <div class="relative pl-8 border-l border-white/10 space-y-6">
-                                <div class="relative">
-                                    <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-error border-4 border-slate-900 badge-glow-error"></div>
-                                    <p class="text-[10px] font-black text-error uppercase tracking-widest mb-1">14:52 • Alert</p>
-                                    <p class="text-xs font-bold text-white/90">CAM-04 視訊連線中斷</p>
-                                    <p class="text-[10px] text-white/40 font-medium">中心：晨星分校</p>
+                        <div class="p-5 space-y-6 flex-1 overflow-y-auto custom-scrollbar">
+                            <div class="space-y-4">
+                                <div class="flex gap-3">
+                                    <div class="min-w-[4px] bg-error rounded-full"></div>
+                                    <div>
+                                        <p class="text-[10px] font-bold text-error mb-0.5">14:52 • 異常中止</p>
+                                        <p class="text-xs font-semibold text-slate-700">CAM-04 連線失敗</p>
+                                        <p class="text-[10px] text-slate-400">晨星分校</p>
+                                    </div>
                                 </div>
-                                <div class="relative">
-                                    <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-900"></div>
-                                    <p class="text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-1">14:48 • Info</p>
-                                    <p class="text-xs font-bold text-white/90">督導員「何政明」已完成審核</p>
-                                    <p class="text-[10px] text-white/40 font-medium">事件 ID: #882103</p>
+                                <div class="flex gap-3">
+                                    <div class="min-w-[4px] bg-emerald-500 rounded-full"></div>
+                                    <div>
+                                        <p class="text-[10px] font-bold text-emerald-500 mb-0.5">14:48 • 系統資訊</p>
+                                        <p class="text-xs font-semibold text-slate-700">案號 #882 處理完畢</p>
+                                        <p class="text-[10px] text-slate-400">處理人：何管理員</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-8 bg-black/20">
-                            <button class="w-full py-4 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black text-white/60 uppercase tracking-[0.2em] hover:bg-white/10 transition-all">歷程紀錄檢索</button>
+                        <div class="p-4 bg-slate-50">
+                            <button class="w-full py-2.5 text-xs font-bold text-slate-500 border border-slate-200 rounded-lg hover:bg-white transition-colors">查看完整紀錄</button>
                         </div>
                     </div>
                 </aside>

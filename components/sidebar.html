@@ -1,43 +1,38 @@
-<aside class="w-72 bg-slate-900 flex flex-col p-6 space-y-2 shrink-0 h-full overflow-y-auto custom-scrollbar border-r border-white/5">
-    <nav class="flex-1 space-y-1.5" id="main-nav">
-        <div class="px-4 py-4 mb-2">
-            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] opacity-60">Operations</p>
+<aside class="w-64 bg-white flex flex-col p-4 space-y-2 border-r border-outline-variant/10 shrink-0 h-full overflow-y-auto custom-scrollbar">
+    <nav class="flex-1 space-y-1" id="main-nav">
+        <div class="px-4 py-2 mb-2">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">系統選單</p>
         </div>
         
-        <a href="index.html" class="nav-item flex items-center space-x-4 px-5 py-4 rounded-xl cursor-pointer transition-all duration-500 group" data-page="index">
-            <span class="material-symbols-outlined text-slate-500 group-hover:text-white group-hover:scale-110 transition-all">grid_view</span>
-            <span class="font-bold text-sm tracking-wide">儀表板總覽</span>
+        <a href="index.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300 group" data-page="index">
+            <span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-all">dashboard</span>
+            <span class="font-semibold text-sm">首頁儀表板</span>
         </a>
         
-        <a href="live.html" class="nav-item flex items-center space-x-4 px-5 py-4 rounded-xl cursor-pointer transition-all duration-500 group" data-page="live">
-            <span class="material-symbols-outlined text-slate-500 group-hover:text-white group-hover:scale-110 transition-all">videocam</span>
-            <span class="font-bold text-sm tracking-wide">即時監控中心</span>
+        <a href="live.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300 group" data-page="live">
+            <span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-all">videocam</span>
+            <span class="font-semibold text-sm">監控控制台</span>
         </a>
         
-        <a href="alert.html" class="nav-item flex items-center space-x-4 px-5 py-4 rounded-xl cursor-pointer transition-all duration-500 group" data-page="alert">
-            <span class="material-symbols-outlined text-slate-500 group-hover:text-white group-hover:scale-110 transition-all">notifications_active</span>
-            <span class="font-bold text-sm tracking-wide">異常告警追蹤</span>
+        <a href="alert.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300 group" data-page="alert">
+            <span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-all">report_problem</span>
+            <span class="font-semibold text-sm">異常告警追蹤</span>
         </a>
         
-        <div class="pt-10 mt-10 border-t border-white/5 px-4 py-4">
-            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] opacity-60">Infrastructure</p>
+        <div class="pt-4 mt-8 border-t border-slate-100 px-4 py-2">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">管理功能</p>
         </div>
         
-        <a href="account.html" class="nav-item flex items-center space-x-4 px-5 py-4 rounded-xl cursor-pointer transition-all duration-500 group" data-page="account">
-            <span class="material-symbols-outlined text-slate-500 group-hover:text-white group-hover:scale-110 transition-all">verified_user</span>
-            <span class="font-bold text-sm tracking-wide">帳號安全管理</span>
+        <a href="account.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300 group" data-page="account">
+            <span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-all">manage_accounts</span>
+            <span class="font-semibold text-sm">帳號管理</span>
         </a>
     </nav>
     
-    <div class="mt-auto pt-6 border-t border-white/5">
-        <div class="flex items-center space-x-3 bg-white/5 p-4 rounded-2xl border border-white/10 group cursor-default">
-            <div class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-white ring-4 ring-white/5">
-                <span class="material-symbols-outlined text-lg">terminal</span>
-            </div>
-            <div>
-                <p class="text-[10px] font-black text-white/40 uppercase tracking-widest">Version</p>
-                <p class="text-[11px] font-bold text-white/80">Eagle Eye v2.4.0</p>
-            </div>
+    <div class="mt-auto px-4 py-4 border-t border-slate-50">
+        <div class="flex items-center space-x-2 text-slate-400 text-[10px] font-medium">
+            <span class="material-symbols-outlined text-sm">info</span>
+            <span>系統版本 v1.2.0</span>
         </div>
     </div>
 </aside>
