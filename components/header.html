@@ -1,35 +1,33 @@
-<header class="bg-primary sticky top-0 z-50 w-full px-10 py-0 flex justify-between items-center shadow-lg min-h-[80px]">
+<header class="bg-white sticky top-0 z-50 w-full px-10 py-0 flex justify-between items-center shadow-sm border-b border-slate-100 min-h-[80px]">
     <div class="flex items-center space-x-12 h-full">
-        <!-- Logo Area (左右不換行, 海軍藍背景下顯示白色字體) -->
+        <!-- Logo Area (白底下的品牌標誌) -->
         <div class="flex items-center space-x-4 py-4">
-            <div class="bg-white p-1.5 rounded-xl shadow-sm">
-                <img src="assets/images/logo.png" alt="Logo" class="w-10 h-10 object-contain">
-            </div>
+            <img src="assets/images/logo.png" alt="Logo" class="w-10 h-10 object-contain">
             <h1 class="text-2xl font-black tracking-tighter font-headline flex items-center space-x-3">
-                <span class="text-white">臺中市社會局</span>
+                <span class="text-slate-900">臺中市社會局</span>
                 <span class="text-accent">兒托監管雲</span>
             </h1>
         </div>
 
         <!-- Top Menu Navbar (動態下底線效果) -->
         <nav class="hidden lg:flex items-center h-full space-x-2 pl-6" id="top-nav">
-            <a href="index.html" class="nav-link relative flex items-center space-x-2 px-5 py-7 text-sm font-bold text-slate-400 hover:text-white group transition-colors" data-page="index">
+            <a href="index.html" class="nav-link relative flex items-center space-x-2 px-5 py-7 text-sm font-bold text-slate-400 hover:text-slate-900 group transition-colors" data-page="index">
                 <span class="material-symbols-outlined text-[20px]">dashboard</span>
                 <span>儀表板</span>
                 <!-- 文字底下的動態底線 -->
                 <span class="nav-indicator absolute left-[20%] right-[20%] bottom-[12px] h-[3px] bg-accent rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
             </a>
-            <a href="live.html" class="nav-link relative flex items-center space-x-2 px-5 py-7 text-sm font-bold text-slate-400 hover:text-white group transition-colors" data-page="live">
+            <a href="live.html" class="nav-link relative flex items-center space-x-2 px-5 py-7 text-sm font-bold text-slate-400 hover:text-slate-900 group transition-colors" data-page="live">
                 <span class="material-symbols-outlined text-[20px]">videocam</span>
                 <span>監控控制台</span>
                 <span class="nav-indicator absolute left-[20%] right-[20%] bottom-[12px] h-[3px] bg-accent rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
             </a>
-            <a href="alert.html" class="nav-link relative flex items-center space-x-2 px-5 py-7 text-sm font-bold text-slate-400 hover:text-white group transition-colors" data-page="alert">
+            <a href="alert.html" class="nav-link relative flex items-center space-x-2 px-5 py-7 text-sm font-bold text-slate-400 hover:text-slate-900 group transition-colors" data-page="alert">
                 <span class="material-symbols-outlined text-[20px]">notifications_active</span>
                 <span>異常告警追蹤</span>
                 <span class="nav-indicator absolute left-[20%] right-[20%] bottom-[12px] h-[3px] bg-accent rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
             </a>
-            <a href="account.html" class="nav-link relative flex items-center space-x-2 px-5 py-7 text-sm font-bold text-slate-400 hover:text-white group transition-colors" data-page="account">
+            <a href="account.html" class="nav-link relative flex items-center space-x-2 px-5 py-7 text-sm font-bold text-slate-400 hover:text-slate-900 group transition-colors" data-page="account">
                 <span class="material-symbols-outlined text-[20px]">settings</span>
                 <span>系統管理</span>
                 <span class="nav-indicator absolute left-[20%] right-[20%] bottom-[12px] h-[3px] bg-accent rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
@@ -39,7 +37,7 @@
     
     <!-- User Area -->
     <div class="flex items-center space-x-6">
-        <div class="hidden xl:flex items-center px-4 py-1.5 bg-slate-800 text-emerald-400 rounded-full border border-slate-700">
+        <div class="hidden xl:flex items-center px-4 py-1.5 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
             <span class="relative flex h-2 w-2 mr-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -49,10 +47,10 @@
 
         <div class="flex items-center space-x-4">
             <div class="flex flex-col items-end mr-2">
-                <span class="text-xs font-black text-white">管理中心人員</span>
+                <span class="text-xs font-black text-slate-900">管理中心人員</span>
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Administrator</span>
             </div>
-            <button class="px-7 py-2.5 bg-white text-primary rounded-xl text-xs font-black hover:bg-slate-100 transition-all shadow-sm">登出</button>
+            <button class="px-7 py-2 bg-slate-900 text-white rounded-xl text-xs font-black hover:bg-slate-800 transition-all shadow-sm">登出</button>
         </div>
     </div>
 </header>
