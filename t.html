@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台中市兒托監管雲 - Logo 系統</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* 主題切換樣式 */
+  .dark-mode {
+    background-color: #0f172a;
+    color: #f8fafc;
+  }
+  .dark-mode .panel {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+  
+  /* 深色模式下的文字顏色調整 */
+  .dark-mode .text-slate-800 { color: #f8fafc; }
+  .dark-mode .text-slate-400 { color: #94a3b8; }
+  .dark-mode .text-sky-600 { color: #38bdf8; } /* 深色模式下藍色稍微提亮 */
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col p-6 transition-colors" id="app-body">
+
+  <!-- 控制面板 (SA 提案展示用) -->
+  <div class="panel bg-white border border-gray-200 rounded-xl p-4 mb-8 shadow-sm flex flex-wrap gap-4 items-center justify-between transition-colors">
+    <div class="text-sm font-bold text-gray-500 tracking-wider">LOGO DESIGN SYSTEM CONTROLS</div>
+    <div class="flex gap-2">
+      <button onclick="setLayout('horizontal')" class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-100 transition">水平導覽列排列</button>
+      <button onclick="setLayout('vertical')" class="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg text-sm font-medium hover:bg-purple-100 transition">垂直登入頁排列</button>
+      <div class="w-px h-8 bg-gray-300 mx-2"></div>
+      <button onclick="toggleTheme()" class="px-4 py-2 bg-gray-800 text-white rounded-lg text-sm font-medium hover:bg-gray-700 transition" id="theme-btn">切換至暗黑模式</button>
+    </div>
+  </div>
+
+  <!-- 展示區 -->
+  <div class="flex-1 flex items-center justify-center">
+    
+    <!-- Logo 容器 -->
+    <div id="logo-container" class="flex items-center gap-4 transition-all duration-500 ease-in-out">
+      
+      <!-- 實體圖片引入區塊 -->
+      <div id="logo-icon" class="w-20 h-20 transition-all duration-500 flex-shrink-0">
+        <!-- 
+          SA 筆記：交給開發團隊時，請將下方 src 替換為實際圖片路徑
+          例如： src="./assets/images/logo-icon.png" 
+        -->
+        <img src="https://placehold.co/200x200/e2e8f0/475569?text=Your+Logo+Here" alt="兒托監管雲圖標" class="w-full h-full object-contain drop-shadow-sm">
+      </div>
+
+      <!-- 系統標準字體 (Typography) -->
+      <div id="logo-text" class="flex flex-col justify-center transition-all duration-500">
+        <!-- 頂部機關名稱 -->
+        <div class="text-[0.7rem] font-bold text-gray-500 tracking-[0.2em] mb-0.5 uppercase flex items-center gap-1 transition-colors">
+          Taichung City Government
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        </div>
+        
+        <!-- 主標題 (移除漸層，改用政府/醫療系統常用的信任藍 Sky-600) -->
+        <h1 class="text-3xl font-black text-slate-800 tracking-tight leading-none transition-colors" id="main-title">
+          臺中市<span class="text-sky-600 ml-1 transition-colors">兒托監管雲</span>
+        </h1>
+
+        
+        
+        <!-- 底部副標題 -->
+        <div class="text-sm font-medium text-slate-400 tracking-widest mt-1 transition-colors">
+          SMART CARE CONNECT
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SA 規格說明區塊 -->
+  <div class="panel bg-white border border-gray-200 rounded-xl p-6 mt-8 shadow-sm transition-colors">
+    <h3 class="text-lg font-bold mb-4 text-slate-800 transition-colors">UI/UX 規範 (Style Guide)</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h4 class="text-xs text-gray-400 font-bold mb-2">排版規則</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-300">使用實體圖片作為圖標。支援「導覽列水平模式 (Horizontal)」與「登入頁垂直置中模式 (Vertical)」。圖片請保持 1:1 比例，並使用 SVG 或高解析度 PNG 以確保邊緣平滑。</p>
+      </div>
+      <div>
+        <h4 class="text-xs text-gray-400 font-bold mb-2">標準字體</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-300">首選字體：<br><strong>Noto Sans TC (思源黑體)</strong><br>主標題 Weight: 900 (Black)<br>副標題 Weight: 500 (Medium)</p>
+      </div>
+      <div>
+        <h4 class="text-xs text-gray-400 font-bold mb-2">字體色彩計畫 (扁平化)</h4>
+        <div class="flex flex-col gap-2 mt-1">
+          <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+            <div class="w-4 h-4 rounded bg-slate-800 border border-gray-300"></div> 基礎黑 (Slate 800)
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+            <div class="w-4 h-4 rounded bg-sky-600 border border-gray-300"></div> 信任藍 (Sky 600)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  let isDark = false;
+
+  function toggleTheme() {
+    isDark = !isDark;
+    const body = document.getElementById('app-body');
+    const btn = document.getElementById('theme-btn');
+    
+    if (isDark) {
+      body.classList.add('dark-mode');
+      btn.textContent = '切換至亮色模式';
+      btn.classList.replace('bg-gray-800', 'bg-yellow-400');
+      btn.classList.replace('text-white', 'text-yellow-900');
+    } else {
+      body.classList.remove('dark-mode');
+      btn.textContent = '切換至暗黑模式';
+      btn.classList.replace('bg-yellow-400', 'bg-gray-800');
+      btn.classList.replace('text-yellow-900', 'text-white');
+    }
+  }
+
+  function setLayout(type) {
+    const container = document.getElementById('logo-container');
+    const icon = document.getElementById('logo-icon');
+    const text = document.getElementById('logo-text');
+    const mainTitle = document.getElementById('main-title');
+
+    if (type === 'vertical') {
+      // 登入頁的大型展示模式
+      container.classList.remove('flex-row', 'gap-4');
+      container.classList.add('flex-col', 'gap-6', 'text-center');
+      
+      icon.classList.remove('w-20', 'h-20');
+      icon.classList.add('w-32', 'h-32');
+      
+      text.classList.remove('items-start');
+      text.classList.add('items-center');
+      
+      mainTitle.classList.remove('text-3xl');
+      mainTitle.classList.add('text-4xl');
+    } else {
+      // 導覽列的水平模式
+      container.classList.remove('flex-col', 'gap-6', 'text-center');
+      container.classList.add('flex-row', 'gap-4');
+      
+      icon.classList.remove('w-32', 'h-32');
+      icon.classList.add('w-20', 'h-20');
+      
+      text.classList.remove('items-center');
+      text.classList.add('items-start');
+      
+      mainTitle.classList.remove('text-4xl');
+      mainTitle.classList.add('text-3xl');
+    }
+  }
+</script>
+</body>
+</html>
