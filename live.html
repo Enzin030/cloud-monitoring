@@ -135,8 +135,8 @@
             <!-- 動態格局容器 -->
             <div id="grid-9" class="grid grid-cols-3 gap-3"></div>
           </div>
-          <!-- 關聯設備 -->
-          <div class="col-span-12 lg:col-span-3">
+          <!-- 右側欄 -->
+          <div class="col-span-12 lg:col-span-3 space-y-5">
             <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 space-y-4">
               <div class="border-b border-slate-100 pb-3">
                 <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">同場所關聯設備</p>
@@ -146,6 +146,31 @@
               </div>
               <p class="text-xs text-slate-400">點選設備篩選格局</p>
               <div id="device-list" class="space-y-2"></div>
+            </div>
+
+            <!-- 最新告警 (加回來) -->
+            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden flex flex-col sticky top-0">
+              <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                <h3 class="text-[11px] font-bold text-slate-900 flex items-center gap-2 uppercase tracking-wider">
+                  <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                  </span>
+                  最新告警
+                </h3>
+              </div>
+              <div class="p-3 space-y-3">
+                <div class="p-2.5 bg-red-50 rounded-xl border-l-4 border-red-500 space-y-1">
+                  <p class="text-[10px] font-bold text-red-600">鏡頭遮蔽偵測</p>
+                  <p class="text-xs font-bold text-slate-900">北屯中心 • CAM-00213</p>
+                  <p class="text-[9px] text-slate-400">14:22 · 大班教室</p>
+                </div>
+                <div class="p-2.5 bg-slate-50 rounded-xl border-l-4 border-slate-400 space-y-1">
+                  <p class="text-[10px] font-bold text-slate-500">訊號中斷</p>
+                  <p class="text-xs font-bold text-slate-900">太平中心 • CAM-00455</p>
+                  <p class="text-[9px] text-slate-400">12:05 · 備餐區入口</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -267,20 +292,44 @@
                   <p class="text-[10px] font-bold text-slate-500">當前回放窗口</p>
                   <p class="text-sm font-black text-blue-600" id="aside-display-window">08:00 - 09:00</p>
                 </div>
-              </div>
             </div>
 
             <!-- 關聯設備 -->
             <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 space-y-4">
-              <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">關聯設備</h3>
+              <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest border-b border-slate-50 pb-2">關聯設備</h3>
               <div class="space-y-2.5">
                 <div class="p-3 bg-blue-50 border-2 border-blue-500 rounded-xl cursor-default">
                   <p class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">CAM-00104</p>
                   <p class="text-sm font-bold text-slate-900 leading-tight">正門大門區</p>
                 </div>
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer transition-colors">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00105</p>
-                  <p class="text-sm font-bold text-slate-700 leading-tight">後側遊戲場</p>
+                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer transition-colors text-slate-400">
+                  <p class="text-[10px] font-bold uppercase tracking-widest">CAM-00105</p>
+                  <p class="text-sm font-bold leading-tight">後側遊戲場</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 最新告警 (固定) -->
+            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden flex flex-col sticky top-0">
+              <div class="px-4 py-3 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
+                <h3 class="text-[11px] font-bold text-slate-900 flex items-center gap-2 uppercase tracking-wider">
+                  <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                  </span>
+                  最新告警
+                </h3>
+              </div>
+              <div class="p-3 space-y-3">
+                <div class="p-2.5 bg-red-50 rounded-xl border-l-4 border-red-500 space-y-1">
+                  <p class="text-[10px] font-bold text-red-600">鏡頭遮蔽偵測</p>
+                  <p class="text-xs font-bold text-slate-900">北屯中心 • CAM-00213</p>
+                  <p class="text-[9px] text-slate-400">14:22 · 大班教室</p>
+                </div>
+                <div class="p-2.5 bg-slate-50 rounded-xl border-l-4 border-slate-400 space-y-1">
+                  <p class="text-[10px] font-bold text-slate-500">訊號中斷</p>
+                  <p class="text-xs font-bold text-slate-900">太平中心 • CAM-00455</p>
+                  <p class="text-[9px] text-slate-400">12:05 · 備餐區入口</p>
                 </div>
               </div>
             </div>
