@@ -90,7 +90,7 @@
         <div class="flex bg-slate-100 p-1 rounded-xl flex-shrink-0">
           <button id="tab-live" onclick="switchTab('live')"
             class="tab-btn active px-5 py-2 rounded-lg text-sm font-medium text-slate-600 whitespace-nowrap">
-            實時監看
+            即時監控
           </button>
           <button id="tab-history" onclick="switchTab('history')"
             class="tab-btn px-5 py-2 rounded-lg text-sm font-medium text-slate-600 whitespace-nowrap">
@@ -140,7 +140,7 @@
 
       </section>
 
-      <!-- ========== 實時監看 ========== -->
+      <!-- ========== 即時監控 ========== -->
       <div id="panel-live">
         <div class="grid grid-cols-12 gap-6">
           <!-- 格局區 -->
@@ -309,7 +309,7 @@ const cameras = [
   { id:'CAM-00111', venue:'北屯中心', area:'中班教室',   status:'ok',      img:'assets/images/中班教室.png', anim:'cctv-feed-c' },
 ];
 
-let selectedCams = new Set(); // 空 = 全部（實時監看預設顯示全部）
+let selectedCams = new Set(); // 空 = 全部（即時監控預設顯示全部）
 
 /* ===== 渲染格局（動態欄數：選1=1欄大格，選2=2欄，3+=3欄） ===== */
 function renderGrid() {

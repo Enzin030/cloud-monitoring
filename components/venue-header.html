@@ -52,22 +52,6 @@
         </a>
       </div>
     </div>
-    
-    <script>
-      function toggleVenueRoleMenu() {
-        const menu = document.getElementById('venue-role-menu');
-        menu.classList.toggle('hidden');
-      }
-      // 點擊外部關閉
-      document.addEventListener('click', function(e) {
-        const control = document.getElementById('venue-role-control');
-        const menu = document.getElementById('venue-role-menu');
-        if (control && !control.contains(e.target)) {
-          menu.classList.add('hidden');
-        }
-      });
-    </script>
-    
     <button class="px-5 py-2 bg-[#1F2937] text-white rounded-lg text-xs font-semibold hover:bg-[#374151] transition-all">
       登出
     </button>

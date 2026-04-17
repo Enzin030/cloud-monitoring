@@ -1,375 +1,705 @@
 <!doctype html>
 <html class="light" lang="zh-TW">
-<head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
-  <title>兒托監管雲 - 場所控制台｜北屯中心</title>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script src="lib/config.js"></script>
-  <script src="lib/layout.js"></script>
-  <style>
-    @keyframes ptz-pan {
-      0%   { transform: scale(1.08) translate(0px, 0px); }
-      25%  { transform: scale(1.08) translate(-4px, -2px); }
-      50%  { transform: scale(1.08) translate(3px, -4px); }
-      75%  { transform: scale(1.08) translate(2px, 3px); }
-      100% { transform: scale(1.08) translate(0px, 0px); }
-    }
-    .cctv-feed   { animation: ptz-pan 18s ease-in-out infinite; }
-    .cctv-feed-b { animation: ptz-pan 22s ease-in-out infinite reverse; animation-delay:-6s; }
-    .cctv-feed-c { animation: ptz-pan 20s ease-in-out infinite; animation-delay:-10s; }
-    .cctv-feed-d { animation: ptz-pan 16s ease-in-out infinite reverse; animation-delay:-4s; }
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1.0" name="viewport" />
+    <title>兒托監管雲 - 場所控制台｜北屯中心</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="lib/config.js"></script>
+    <script src="lib/layout.js"></script>
+    <style>
+      @keyframes ptz-pan {
+        0% {
+          transform: scale(1.08) translate(0px, 0px);
+        }
+        25% {
+          transform: scale(1.08) translate(-4px, -2px);
+        }
+        50% {
+          transform: scale(1.08) translate(3px, -4px);
+        }
+        75% {
+          transform: scale(1.08) translate(2px, 3px);
+        }
+        100% {
+          transform: scale(1.08) translate(0px, 0px);
+        }
+      }
+      .cctv-feed {
+        animation: ptz-pan 18s ease-in-out infinite;
+      }
+      .cctv-feed-b {
+        animation: ptz-pan 22s ease-in-out infinite reverse;
+        animation-delay: -6s;
+      }
+      .cctv-feed-c {
+        animation: ptz-pan 20s ease-in-out infinite;
+        animation-delay: -10s;
+      }
+      .cctv-feed-d {
+        animation: ptz-pan 16s ease-in-out infinite reverse;
+        animation-delay: -4s;
+      }
 
-    /* 鏡頭遮蔽：極暗極模糊 */
-    .cctv-blocked { filter: blur(5px) brightness(0.25) saturate(0); }
-    /* 訊號中斷：保留畫面感，灰階但不太暗 */
-    .cctv-offline { filter: grayscale(0.95) brightness(0.68); animation: ptz-pan 25s ease-in-out infinite; }
+      /* 鏡頭遮蔽：極暗極模糊 */
+      .cctv-blocked {
+        filter: blur(5px) brightness(0.25) saturate(0);
+      }
+      /* 訊號中斷：保留畫面感，灰階但不太暗 */
+      .cctv-offline {
+        filter: grayscale(0.95) brightness(0.68);
+        animation: ptz-pan 25s ease-in-out infinite;
+      }
 
-    .scanline-overlay {
-      position:absolute; inset:0; pointer-events:none; z-index:5;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
-    }
-    @keyframes rec-blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
-    .rec-dot { animation: rec-blink 1s step-end infinite; }
+      .scanline-overlay {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 5;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.07) 2px,
+          rgba(0, 0, 0, 0.07) 4px
+        );
+      }
+      @keyframes rec-blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+      .rec-dot {
+        animation: rec-blink 1s step-end infinite;
+      }
 
-    .cam-cell {
-      position:relative; overflow:hidden; cursor:pointer;
-      border-radius:12px; background:#0f172a;
-      transition: box-shadow 0.15s;
-    }
-    .cam-cell.anomaly-blocked { box-shadow: 0 0 0 4px #ef4444, 0 0 24px 4px rgba(239,68,68,0.35); }
-    .cam-cell.anomaly-offline { box-shadow: 0 0 0 3px #64748b; }
-    .cam-cell.selected        { box-shadow: 0 0 0 4px #3B82F6 !important; }
+      .cam-cell {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 12px;
+        background: #0f172a;
+        transition: box-shadow 0.15s;
+      }
+      .cam-cell.anomaly-blocked {
+        box-shadow:
+          0 0 0 4px #ef4444,
+          0 0 24px 4px rgba(239, 68, 68, 0.35);
+      }
+      .cam-cell.anomaly-offline {
+        box-shadow: 0 0 0 3px #64748b;
+      }
+      .cam-cell.selected {
+        box-shadow: 0 0 0 4px #3b82f6 !important;
+      }
 
-    .tab-btn.active {
-      background:#fff; color:#1F2937; font-weight:700;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    }
+      .tab-btn.active {
+        background: #fff;
+        color: #1f2937;
+        font-weight: 700;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      }
 
-    /* 拖拉 bar */
-    #timeline-bar { cursor:pointer; user-select:none; -webkit-user-select:none; }
-    .timeline-handle {
-      position:absolute; top:0; height:100%; width:16px; margin-left:-8px;
-      background:#fff;
-      border:2px solid #3B82F6;
-      border-radius:4px;
-      cursor:ew-resize; z-index:10;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .timeline-handle:active { background:#eff6ff; }
-    #timeline-range {
-      position:absolute; top:0; height:100%;
-      background:rgba(59,130,246,0.3);
-      cursor:grab; border-top: 2px solid #3B82F6; border-bottom: 2px solid #3B82F6;
-    }
-    #timeline-range:active { cursor:grabbing; }
-  </style>
-</head>
-<body class="bg-white font-body text-on-surface flex flex-col h-screen overflow-hidden"
-  data-header="components/venue-header.html">
-  <div id="header-placeholder"></div>
+      /* 拖拉 bar */
+      #timeline-bar {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .timeline-handle {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 16px;
+        margin-left: -8px;
+        background: #fff;
+        border: 2px solid #3b82f6;
+        border-radius: 4px;
+        cursor: ew-resize;
+        z-index: 10;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      .timeline-handle:active {
+        background: #eff6ff;
+      }
+      #timeline-range {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background: rgba(59, 130, 246, 0.3);
+        cursor: grab;
+        border-top: 2px solid #3b82f6;
+        border-bottom: 2px solid #3b82f6;
+      }
+      #timeline-range:active {
+        cursor: grabbing;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-white font-body text-on-surface flex flex-col h-screen overflow-hidden"
+    data-header="components/venue-header.html"
+  >
+    <div id="header-placeholder"></div>
 
-  <main class="flex-1 overflow-y-auto p-10 w-full custom-scrollbar">
-    <div class="space-y-8">
-
-      <!-- 標題 + 麵包屑 -->
-      <div class="border-b border-slate-100 pb-6">
-        <div class="flex items-end gap-4">
-          <h2 class="text-2xl font-bold text-slate-900 tracking-tight">監控控制台</h2>
-          <div class="flex items-center text-sm text-slate-400 space-x-1.5 mb-0.5">
-            <span class="material-symbols-outlined text-base">home</span>
-            <span>首頁</span>
-            <span class="material-symbols-outlined text-base">chevron_right</span>
-            <span class="text-slate-700 font-semibold">監控控制台</span>
+    <main class="flex-1 overflow-y-auto p-10 w-full custom-scrollbar">
+      <div class="space-y-8">
+        <!-- 標題 + 麵包屑 -->
+        <div class="border-b border-slate-100 pb-6">
+          <div class="flex items-end gap-4">
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">
+              監控控制台
+            </h2>
+            <div
+              class="flex items-center text-sm text-slate-400 space-x-1.5 mb-0.5"
+            >
+              <span class="material-symbols-outlined text-base">home</span>
+              <span>首頁</span>
+              <span class="material-symbols-outlined text-base"
+                >chevron_right</span
+              >
+              <span class="text-slate-700 font-semibold">監控控制台</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 控制列 -->
-      <section class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 flex flex-wrap items-center gap-4">
-        <!-- Tab -->
-        <div class="flex bg-slate-100 p-1 rounded-xl flex-shrink-0">
-          <button id="tab-live" onclick="switchTab('live')"
-            class="tab-btn active px-5 py-2 rounded-lg text-sm font-medium text-slate-600 whitespace-nowrap">
-            實時監看
-          </button>
-          <button id="tab-history" onclick="switchTab('history')"
-            class="tab-btn px-5 py-2 rounded-lg text-sm font-medium text-slate-600 whitespace-nowrap">
-            歷史回放
-          </button>
-        </div>
+        <!-- 控制列 -->
+        <section
+          class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 flex flex-wrap items-center gap-4"
+        >
+          <!-- Tab -->
+          <div class="flex bg-slate-100 p-1 rounded-xl flex-shrink-0">
+            <button
+              id="tab-live"
+              onclick="switchTab('live')"
+              class="tab-btn active px-5 py-2 rounded-lg text-sm font-medium text-slate-600 whitespace-nowrap"
+            >
+              即時監控
+            </button>
+            <button
+              id="tab-history"
+              onclick="switchTab('history')"
+              class="tab-btn px-5 py-2 rounded-lg text-sm font-medium text-slate-600 whitespace-nowrap"
+            >
+              歷史回放
+            </button>
+          </div>
 
-        <div class="w-px h-7 bg-slate-200 hidden md:block"></div>
-
-        <!-- 場所資訊（場所檢視員固定只看自己的場所，不顯示選單） -->
-        <div class="flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <span class="material-symbols-outlined text-sm text-emerald-600">pin_drop</span>
-          <span class="text-sm font-bold text-emerald-800">北屯區 ‧ 北屯中心</span>
-        </div>
-
-        <!-- 歷史查詢篩選（僅歷史 tab） -->
-        <div id="history-filters" class="hidden flex flex-wrap items-center gap-3">
           <div class="w-px h-7 bg-slate-200 hidden md:block"></div>
-          <div class="flex items-center bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 gap-2">
-            <span class="material-symbols-outlined text-blue-500 text-base">calendar_month</span>
-            <input type="date" id="h-date" class="bg-transparent border-none p-0 text-sm font-semibold text-slate-800 focus:ring-0 w-[130px]"/>
-          </div>
-          <!-- 起訖時間（固定 1h 區間，互相聯動） -->
-          <div class="flex items-center bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 gap-2">
-            <span class="text-xs font-bold text-slate-400">起</span>
-            <select id="h-time-start" onchange="onStartChange()"
-              class="bg-transparent border-none p-0 text-sm font-semibold text-slate-800 focus:ring-0 w-[76px]"></select>
-            <span class="text-slate-300 text-xs">—</span>
-            <span class="text-xs font-bold text-slate-400">迄</span>
-            <select id="h-time-end" onchange="onEndChange()"
-              class="bg-transparent border-none p-0 text-sm font-semibold text-slate-800 focus:ring-0 w-[76px]"></select>
-          </div>
-          
-        </div>
 
-        <div class="flex items-center gap-3">
+          <!-- 場所資訊（場所檢視員固定只看自己的場所，不顯示選單） -->
+          <div
+            class="flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-xl"
+          >
+            <span class="material-symbols-outlined text-sm text-emerald-600"
+              >pin_drop</span
+            >
+            <span class="text-sm font-bold text-emerald-800"
+              >北屯區 ‧ 北屯中心</span
+            >
           </div>
-          <button class="px-5 py-2 bg-[#1F2937] text-white rounded-lg text-sm font-bold hover:bg-[#374151] transition-all flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-base">search</span>查詢
-          </button>
-        </div>
 
-
-      </section>
-
-      <!-- ========== 實時監看 ========== -->
-      <div id="panel-live">
-        <div class="grid grid-cols-12 gap-6">
-          <!-- 格局區 -->
-          <div class="col-span-12 lg:col-span-9">
-            <!-- 動態格局容器 -->
-            <div id="grid-9" class="grid grid-cols-3 gap-3"></div>
-          </div>
-          <!-- 關聯設備 -->
-          <div class="col-span-12 lg:col-span-3">
-            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 space-y-4">
-              <div class="border-b border-slate-100 pb-3">
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">同場所關聯設備</p>
-                <span class="text-sm font-bold text-slate-900 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-sm text-blue-500">pin_drop</span>北屯中心
-                </span>
-              </div>
-              <p class="text-xs text-slate-400">點選設備篩選</p>
-              <div id="device-list" class="space-y-2"></div>
+          <!-- 歷史查詢篩選（僅歷史 tab） -->
+          <div
+            id="history-filters"
+            class="hidden flex flex-wrap items-center gap-3"
+          >
+            <div class="w-px h-7 bg-slate-200 hidden md:block"></div>
+            <div
+              class="flex items-center bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 gap-2"
+            >
+              <span class="material-symbols-outlined text-blue-500 text-base"
+                >calendar_month</span
+              >
+              <input
+                type="date"
+                id="h-date"
+                class="bg-transparent border-none p-0 text-sm font-semibold text-slate-800 focus:ring-0 w-[130px]"
+              />
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ========== 歷史回放 ========== -->
-      <div id="panel-history" class="hidden">
-        <div class="grid grid-cols-12 gap-6">
-          <div class="col-span-12 lg:col-span-9 space-y-5">
-            <!-- 播放預覽 -->
-            <div class="relative rounded-2xl overflow-hidden bg-black aspect-video shadow-xl">
-              <img class="w-full h-full object-cover cctv-feed"
-                src="assets/images/走廊.png"/>
-              <div class="scanline-overlay"></div>
-              <div class="absolute top-5 left-5 bg-slate-900/85 backdrop-blur-md px-4 py-2.5 rounded-xl text-white flex flex-col border border-white/10 z-10">
-                <span class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">CAM-00108</span>
-                <span class="text-sm font-bold mt-0.5">北屯中心 • 走廊通道</span>
-              </div>
-              <div class="absolute bottom-4 right-4 flex items-center gap-2 z-10">
-                <span class="rec-dot w-2 h-2 rounded-full bg-red-500"></span>
-                <span class="text-[10px] font-bold text-white/70 font-mono" id="history-ts"></span>
-              </div>
+            <!-- 起訖時間（固定 1h 區間，互相聯動） -->
+            <div
+              class="flex items-center bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 gap-2"
+            >
+              <span class="text-xs font-bold text-slate-400">起</span>
+              <select
+                id="h-time-start"
+                onchange="onStartChange()"
+                class="bg-transparent border-none p-0 text-sm font-semibold text-slate-800 focus:ring-0 w-[76px]"
+              ></select>
+              <span class="text-slate-300 text-xs">—</span>
+              <span class="text-xs font-bold text-slate-400">迄</span>
+              <select
+                id="h-time-end"
+                onchange="onEndChange()"
+                class="bg-transparent border-none p-0 text-sm font-semibold text-slate-800 focus:ring-0 w-[76px]"
+              ></select>
             </div>
+            <button
+              class="px-5 py-2 bg-[#1F2937] text-white rounded-lg text-sm font-bold hover:bg-[#374151] transition-all flex items-center gap-1.5"
+            >
+              <span class="material-symbols-outlined text-base">search</span
+              >查詢
+            </button>
+          </div>
+        </section>
 
-            <!-- 播放控制 + 拖拉進度 -->
-            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 space-y-4">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-500">拖拉選取匯出時段（區間：目前所選的 1 小時內）</span>
-                <div class="flex items-center gap-3">
-                  <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-lg" id="export-range-display">
-                    08:00 - 09:00
+        <!-- ========== 即時監控 ========== -->
+        <div id="panel-live">
+          <div class="grid grid-cols-12 gap-6">
+            <!-- 格局區 -->
+            <div class="col-span-12 lg:col-span-9">
+              <!-- 動態格局容器 -->
+              <div id="grid-9" class="grid grid-cols-3 gap-3"></div>
+            </div>
+            <!-- 關聯設備 -->
+            <div class="col-span-12 lg:col-span-3">
+              <div
+                class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 space-y-4"
+              >
+                <div class="border-b border-slate-100 pb-3">
+                  <p
+                    class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1"
+                  >
+                    同場所關聯設備
+                  </p>
+                  <span
+                    class="text-sm font-bold text-slate-900 flex items-center gap-1"
+                  >
+                    <span
+                      class="material-symbols-outlined text-sm text-blue-500"
+                      >pin_drop</span
+                    >北屯中心
                   </span>
-                  <button class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-bold hover:bg-blue-600 transition-all flex-shrink-0">
-                    <span class="material-symbols-outlined mr-1.5 text-base">download</span>匯出錄影
+                </div>
+                <p class="text-xs text-slate-400">點選設備篩選</p>
+                <div id="device-list" class="space-y-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== 歷史回放 ========== -->
+        <div id="panel-history" class="hidden">
+          <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-12 lg:col-span-9 space-y-5">
+              <!-- 播放預覽 -->
+              <div
+                class="relative rounded-2xl overflow-hidden bg-black aspect-video shadow-xl"
+              >
+                <img
+                  class="w-full h-full object-cover cctv-feed"
+                  src="assets/images/走廊.png"
+                />
+                <div class="scanline-overlay"></div>
+                <div
+                  class="absolute top-5 left-5 bg-slate-900/85 backdrop-blur-md px-4 py-2.5 rounded-xl text-white flex flex-col border border-white/10 z-10"
+                >
+                  <span
+                    class="text-[10px] font-bold text-blue-400 uppercase tracking-widest"
+                    >CAM-00108</span
+                  >
+                  <span class="text-sm font-bold mt-0.5"
+                    >北屯中心 • 走廊通道</span
+                  >
+                </div>
+                <div
+                  class="absolute bottom-4 right-4 flex items-center gap-2 z-10"
+                >
+                  <span class="rec-dot w-2 h-2 rounded-full bg-red-500"></span>
+                  <span
+                    class="text-[10px] font-bold text-white/70 font-mono"
+                    id="history-ts"
+                  ></span>
+                </div>
+              </div>
+
+              <!-- 播放控制 + 拖拉進度 -->
+              <div
+                class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 space-y-4"
+              >
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-500"
+                    >拖拉選取匯出時段（區間：目前所選的 1 小時內）</span
+                  >
+                  <div class="flex items-center gap-3">
+                    <span
+                      class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-lg"
+                      id="export-range-display"
+                    >
+                      08:00 - 09:00
+                    </span>
+                    <button
+                      class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-bold hover:bg-blue-600 transition-all flex-shrink-0"
+                    >
+                      <span class="material-symbols-outlined mr-1.5 text-base"
+                        >download</span
+                      >匯出錄影
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 播放 + 拖拉 bar -->
+                <div class="flex items-center gap-4 mt-2">
+                  <button
+                    class="w-10 h-10 rounded-lg bg-[#1F2937] flex items-center justify-center text-white hover:bg-[#374151] flex-shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-xl"
+                      >play_arrow</span
+                    >
                   </button>
-                </div>
-              </div>
 
-              <!-- 播放 + 拖拉 bar -->
-              <div class="flex items-center gap-4 mt-2">
-                <button class="w-10 h-10 rounded-lg bg-[#1F2937] flex items-center justify-center text-white hover:bg-[#374151] flex-shrink-0">
-                  <span class="material-symbols-outlined text-xl">play_arrow</span>
-                </button>
-                
-                <div class="flex-1">
-                  <div id="timeline-bar" class="h-8 bg-slate-100 relative select-none rounded-sm">
-                    <div id="timeline-range" class="rounded-sm"></div>
-                    <div id="timeline-handle-left" class="timeline-handle"></div>
-                    <div id="timeline-handle-right" class="timeline-handle"></div>
-                  </div>
-                  <!-- 60m 刻度 -->
-                  <div class="flex justify-between mt-1 text-[9px] font-semibold text-slate-400 px-0">
-                    <span>00分</span><span>15分</span><span>30分</span><span>45分</span><span>60分</span>
+                  <div class="flex-1">
+                    <div
+                      id="timeline-bar"
+                      class="h-8 bg-slate-100 relative select-none rounded-sm"
+                    >
+                      <div id="timeline-range" class="rounded-sm"></div>
+                      <div
+                        id="timeline-handle-left"
+                        class="timeline-handle"
+                      ></div>
+                      <div
+                        id="timeline-handle-right"
+                        class="timeline-handle"
+                      ></div>
+                    </div>
+                    <!-- 60m 刻度 -->
+                    <div
+                      class="flex justify-between mt-1 text-[9px] font-semibold text-slate-400 px-0"
+                    >
+                      <span>00分</span><span>15分</span><span>30分</span
+                      ><span>45分</span><span>60分</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- 右側設備 -->
-          <div class="col-span-12 lg:col-span-3">
-            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 space-y-3">
-              <div class="pb-3 border-b border-slate-100">
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">同場所關聯設備</p>
-                <span class="text-sm font-bold text-slate-900">北屯中心</span>
-              </div>
-              <div class="space-y-2">
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00213</p>
-                  <p class="text-sm font-semibold text-slate-700">大班教室區域</p>
+            <!-- 右側設備 -->
+            <div class="col-span-12 lg:col-span-3">
+              <div
+                class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 space-y-3"
+              >
+                <div class="pb-3 border-b border-slate-100">
+                  <p
+                    class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1"
+                  >
+                    同場所關聯設備
+                  </p>
+                  <span class="text-sm font-bold text-slate-900">北屯中心</span>
                 </div>
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00107</p>
-                  <p class="text-sm font-semibold text-slate-700">室內活動室</p>
-                </div>
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00104</p>
-                  <p class="text-sm font-semibold text-slate-700">正門大門區</p>
-                </div>
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00105</p>
-                  <p class="text-sm font-semibold text-slate-700">玩具及圖書區</p>
-                </div>
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00106</p>
-                  <p class="text-sm font-semibold text-slate-700">備餐區入口</p>
-                </div>
-                <div class="p-3 bg-slate-50 border-2 border-[#1F2937] rounded-xl cursor-pointer">
-                  <p class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">CAM-00108</p>
-                  <p class="text-sm font-bold text-slate-900">走廊通道</p>
-                </div>
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00109</p>
-                  <p class="text-sm font-semibold text-slate-700">戶外沙坑區</p>
-                </div>
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00110</p>
-                  <p class="text-sm font-semibold text-slate-700">小班教室</p>
-                </div>
-                <div class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer">
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CAM-00111</p>
-                  <p class="text-sm font-semibold text-slate-700">中班教室</p>
+                <div class="space-y-2">
+                  <div
+                    class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      CAM-00213
+                    </p>
+                    <p class="text-sm font-semibold text-slate-700">
+                      大班教室區域
+                    </p>
+                  </div>
+                  <div
+                    class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      CAM-00107
+                    </p>
+                    <p class="text-sm font-semibold text-slate-700">
+                      室內活動室
+                    </p>
+                  </div>
+                  <div
+                    class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      CAM-00104
+                    </p>
+                    <p class="text-sm font-semibold text-slate-700">
+                      正門大門區
+                    </p>
+                  </div>
+                  <div
+                    class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      CAM-00105
+                    </p>
+                    <p class="text-sm font-semibold text-slate-700">
+                      玩具及圖書區
+                    </p>
+                  </div>
+                  <div
+                    class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      CAM-00106
+                    </p>
+                    <p class="text-sm font-semibold text-slate-700">
+                      備餐區入口
+                    </p>
+                  </div>
+                  <div
+                    class="p-3 bg-slate-50 border-2 border-[#1F2937] rounded-xl cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-blue-500 uppercase tracking-widest"
+                    >
+                      CAM-00108
+                    </p>
+                    <p class="text-sm font-bold text-slate-900">走廊通道</p>
+                  </div>
+                  <div
+                    class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      CAM-00109
+                    </p>
+                    <p class="text-sm font-semibold text-slate-700">
+                      戶外沙坑區
+                    </p>
+                  </div>
+                  <div
+                    class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      CAM-00110
+                    </p>
+                    <p class="text-sm font-semibold text-slate-700">小班教室</p>
+                  </div>
+                  <div
+                    class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 cursor-pointer"
+                  >
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      CAM-00111
+                    </p>
+                    <p class="text-sm font-semibold text-slate-700">中班教室</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div id="footer-placeholder" class="mt-12"></div>
+    </main>
 
-    </div>
-    <div id="footer-placeholder" class="mt-12"></div>
-  </main>
-
-  <!-- 放大 Modal -->
-  <div id="cam-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[200] items-center justify-center hidden">
-    <div class="relative bg-black rounded-2xl overflow-hidden shadow-2xl w-[80vw] max-w-4xl">
-      <div class="relative aspect-video overflow-hidden">
-        <img id="modal-img" src="assets/images/cctv1.png"
-          class="w-full h-full object-cover filter contrast-125 saturate-50 cctv-feed"/>
-        <div class="scanline-overlay"></div>
-        <div class="absolute top-6 left-6 bg-slate-900/85 backdrop-blur-md px-6 py-4 rounded-xl text-white flex flex-col border border-white/10 z-10">
-          <span id="modal-cam-id" class="text-xs font-bold text-blue-400 uppercase tracking-widest"></span>
-          <span id="modal-location" class="text-xl font-bold mt-1"></span>
+    <!-- 放大 Modal -->
+    <div
+      id="cam-modal"
+      class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[200] items-center justify-center hidden"
+    >
+      <div
+        class="relative bg-black rounded-2xl overflow-hidden shadow-2xl w-[80vw] max-w-4xl"
+      >
+        <div class="relative aspect-video overflow-hidden">
+          <img
+            id="modal-img"
+            src="assets/images/cctv1.png"
+            class="w-full h-full object-cover filter contrast-125 saturate-50 cctv-feed"
+          />
+          <div class="scanline-overlay"></div>
+          <div
+            class="absolute top-6 left-6 bg-slate-900/85 backdrop-blur-md px-6 py-4 rounded-xl text-white flex flex-col border border-white/10 z-10"
+          >
+            <span
+              id="modal-cam-id"
+              class="text-xs font-bold text-blue-400 uppercase tracking-widest"
+            ></span>
+            <span id="modal-location" class="text-xl font-bold mt-1"></span>
+          </div>
+          <div class="absolute bottom-6 right-6 flex items-center gap-3 z-10">
+            <span class="rec-dot w-3 h-3 rounded-full bg-red-500"></span>
+            <span
+              class="text-sm font-bold text-white/70 font-mono"
+              id="modal-ts"
+            ></span>
+          </div>
         </div>
-        <div class="absolute bottom-6 right-6 flex items-center gap-3 z-10">
-          <span class="rec-dot w-3 h-3 rounded-full bg-red-500"></span>
-          <span class="text-sm font-bold text-white/70 font-mono" id="modal-ts"></span>
-        </div>
+        <button
+          onclick="closeModal()"
+          class="absolute top-4 right-4 w-8 h-8 bg-white/10 hover:bg-white/20 text-white rounded-lg flex items-center justify-center z-20"
+        >
+          <span class="material-symbols-outlined text-base">close</span>
+        </button>
       </div>
-      <button onclick="closeModal()"
-        class="absolute top-4 right-4 w-8 h-8 bg-white/10 hover:bg-white/20 text-white rounded-lg flex items-center justify-center z-20">
-        <span class="material-symbols-outlined text-base">close</span>
-      </button>
     </div>
-  </div>
 
-<script>
-/* ===== 攝影機資料（異常置頂） ===== */
-const cameras = [
-  { id:'CAM-00213', venue:'北屯中心', area:'大班教室區域', status:'blocked', img:'assets/images/cctv2.png', anim:'cctv-feed-b' },
-  { id:'CAM-00107', venue:'北屯中心', area:'室內活動室',   status:'offline', img:'assets/images/cctv1.png', anim:'cctv-feed-d' },
-  { id:'CAM-00104', venue:'北屯中心', area:'正門大門區',   status:'ok',      img:'assets/images/大門.png', anim:'cctv-feed' },
-  { id:'CAM-00105', venue:'北屯中心', area:'玩具及圖書區',   status:'ok',      img:'assets/images/玩具及圖書區.png', anim:'cctv-feed-c' },
-  { id:'CAM-00106', venue:'北屯中心', area:'備餐區入口',   status:'ok',      img:'assets/images/備餐區.png', anim:'cctv-feed-d' },
-  { id:'CAM-00108', venue:'北屯中心', area:'走廊通道',     status:'ok',      img:'assets/images/走廊.png', anim:'cctv-feed-c' },
-  { id:'CAM-00109', venue:'北屯中心', area:'戶外沙坑區',   status:'ok',      img:'assets/images/戶外沙坑.png', anim:'cctv-feed-b' },
-  { id:'CAM-00110', venue:'北屯中心', area:'小班教室',     status:'ok',      img:'assets/images/小班教室.png', anim:'cctv-feed' },
-  { id:'CAM-00111', venue:'北屯中心', area:'中班教室',   status:'ok',      img:'assets/images/中班教室.png', anim:'cctv-feed-c' },
-];
+    <script>
+      /* ===== 攝影機資料（異常置頂） ===== */
+      const cameras = [
+        {
+          id: "CAM-00213",
+          venue: "北屯中心",
+          area: "大班教室區域",
+          status: "blocked",
+          img: "assets/images/cctv2.png",
+          anim: "cctv-feed-b",
+        },
+        {
+          id: "CAM-00107",
+          venue: "北屯中心",
+          area: "室內活動室",
+          status: "offline",
+          img: "assets/images/cctv1.png",
+          anim: "cctv-feed-d",
+        },
+        {
+          id: "CAM-00104",
+          venue: "北屯中心",
+          area: "正門大門區",
+          status: "ok",
+          img: "assets/images/大門.png",
+          anim: "cctv-feed",
+        },
+        {
+          id: "CAM-00105",
+          venue: "北屯中心",
+          area: "玩具及圖書區",
+          status: "ok",
+          img: "assets/images/玩具及圖書區.png",
+          anim: "cctv-feed-c",
+        },
+        {
+          id: "CAM-00106",
+          venue: "北屯中心",
+          area: "備餐區入口",
+          status: "ok",
+          img: "assets/images/備餐區.png",
+          anim: "cctv-feed-d",
+        },
+        {
+          id: "CAM-00108",
+          venue: "北屯中心",
+          area: "走廊通道",
+          status: "ok",
+          img: "assets/images/走廊.png",
+          anim: "cctv-feed-c",
+        },
+        {
+          id: "CAM-00109",
+          venue: "北屯中心",
+          area: "戶外沙坑區",
+          status: "ok",
+          img: "assets/images/戶外沙坑.png",
+          anim: "cctv-feed-b",
+        },
+        {
+          id: "CAM-00110",
+          venue: "北屯中心",
+          area: "小班教室",
+          status: "ok",
+          img: "assets/images/小班教室.png",
+          anim: "cctv-feed",
+        },
+        {
+          id: "CAM-00111",
+          venue: "北屯中心",
+          area: "中班教室",
+          status: "ok",
+          img: "assets/images/中班教室.png",
+          anim: "cctv-feed-c",
+        },
+      ];
 
-let selectedCams = new Set(); // 空 = 全部（場所檢視員只看北屯中心相機）
+      let selectedCams = new Set(); // 空 = 全部（場所檢視員只看北屯中心相機）
 
-/* ===== 渲染格局（動態欄數：選1=1欄大格，選2=2欄，3+=3欄） ===== */
-function renderGrid() {
-  const grid = document.getElementById('grid-9');
-  grid.innerHTML = '';
+      /* ===== 渲染格局（動態欄數：選1=1欄大格，選2=2欄，3+=3欄） ===== */
+      function renderGrid() {
+        const grid = document.getElementById("grid-9");
+        grid.innerHTML = "";
 
-  const visible = selectedCams.size > 0
-    ? cameras.filter(c => selectedCams.has(c.id))
-    : cameras;
+        const visible =
+          selectedCams.size > 0
+            ? cameras.filter((c) => selectedCams.has(c.id))
+            : cameras;
 
-  const n = visible.length;
-  // 欄數決定
-  const cols = n === 0 ? 'grid-cols-3' : n === 1 ? 'grid-cols-1' : n === 2 ? 'grid-cols-2' : 'grid-cols-3';
-  grid.className = `grid gap-3 ${cols}`;
+        const n = visible.length;
+        // 欄數決定
+        const cols =
+          n === 0
+            ? "grid-cols-3"
+            : n === 1
+              ? "grid-cols-1"
+              : n === 2
+                ? "grid-cols-2"
+                : "grid-cols-3";
+        grid.className = `grid gap-3 ${cols}`;
 
-  visible.forEach(cam => {
-    const isBlocked = cam.status === 'blocked';
-    const isOffline = cam.status === 'offline';
-    const cell = document.createElement('div');
-    cell.id = 'cell-' + cam.id;
+        visible.forEach((cam) => {
+          const isBlocked = cam.status === "blocked";
+          const isOffline = cam.status === "offline";
+          const cell = document.createElement("div");
+          cell.id = "cell-" + cam.id;
 
-    let anomCls = isBlocked ? 'anomaly-blocked' : isOffline ? 'anomaly-offline' : '';
-    // 1格時用更高的 aspect，2格維持 video
-    const aspectCls = (n === 1) ? 'aspect-[16/8]' : 'aspect-video';
-    cell.className = `cam-cell ${aspectCls} ${anomCls}`;
+          let anomCls = isBlocked
+            ? "anomaly-blocked"
+            : isOffline
+              ? "anomaly-offline"
+              : "";
+          // 1格時用更高的 aspect，2格維持 video
+          const aspectCls = n === 1 ? "aspect-[16/8]" : "aspect-video";
+          cell.className = `cam-cell ${aspectCls} ${anomCls}`;
 
-    let imgCls = 'w-full h-full object-cover ' + cam.anim;
-    if (isBlocked) imgCls += ' cctv-blocked';
-    else if (isOffline) imgCls += ' cctv-offline';
+          let imgCls = "w-full h-full object-cover " + cam.anim;
+          if (isBlocked) imgCls += " cctv-blocked";
+          else if (isOffline) imgCls += " cctv-offline";
 
-    // 遮罩
-    let overlay = '';
-    if (isBlocked) {
-      overlay = `
+          // 遮罩
+          let overlay = "";
+          if (isBlocked) {
+            overlay = `
         <div class="absolute inset-0 bg-black/60 z-10"></div>
         <div class="absolute inset-0 border-[6px] border-red-600 z-20 flex items-center justify-center pointer-events-none">
           <div class="bg-red-600 text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg">
             <span class="material-symbols-outlined text-sm">warning</span>鏡頭遮蔽偵測
           </div>
         </div>`;
-    } else if (isOffline) {
-      overlay = `
+          } else if (isOffline) {
+            overlay = `
         <div class="absolute inset-0 bg-slate-400/20 z-10"></div>
         <div class="absolute inset-0 border-4 border-slate-500 z-20 flex items-center justify-center pointer-events-none">
           <div class="bg-slate-600/90 text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
             <span class="material-symbols-outlined text-sm">signal_disconnected</span>訊號中斷
           </div>
         </div>`;
-    }
+          }
 
-    // 放大紅點與時間
-    const recDotSize = n === 1 ? 'w-3 h-3' : 'w-2 h-2';
-    const recTextSize = n === 1 ? 'text-[14px]' : 'text-[10px]';
-    const recHtml = (!isBlocked && !isOffline)
-      ? `<span class="rec-dot ${recDotSize} rounded-full bg-red-500"></span><span class="${recTextSize} font-bold text-white/70 font-mono cam-ts"></span>`
-      : '';
+          // 放大紅點與時間
+          const recDotSize = n === 1 ? "w-3 h-3" : "w-2 h-2";
+          const recTextSize = n === 1 ? "text-[14px]" : "text-[10px]";
+          const recHtml =
+            !isBlocked && !isOffline
+              ? `<span class="rec-dot ${recDotSize} rounded-full bg-red-500"></span><span class="${recTextSize} font-bold text-white/70 font-mono cam-ts"></span>`
+              : "";
 
-    // 左上標籤大小
-    const idSize = n === 1 ? 'text-[12px]' : 'text-[9px]';
-    const l1TextSize = n === 1 ? 'text-[18px]' : 'text-[11px]';
-    const tagPad = n === 1 ? 'px-4 py-2' : 'px-2 py-1';
+          // 左上標籤大小
+          const idSize = n === 1 ? "text-[12px]" : "text-[9px]";
+          const l1TextSize = n === 1 ? "text-[18px]" : "text-[11px]";
+          const tagPad = n === 1 ? "px-4 py-2" : "px-2 py-1";
 
-    cell.innerHTML = `
+          cell.innerHTML = `
       <img class="${imgCls}" src="${cam.img}"/>
       <div class="scanline-overlay"></div>
       ${overlay}
@@ -379,255 +709,299 @@ function renderGrid() {
         <span class="${l1TextSize} font-bold leading-tight mt-0.5">${cam.venue} · ${cam.area}</span>
       </div>`;
 
-    cell.addEventListener('click',   () => toggleSelect(cam.id));
-    cell.addEventListener('dblclick', e => { e.stopPropagation(); openModal(cam); });
-    grid.appendChild(cell);
-  });
+          cell.addEventListener("click", () => toggleSelect(cam.id));
+          cell.addEventListener("dblclick", (e) => {
+            e.stopPropagation();
+            openModal(cam);
+          });
+          grid.appendChild(cell);
+        });
 
-  renderDeviceList();
-}
+        renderDeviceList();
+      }
 
-function toggleSelect(id) {
-  if (selectedCams.has(id)) selectedCams.delete(id);
-  else selectedCams.add(id);
-  renderGrid();
-}
-function selectAll() { selectedCams.clear(); renderGrid(); }
+      function toggleSelect(id) {
+        if (selectedCams.has(id)) selectedCams.delete(id);
+        else selectedCams.add(id);
+        renderGrid();
+      }
+      function selectAll() {
+        selectedCams.clear();
+        renderGrid();
+      }
 
-/* ===== 右側設備列表 ===== */
-function renderDeviceList() {
-  const list = document.getElementById('device-list');
-  if (!list) return;
-  list.innerHTML = '';
-  cameras.forEach(cam => {
-    const sel = selectedCams.has(cam.id);
-    const isAnom = cam.status !== 'ok';
-    const div = document.createElement('div');
-    div.className = `p-3 rounded-xl cursor-pointer transition-all border ${
-      sel ? 'border-blue-400 bg-blue-50' :
-      isAnom ? 'border-red-200 bg-red-50' : 'border-slate-100 hover:bg-slate-50'}`;
-    div.innerHTML = `
+      /* ===== 右側設備列表 ===== */
+      function renderDeviceList() {
+        const list = document.getElementById("device-list");
+        if (!list) return;
+        list.innerHTML = "";
+        cameras.forEach((cam) => {
+          const sel = selectedCams.has(cam.id);
+          const isAnom = cam.status !== "ok";
+          const div = document.createElement("div");
+          div.className = `p-3 rounded-xl cursor-pointer transition-all border ${
+            sel
+              ? "border-blue-400 bg-blue-50"
+              : isAnom
+                ? "border-red-200 bg-red-50"
+                : "border-slate-100 hover:bg-slate-50"
+          }`;
+          div.innerHTML = `
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-[10px] font-bold ${sel?'text-blue-500':isAnom?'text-red-500':'text-slate-400'} uppercase tracking-widest">${cam.id}</p>
-          <p class="text-sm font-bold ${sel?'text-blue-700':'text-slate-800'}">${cam.area}</p>
+          <p class="text-[10px] font-bold ${sel ? "text-blue-500" : isAnom ? "text-red-500" : "text-slate-400"} uppercase tracking-widest">${cam.id}</p>
+          <p class="text-sm font-bold ${sel ? "text-blue-700" : "text-slate-800"}">${cam.area}</p>
         </div>
-        <span class="w-2 h-2 rounded-full ${cam.status==='ok'?'bg-green-500':cam.status==='offline'?'bg-slate-400':'bg-red-500'}"></span>
+        <span class="w-2 h-2 rounded-full ${cam.status === "ok" ? "bg-green-500" : cam.status === "offline" ? "bg-slate-400" : "bg-red-500"}"></span>
       </div>`;
-    div.addEventListener('click', () => toggleSelect(cam.id));
-    list.appendChild(div);
-  });
-}
+          div.addEventListener("click", () => toggleSelect(cam.id));
+          list.appendChild(div);
+        });
+      }
 
-/* ===== 放大 Modal ===== */
-function openModal(cam) {
-  const modal = document.getElementById('cam-modal');
-  const img = document.getElementById('modal-img');
-  img.src = cam.img;
-  let cls = 'w-full h-full object-cover filter contrast-125 saturate-50 ' + cam.anim;
-  if (cam.status === 'blocked') cls += ' cctv-blocked';
-  else if (cam.status === 'offline') cls += ' cctv-offline';
-  img.className = cls;
-  document.getElementById('modal-cam-id').textContent = 'ID: ' + cam.id;
-  document.getElementById('modal-location').textContent = cam.venue + ' · ' + cam.area;
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-}
-function closeModal() {
-  document.getElementById('cam-modal').classList.add('hidden');
-  document.getElementById('cam-modal').classList.remove('flex');
-}
+      /* ===== 放大 Modal ===== */
+      function openModal(cam) {
+        const modal = document.getElementById("cam-modal");
+        const img = document.getElementById("modal-img");
+        img.src = cam.img;
+        let cls =
+          "w-full h-full object-cover filter contrast-125 saturate-50 " +
+          cam.anim;
+        if (cam.status === "blocked") cls += " cctv-blocked";
+        else if (cam.status === "offline") cls += " cctv-offline";
+        img.className = cls;
+        document.getElementById("modal-cam-id").textContent = "ID: " + cam.id;
+        document.getElementById("modal-location").textContent =
+          cam.venue + " · " + cam.area;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+      function closeModal() {
+        document.getElementById("cam-modal").classList.add("hidden");
+        document.getElementById("cam-modal").classList.remove("flex");
+      }
 
-/* ===== Tab 切換 ===== */
-function switchTab(tab) {
-  const isLive = tab === 'live';
-  document.getElementById('panel-live').classList.toggle('hidden', !isLive);
-  document.getElementById('panel-history').classList.toggle('hidden', isLive);
-  document.getElementById('history-filters').classList.toggle('hidden', isLive);
-  document.getElementById('tab-live').classList.toggle('active', isLive);
-  document.getElementById('tab-history').classList.toggle('active', !isLive);
-}
+      /* ===== Tab 切換 ===== */
+      function switchTab(tab) {
+        const isLive = tab === "live";
+        document
+          .getElementById("panel-live")
+          .classList.toggle("hidden", !isLive);
+        document
+          .getElementById("panel-history")
+          .classList.toggle("hidden", isLive);
+        document
+          .getElementById("history-filters")
+          .classList.toggle("hidden", isLive);
+        document.getElementById("tab-live").classList.toggle("active", isLive);
+        document
+          .getElementById("tab-history")
+          .classList.toggle("active", !isLive);
+      }
 
-/* ===== 整點 select ===== */
-function buildHourOptions(id, def) {
-  const sel = document.getElementById(id);
-  if (!sel) return;
-  for (let h = 0; h < 24; h++) {
-    const o = document.createElement('option');
-    o.value = h;
-    o.textContent = String(h).padStart(2,'0') + ':00';
-    if (h === def) o.selected = true;
-    sel.appendChild(o);
-  }
-}
+      /* ===== 整點 select ===== */
+      function buildHourOptions(id, def) {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        for (let h = 0; h < 24; h++) {
+          const o = document.createElement("option");
+          o.value = h;
+          o.textContent = String(h).padStart(2, "0") + ":00";
+          if (h === def) o.selected = true;
+          sel.appendChild(o);
+        }
+      }
 
-/* ===== 歷史回放：固定 1h 區間，起迄聯動 ===== */
-let exportStartHour = 8; // 0-23
-let rangeMin = 30; // 0-60 分鐘
-let rangeMax = 45; // 0-60 分鐘
+      /* ===== 歷史回放：固定 1h 區間，起迄聯動 ===== */
+      let exportStartHour = 8; // 0-23
+      let rangeMin = 30; // 0-60 分鐘
+      let rangeMax = 45; // 0-60 分鐘
 
-let draggingPart = null; // 'left', 'right', 'range', null
-let dragStartX = 0;
-let dragStartMin = 0;
-let dragStartMax = 0;
+      let draggingPart = null; // 'left', 'right', 'range', null
+      let dragStartX = 0;
+      let dragStartMin = 0;
+      let dragStartMax = 0;
 
-/** 改起始 → 終止 = 起始+1 */
-function onStartChange() {
-  const s = parseInt(document.getElementById('h-time-start').value);
-  exportStartHour = Math.min(s, 23);
-  const endSel = document.getElementById('h-time-end');
-  endSel.value = exportStartHour + 1;
-  updateHandle();
-}
-/** 改終止 → 起始 = 終止-1 */
-function onEndChange() {
-  const e = parseInt(document.getElementById('h-time-end').value);
-  exportStartHour = Math.max(e - 1, 0);
-  const startSel = document.getElementById('h-time-start');
-  startSel.value = exportStartHour;
-  updateHandle();
-}
+      /** 改起始 → 終止 = 起始+1 */
+      function onStartChange() {
+        const s = parseInt(document.getElementById("h-time-start").value);
+        exportStartHour = Math.min(s, 23);
+        const endSel = document.getElementById("h-time-end");
+        endSel.value = exportStartHour + 1;
+        updateHandle();
+      }
+      /** 改終止 → 起始 = 終止-1 */
+      function onEndChange() {
+        const e = parseInt(document.getElementById("h-time-end").value);
+        exportStartHour = Math.max(e - 1, 0);
+        const startSel = document.getElementById("h-time-start");
+        startSel.value = exportStartHour;
+        updateHandle();
+      }
 
-function updateHandle() {
-  const hl = document.getElementById('timeline-handle-left');
-  const hr = document.getElementById('timeline-handle-right');
-  const rng = document.getElementById('timeline-range');
-  const disp   = document.getElementById('export-range-display');
-  if (!hl) return;
+      function updateHandle() {
+        const hl = document.getElementById("timeline-handle-left");
+        const hr = document.getElementById("timeline-handle-right");
+        const rng = document.getElementById("timeline-range");
+        const disp = document.getElementById("export-range-display");
+        if (!hl) return;
 
-  // 確保順序
-  if (rangeMin > rangeMax) {
-    let tmp = rangeMin; rangeMin = rangeMax; rangeMax = tmp;
-  }
-  rangeMin = Math.max(0, Math.min(rangeMin, 60));
-  rangeMax = Math.max(0, Math.min(rangeMax, 60));
+        // 確保順序
+        if (rangeMin > rangeMax) {
+          let tmp = rangeMin;
+          rangeMin = rangeMax;
+          rangeMax = tmp;
+        }
+        rangeMin = Math.max(0, Math.min(rangeMin, 60));
+        rangeMax = Math.max(0, Math.min(rangeMax, 60));
 
-  const pMin = (rangeMin / 60) * 100;
-  const pMax = (rangeMax / 60) * 100;
+        const pMin = (rangeMin / 60) * 100;
+        const pMax = (rangeMax / 60) * 100;
 
-  hl.style.left = pMin + '%';
-  hr.style.left = pMax + '%';
-  rng.style.left = pMin + '%';
-  rng.style.width = (pMax - pMin) + '%';
+        hl.style.left = pMin + "%";
+        hr.style.left = pMax + "%";
+        rng.style.left = pMin + "%";
+        rng.style.width = pMax - pMin + "%";
 
-  const pad = n => String(n).padStart(2,'0');
-  // 處理 24:00
-  const getFmt = (h, m) => {
-    let hour = h;
-    if (m === 60) { hour += 1; m = 0; }
-    return `${pad(hour)}:${pad(m)}`;
-  };
-  
-  const rangeStr = `${getFmt(exportStartHour, rangeMin)} - ${getFmt(exportStartHour, rangeMax)}`;
-  if (disp) disp.textContent = rangeStr;
+        const pad = (n) => String(n).padStart(2, "0");
+        // 處理 24:00
+        const getFmt = (h, m) => {
+          let hour = h;
+          if (m === 60) {
+            hour += 1;
+            m = 0;
+          }
+          return `${pad(hour)}:${pad(m)}`;
+        };
 
-  // 同步 select
-  const ss = document.getElementById('h-time-start');
-  const es = document.getElementById('h-time-end');
-  if (ss) ss.value = exportStartHour;
-  if (es) es.value = exportStartHour + 1;
-}
+        const rangeStr = `${getFmt(exportStartHour, rangeMin)} - ${getFmt(exportStartHour, rangeMax)}`;
+        if (disp) disp.textContent = rangeStr;
 
-function initDraggable() {
-  const hl = document.getElementById('timeline-handle-left');
-  const hr = document.getElementById('timeline-handle-right');
-  const rng = document.getElementById('timeline-range');
+        // 同步 select
+        const ss = document.getElementById("h-time-start");
+        const es = document.getElementById("h-time-end");
+        if (ss) ss.value = exportStartHour;
+        if (es) es.value = exportStartHour + 1;
+      }
 
-  const startL = e => { draggingPart = 'left'; initDragState(e); };
-  const startR = e => { draggingPart = 'right'; initDragState(e); };
-  const startRg = e => { draggingPart = 'range'; initDragState(e); };
+      function initDraggable() {
+        const hl = document.getElementById("timeline-handle-left");
+        const hr = document.getElementById("timeline-handle-right");
+        const rng = document.getElementById("timeline-range");
 
-  if (hl) {
-    hl.addEventListener('mousedown', startL);
-    hl.addEventListener('touchstart', startL, { passive:true });
-  }
-  if (hr) {
-    hr.addEventListener('mousedown', startR);
-    hr.addEventListener('touchstart', startR, { passive:true });
-  }
-  if (rng) {
-    rng.addEventListener('mousedown', startRg);
-    rng.addEventListener('touchstart', startRg, { passive:true });
-  }
+        const startL = (e) => {
+          draggingPart = "left";
+          initDragState(e);
+        };
+        const startR = (e) => {
+          draggingPart = "right";
+          initDragState(e);
+        };
+        const startRg = (e) => {
+          draggingPart = "range";
+          initDragState(e);
+        };
 
-  document.addEventListener('mousemove', onDrag);
-  document.addEventListener('touchmove', onDrag, { passive:true });
-  document.addEventListener('mouseup', () => draggingPart = null);
-  document.addEventListener('touchend', () => draggingPart = null);
-}
+        if (hl) {
+          hl.addEventListener("mousedown", startL);
+          hl.addEventListener("touchstart", startL, { passive: true });
+        }
+        if (hr) {
+          hr.addEventListener("mousedown", startR);
+          hr.addEventListener("touchstart", startR, { passive: true });
+        }
+        if (rng) {
+          rng.addEventListener("mousedown", startRg);
+          rng.addEventListener("touchstart", startRg, { passive: true });
+        }
 
-function initDragState(e) {
-  dragStartX = e.touches ? e.touches[0].clientX : e.clientX;
-  dragStartMin = rangeMin;
-  dragStartMax = rangeMax;
-}
+        document.addEventListener("mousemove", onDrag);
+        document.addEventListener("touchmove", onDrag, { passive: true });
+        document.addEventListener("mouseup", () => (draggingPart = null));
+        document.addEventListener("touchend", () => (draggingPart = null));
+      }
 
-function onDrag(e) {
-  if (!draggingPart) return;
-  const bar  = document.getElementById('timeline-bar');
-  const rect = bar.getBoundingClientRect();
-  const cx   = e.touches ? e.touches[0].clientX : e.clientX;
-  const dx   = cx - dragStartX;
-  // 轉化為分鐘變化
-  const diffMin = Math.round((dx / rect.width) * 60);
+      function initDragState(e) {
+        dragStartX = e.touches ? e.touches[0].clientX : e.clientX;
+        dragStartMin = rangeMin;
+        dragStartMax = rangeMax;
+      }
 
-  if (draggingPart === 'left') {
-    rangeMin = Math.min(60, Math.max(0, dragStartMin + diffMin));
-  } else if (draggingPart === 'right') {
-    rangeMax = Math.min(60, Math.max(0, dragStartMax + diffMin));
-  } else if (draggingPart === 'range') {
-    let newMin = dragStartMin + diffMin;
-    let newMax = dragStartMax + diffMin;
-    const w = dragStartMax - dragStartMin;
-    if (newMin < 0) { newMin = 0; newMax = w; }
-    if (newMax > 60) { newMax = 60; newMin = 60 - w; }
-    rangeMin = newMin;
-    rangeMax = newMax;
-  }
-  updateHandle();
-}
+      function onDrag(e) {
+        if (!draggingPart) return;
+        const bar = document.getElementById("timeline-bar");
+        const rect = bar.getBoundingClientRect();
+        const cx = e.touches ? e.touches[0].clientX : e.clientX;
+        const dx = cx - dragStartX;
+        // 轉化為分鐘變化
+        const diffMin = Math.round((dx / rect.width) * 60);
 
-/* ===== 即時時間戳 ===== */
-function updateTs() {
-  const now = new Date();
-  const pad = n => String(n).padStart(2,'0');
-  const ts  = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-  document.querySelectorAll('.cam-ts').forEach(el =>
-    el.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}` );
-  ['modal-ts','history-ts'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = ts;
-  });
-}
+        if (draggingPart === "left") {
+          rangeMin = Math.min(60, Math.max(0, dragStartMin + diffMin));
+        } else if (draggingPart === "right") {
+          rangeMax = Math.min(60, Math.max(0, dragStartMax + diffMin));
+        } else if (draggingPart === "range") {
+          let newMin = dragStartMin + diffMin;
+          let newMax = dragStartMax + diffMin;
+          const w = dragStartMax - dragStartMin;
+          if (newMin < 0) {
+            newMin = 0;
+            newMax = w;
+          }
+          if (newMax > 60) {
+            newMax = 60;
+            newMin = 60 - w;
+          }
+          rangeMin = newMin;
+          rangeMax = newMax;
+        }
+        updateHandle();
+      }
 
-/* ===== 初始化 ===== */
-document.addEventListener('DOMContentLoaded', () => {
-  renderGrid();
+      /* ===== 即時時間戳 ===== */
+      function updateTs() {
+        const now = new Date();
+        const pad = (n) => String(n).padStart(2, "0");
+        const ts = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+        document
+          .querySelectorAll(".cam-ts")
+          .forEach(
+            (el) =>
+              (el.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`),
+          );
+        ["modal-ts", "history-ts"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = ts;
+        });
+      }
 
-  // 歷史：昨天日期
-  const yd = new Date();
-  yd.setDate(yd.getDate() - 1);
-  const hd = document.getElementById('h-date');
-  if (hd) hd.value = yd.toISOString().split('T')[0];
+      /* ===== 初始化 ===== */
+      document.addEventListener("DOMContentLoaded", () => {
+        renderGrid();
 
-  // 整點 select（0-23，end 最大 23 對應 23:00-24:00 → 用 23 代表 end 起點+1）
-  buildHourOptions('h-time-start', 8);
-  // end 從 1 開始（至少 start+1）
-  const endSel = document.getElementById('h-time-end');
-  for (let h = 1; h <= 24; h++) {
-    const o = document.createElement('option');
-    o.value = h;
-    o.textContent = (h < 24 ? String(h).padStart(2,'0') + ':00' : '24:00');
-    if (h === 9) o.selected = true;
-    endSel.appendChild(o);
-  }
+        // 歷史：昨天日期
+        const yd = new Date();
+        yd.setDate(yd.getDate() - 1);
+        const hd = document.getElementById("h-date");
+        if (hd) hd.value = yd.toISOString().split("T")[0];
 
-  initDraggable();
-  updateHandle();
-  setInterval(updateTs, 1000);
-  updateTs();
-});
-</script>
-</body>
+        // 整點 select（0-23，end 最大 23 對應 23:00-24:00 → 用 23 代表 end 起點+1）
+        buildHourOptions("h-time-start", 8);
+        // end 從 1 開始（至少 start+1）
+        const endSel = document.getElementById("h-time-end");
+        for (let h = 1; h <= 24; h++) {
+          const o = document.createElement("option");
+          o.value = h;
+          o.textContent = h < 24 ? String(h).padStart(2, "0") + ":00" : "24:00";
+          if (h === 9) o.selected = true;
+          endSel.appendChild(o);
+        }
+
+        initDraggable();
+        updateHandle();
+        setInterval(updateTs, 1000);
+        updateTs();
+      });
+    </script>
+  </body>
 </html>
-
