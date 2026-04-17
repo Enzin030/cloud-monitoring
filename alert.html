@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html class="light" lang="zh-TW">
 <head>
   <meta charset="utf-8"/>
@@ -60,14 +60,15 @@
             </div>
           </div>
 
-          <!-- 事件類別 -->
           <div class="space-y-1.5">
             <label class="text-xs font-bold text-slate-500 uppercase tracking-widest">事件類別</label>
-            <select class="bg-slate-50 border border-slate-200 rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-slate-200 min-w-[130px]">
+            <div class="flex items-center gap-3">
+              <select class="bg-slate-50 border border-slate-200 rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-slate-200 min-w-[130px]">
               <option>所有類型</option>
               <option>鏡頭遮蔽</option>
               <option>訊號中斷</option>
             </select>
+            </div>
           </div>
 
           <!-- 處理進度 -->
@@ -108,8 +109,8 @@
               <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">設備序號</th>
               <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">行政區</th>
               <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">場所名稱</th>
-              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">偵測類型</th>
-              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">處理狀態</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">事件類別</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">處理進度</th>
               <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest text-right">功能</th>
             </tr>
           </thead>
@@ -287,3 +288,4 @@
   </script>
 </body>
 </html>
+

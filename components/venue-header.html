@@ -1,0 +1,82 @@
+<header class="bg-white sticky top-0 z-50 w-full px-10 py-0 flex justify-between items-center shadow-sm border-b border-slate-100 min-h-[72px]">
+  <div class="flex items-center space-x-12 h-full">
+    <!-- Logo Area -->
+    <div class="flex items-center space-x-3 py-3">
+      <img src="assets/images/logo.png" alt="Logo" class="w-14 h-14 object-contain" />
+      <h1 class="text-3xl font-bold tracking-tighter font-headline flex items-center space-x-2">
+        <span class="text-slate-900">臺中市社會局</span>
+        <span class="text-accent">兒托監管雲</span>
+      </h1>
+    </div>
+
+    <!-- Top Menu Navbar：場所檢視員僅控制台 + 異常告警 -->
+    <nav class="hidden lg:flex items-center h-full space-x-1 pl-6" id="top-nav">
+      <a href="venue-live.html" class="nav-link relative flex items-center space-x-2 px-5 py-6 text-sm font-medium text-slate-400 hover:text-[#1F2937] group transition-colors" data-page="venue-live">
+        <span class="material-symbols-outlined text-[20px]">videocam</span>
+        <span>控制台</span>
+        <span class="nav-indicator absolute left-[20%] right-[20%] bottom-[10px] h-[3px] bg-[#1F2937] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
+      </a>
+      <a href="venue-alert.html" class="nav-link relative flex items-center space-x-2 px-5 py-6 text-sm font-medium text-slate-400 hover:text-[#1F2937] group transition-colors" data-page="venue-alert">
+        <span class="material-symbols-outlined text-[20px]">notifications_active</span>
+        <span>異常告警</span>
+        <span class="nav-indicator absolute left-[20%] right-[20%] bottom-[10px] h-[3px] bg-[#1F2937] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- User Area -->
+  <div class="flex items-center space-x-5">
+    <!-- 視角切換 -->
+    <div class="relative" id="role-switcher">
+      <button onclick="toggleRoleMenu()"
+        class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all text-sm font-semibold text-slate-700 group">
+        <span class="material-symbols-outlined text-[18px] text-emerald-500">swap_horiz</span>
+        <span>場所檢視員視角</span>
+        <span class="material-symbols-outlined text-[16px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+      </button>
+      <div id="role-menu"
+        style="display:none"
+        class="absolute right-0 top-[calc(100%+8px)] w-56 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden z-[200]">
+        <div class="px-4 py-3 border-b border-slate-100">
+          <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">切換視角</p>
+        </div>
+        <a href="index.html"
+          class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-all">
+          <span class="material-symbols-outlined text-base text-slate-400">admin_panel_settings</span>
+          系統管理員
+        </a>
+        <a href="venue-live.html"
+          class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-slate-900 bg-emerald-50 cursor-default">
+          <span class="material-symbols-outlined text-base text-emerald-500">visibility</span>
+          場所檢視員（北屯中心）
+          <span class="ml-auto w-2 h-2 rounded-full bg-emerald-500"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-2">
+      <span class="material-symbols-outlined text-[22px] text-emerald-600" style="font-variation-settings: 'FILL' 1">account_circle</span>
+      <div class="flex flex-col leading-tight">
+        <span class="text-sm font-semibold text-slate-900">北屯中心 王主任</span>
+        <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wide">場所檢視員</span>
+      </div>
+    </div>
+    <button class="px-5 py-2 bg-[#1F2937] text-white rounded-lg text-xs font-semibold hover:bg-[#374151] transition-all">
+      登出
+    </button>
+  </div>
+
+  <script>
+    function toggleRoleMenu() {
+      const m = document.getElementById('role-menu');
+      m.style.display = (m.style.display === 'none') ? 'block' : 'none';
+    }
+    document.addEventListener('click', function(e) {
+      const sw = document.getElementById('role-switcher');
+      if (sw && !sw.contains(e.target)) {
+        const m = document.getElementById('role-menu');
+        if (m) m.style.display = 'none';
+      }
+    });
+  </script>
+</header>
