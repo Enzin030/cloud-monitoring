@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html class="light" lang="zh-TW">
 <head>
   <meta charset="utf-8"/>
@@ -219,18 +219,18 @@
           </div>
         </div>
 
-        <!-- 單選框 -->
+        <!-- 複選框：可選可不選 -->
         <div class="space-y-3">
-          <p class="text-sm font-bold text-slate-900">選擇處理方式</p>
+          <p class="text-sm font-bold text-slate-900">選擇處理方式（複選）</p>
           <label class="flex items-start p-4 rounded-xl border-2 border-slate-100 hover:border-[#1F2937] cursor-pointer transition-all has-[:checked]:border-[#1F2937] has-[:checked]:bg-slate-50">
-            <input type="radio" name="process-action" value="notify-venue" class="mt-0.5 w-4 h-4 text-[#1F2937] border-slate-300 focus:ring-[#1F2937]" checked/>
+            <input type="checkbox" name="process-action" value="notify-venue" class="mt-0.5 w-4 h-4 text-[#1F2937] rounded border-slate-300 focus:ring-[#1F2937]"/>
             <div class="ml-3">
               <p class="text-sm font-bold text-slate-900">通知場所回報</p>
               <p class="text-xs text-slate-400 mt-0.5">發送通知給兒托場所，要求回報異常原因與現況</p>
             </div>
           </label>
           <label class="flex items-start p-4 rounded-xl border-2 border-slate-100 hover:border-[#1F2937] cursor-pointer transition-all has-[:checked]:border-[#1F2937] has-[:checked]:bg-slate-50">
-            <input type="radio" name="process-action" value="notify-vendor" class="mt-0.5 w-4 h-4 text-[#1F2937] border-slate-300 focus:ring-[#1F2937]"/>
+            <input type="checkbox" name="process-action" value="notify-vendor" class="mt-0.5 w-4 h-4 text-[#1F2937] rounded border-slate-300 focus:ring-[#1F2937]"/>
             <div class="ml-3">
               <p class="text-sm font-bold text-slate-900">通知廠商維修</p>
               <p class="text-xs text-slate-400 mt-0.5">產生設備報修單並通知維護廠商現場維修</p>
@@ -280,9 +280,15 @@
       document.getElementById('process-modal').classList.add('hidden');
     }
     function submitProcess() {
-      const action = document.querySelector('input[name="process-action"]:checked').value;
-      const text = action === 'notify-venue' ? '通知場所回報' : '通知廠商維修';
-      alert('已送出處理：' + text);
+      const checkedBoxes = document.querySelectorAll('input[name="process-action"]:checked');
+      if (checkedBoxes.length === 0) {
+        alert('未選擇任何處理方式，僅儲存備註。');
+      } else {
+        const actions = Array.from(checkedBoxes).map(cb => {
+          return cb.value === 'notify-venue' ? '通知場所回報' : '通知廠商維修';
+        });
+        alert('已送出處理：' + actions.join('、'));
+      }
       closeProcessModal();
     }
   </script>
