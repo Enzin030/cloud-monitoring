@@ -104,7 +104,7 @@
           </thead>
           <tbody class="divide-y divide-slate-50">
             <tr class="hover:bg-slate-50 transition-all">
-              <td class="px-6 py-5 text-sm font-semibold text-slate-900">2024.04.17 14:22</td>
+              <td class="px-6 py-5 text-sm font-semibold text-slate-900 alert-date" data-time="14:22">2024.04.17 14:22</td>
               <td class="px-6 py-5">
                 <span class="text-sm font-bold text-slate-500">CAM-00213</span>
               </td>
@@ -197,10 +197,16 @@
     // 今日日期
     function setToday() {
       const d = new Date();
-      d.setDate(d.getDate());
       const fmt = d.toISOString().split('T')[0];
+      const dotFmt = fmt.replace(/-/g, '.');
       document.getElementById('f-date-start').value = fmt;
       document.getElementById('f-date-end').value = fmt;
+
+      // 更新表格中的告警時間為當前日期 + 固定時間點
+      document.querySelectorAll('.alert-date').forEach(el => {
+        const time = el.getAttribute('data-time');
+        el.textContent = `${dotFmt} ${time}`;
+      });
     }
     document.addEventListener('DOMContentLoaded', setToday);
 
