@@ -1,362 +1,265 @@
 <!doctype html>
 <html class="light" lang="zh-TW">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>兒托監管雲 - 異常告警追蹤</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="lib/config.js"></script>
-    <script src="lib/layout.js"></script>
-  </head>
-  <body
-    class="bg-white font-body text-on-surface flex flex-col h-screen overflow-hidden"
-  >
-    <!-- Header Placeholder -->
-    <div id="header-placeholder"></div>
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+  <title>兒托監管雲 - 異常告警追蹤</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="lib/config.js"></script>
+  <script src="lib/layout.js"></script>
+</head>
+<body class="bg-white font-body text-on-surface flex flex-col h-screen overflow-hidden">
+  <div id="header-placeholder"></div>
 
-    <main class="flex-1 overflow-y-auto p-10 w-full custom-scrollbar">
-      <div class="space-y-10">
-        <!-- 標題與麵包屑 -->
-        <div class="border-b border-slate-100 pb-6 space-y-3">
-          <div class="flex items-end gap-6">
-            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">
-              異常告警追蹤
-            </h2>
-            <div
-              class="flex items-center text-sm text-slate-400 font-medium space-x-2 mb-1"
-            >
-              <span class="material-symbols-outlined text-[16px]">home</span>
-              <span>首頁</span>
-              <span class="material-symbols-outlined text-[16px]"
-                >chevron_right</span
-              >
-              <span class="text-slate-800 font-semibold tracking-tight"
-                >異常告警追蹤</span
-              >
-            </div>
+  <main class="flex-1 overflow-y-auto p-10 w-full custom-scrollbar">
+    <div class="space-y-8">
+
+      <!-- 標題 + 麵包屑 -->
+      <div class="border-b border-slate-100 pb-6">
+        <div class="flex items-end gap-4">
+          <h2 class="text-2xl font-bold text-slate-900 tracking-tight">異常告警追蹤</h2>
+          <div class="flex items-center text-sm text-slate-400 space-x-1.5 mb-0.5">
+            <span class="material-symbols-outlined text-base">home</span>
+            <span>首頁</span>
+            <span class="material-symbols-outlined text-base">chevron_right</span>
+            <span class="text-slate-700 font-semibold">異常告警追蹤</span>
           </div>
         </div>
+      </div>
 
-        <!-- Filter Panel -->
-        <section
-          class="lux-card p-6 flex flex-wrap items-end justify-between gap-6"
-        >
-          <div class="flex flex-wrap items-end gap-6">
-            <div class="space-y-1.5">
-              <label
-                class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest px-1"
-                >時間區段</label
-              >
-              <input
-                class="bg-slate-50 border-none rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-slate-100 w-[200px]"
-                type="text"
-                value="2024.04.17 - 04.24"
-              />
+      <!-- Filter Panel：RWD 自排 -->
+      <section class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+        <div class="flex flex-wrap items-end gap-5">
+
+          <!-- 起訖日期 -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest">起訖日期</label>
+            <div class="flex items-center bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 gap-3">
+              <span class="material-symbols-outlined text-blue-500 text-base">calendar_month</span>
+              <input type="date" id="f-date-start" class="bg-transparent border-none p-0 text-sm font-semibold text-slate-800 focus:ring-0 w-[130px]"/>
+              <span class="text-slate-300 text-sm font-medium">至</span>
+              <input type="date" id="f-date-end" class="bg-transparent border-none p-0 text-sm font-semibold text-slate-800 focus:ring-0 w-[130px]"/>
             </div>
-            <!-- 場所名稱：兩個下拉左右排列 -->
-            <div class="space-y-1.5">
-              <label
-                class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest px-1"
-                >場所名稱</label
-              >
-              <div class="flex items-center gap-3">
-                <select
-                  class="bg-slate-50 border-none rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-slate-100 min-w-[130px]"
-                >
-                  <option>選擇行政區</option>
-                  <option>北屯區</option>
-                  <option>太平區</option>
-                </select>
-                <select
-                  class="bg-slate-50 border-none rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-slate-100 min-w-[130px]"
-                >
-                  <option>選擇場所</option>
-                  <option>北屯中心</option>
-                  <option>太平中心</option>
-                </select>
-              </div>
-            </div>
-            <div class="space-y-1.5">
-              <label
-                class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest px-1"
-                >事件類別</label
-              >
-              <select
-                class="bg-slate-50 border-none rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-slate-100 min-w-[120px]"
-              >
-                <option>所有類型</option>
-                <option>鏡頭遮蔽</option>
-                <option>訊號中斷</option>
+          </div>
+
+          <!-- 場所名稱（兩下拉左右） -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest">場所名稱</label>
+            <div class="flex items-center gap-3">
+              <select class="bg-slate-50 border border-slate-200 rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-slate-200 min-w-[130px]">
+                <option>選擇行政區</option>
+                <option>北屯區</option>
+                <option>太平區</option>
+                <option>西屯區</option>
+              </select>
+              <select class="bg-slate-50 border border-slate-200 rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-slate-200 min-w-[130px]">
+                <option>選擇場所</option>
+                <option>北屯中心</option>
+                <option>太平中心</option>
               </select>
             </div>
-            <div class="space-y-1.5">
-              <label
-                class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest px-1"
-                >處理進度</label
-              >
-              <div class="flex bg-slate-100 p-1 rounded-lg">
-                <button
-                  class="px-4 py-1.5 rounded-md text-[11px] font-semibold bg-white text-slate-900 shadow-sm border border-black/5"
-                >
-                  待處理
-                </button>
-                <button
-                  class="px-4 py-1.5 rounded-md text-[11px] font-medium text-slate-500"
-                >
-                  待審核
-                </button>
-                <button
-                  class="px-4 py-1.5 rounded-md text-[11px] font-medium text-slate-500"
-                >
-                  已結案
-                </button>
-              </div>
+          </div>
+
+          <!-- 事件類別 -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest">事件類別</label>
+            <select class="bg-slate-50 border border-slate-200 rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-slate-200 min-w-[130px]">
+              <option>所有類型</option>
+              <option>鏡頭遮蔽</option>
+              <option>訊號中斷</option>
+            </select>
+          </div>
+
+          <!-- 處理進度 -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest">處理進度</label>
+            <div class="flex bg-slate-100 p-1 rounded-lg">
+              <button class="px-4 py-2 rounded-md text-sm font-bold bg-white text-slate-900 shadow-sm border border-black/5">待處理</button>
+              <button class="px-4 py-2 rounded-md text-sm font-semibold text-slate-500 hover:text-slate-800">待審核</button>
+              <button class="px-4 py-2 rounded-md text-sm font-semibold text-slate-500 hover:text-slate-800">已結案</button>
             </div>
           </div>
 
-          <div class="flex items-center gap-3 shrink-0">
-            <button
-              class="px-5 py-2.5 bg-[#1F2937] text-white rounded-lg text-sm font-semibold hover:bg-[#374151] transition-all flex items-center space-x-1.5"
-            >
-              <span class="material-symbols-outlined text-base">search</span>
-              <span>查詢</span>
+          <!-- 按鈕 -->
+          <div class="flex items-center gap-3 ml-auto">
+            <button class="px-5 py-2.5 bg-[#1F2937] text-white rounded-lg text-sm font-bold hover:bg-[#374151] transition-all flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">search</span>查詢
             </button>
-            <button
-              class="px-5 py-2.5 bg-white border border-slate-200 text-slate-900 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-all flex items-center space-x-1.5"
-            >
-              <span class="material-symbols-outlined text-base">file_download</span>
-              <span>匯出清單</span>
+            <button class="px-5 py-2.5 bg-white border border-slate-200 text-slate-800 rounded-lg text-sm font-bold hover:bg-slate-50 transition-all flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">file_download</span>匯出清單
             </button>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Table Content -->
-        <section class="lux-card overflow-hidden">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="bg-slate-50/50 border-b border-slate-100">
-                <th
-                  class="px-6 py-5 text-[10px] font-semibold text-slate-400 uppercase tracking-widest"
-                >
-                  告警時間
-                </th>
-                <th
-                  class="px-6 py-5 text-[10px] font-semibold text-slate-400 uppercase tracking-widest"
-                >
-                  設備序號
-                </th>
-                <th
-                  class="px-6 py-5 text-[10px] font-semibold text-slate-400 uppercase tracking-widest"
-                >
-                  行政區
-                </th>
-                <th
-                  class="px-6 py-5 text-[10px] font-semibold text-slate-400 uppercase tracking-widest"
-                >
-                  場所名稱
-                </th>
-                <th
-                  class="px-6 py-5 text-[10px] font-semibold text-slate-400 uppercase tracking-widest"
-                >
-                  偵測類型
-                </th>
-                <th
-                  class="px-6 py-5 text-[10px] font-semibold text-slate-400 uppercase tracking-widest"
-                >
-                  處理狀態
-                </th>
-                <th
-                  class="px-6 py-5 text-[10px] font-semibold text-slate-400 uppercase tracking-widest text-right"
-                >
-                  功能
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-50">
-              <tr class="hover:bg-slate-50/50 transition-all group">
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900 tracking-tight">
-                    2024.04.17 14:22
-                  </p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-[11px] font-semibold text-accent uppercase tracking-widest leading-none">
-                    CAM-00213
-                  </p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900">北屯區</p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900">北屯中心</p>
-                  <p class="text-[11px] text-slate-400">大班教室區域</p>
-                </td>
-                <td class="px-6 py-5">
-                  <span class="px-2.5 py-0.5 bg-red-50 text-red-600 text-[10px] font-semibold rounded-full border border-red-100">
-                    鏡頭遮蔽
-                  </span>
-                </td>
-                <td class="px-6 py-5">
-                  <span class="px-2.5 py-0.5 bg-amber-50 text-amber-600 text-[10px] font-semibold rounded-full border border-amber-100">
-                    待處理
-                  </span>
-                </td>
-                <td class="px-6 py-5 text-right">
-                  <button onclick="openProcessModal('CAM-00213', '北屯中心', '鏡頭遮蔽')" class="px-4 py-1.5 bg-[#1F2937] text-white text-[11px] font-semibold rounded-lg hover:bg-[#374151] transition-all">
-                    處理
-                  </button>
-                </td>
-              </tr>
-              <tr class="hover:bg-slate-50/50 transition-all group">
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900 tracking-tight">
-                    2024.04.17 12:05
-                  </p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-widest leading-none">
-                    CAM-00455
-                  </p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900">太平區</p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900">太平中心</p>
-                  <p class="text-[11px] text-slate-400">備餐區入口</p>
-                </td>
-                <td class="px-6 py-5">
-                  <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-semibold rounded-full border border-slate-200">
-                    訊號中斷
-                  </span>
-                </td>
-                <td class="px-6 py-5">
-                  <span class="px-2.5 py-0.5 bg-amber-50 text-amber-600 text-[10px] font-semibold rounded-full border border-amber-100">
-                    待處理
-                  </span>
-                </td>
-                <td class="px-6 py-5 text-right">
-                  <button onclick="openProcessModal('CAM-00455', '太平中心', '訊號中斷')" class="px-4 py-1.5 bg-[#1F2937] text-white text-[11px] font-semibold rounded-lg hover:bg-[#374151] transition-all">
-                    處理
-                  </button>
-                </td>
-              </tr>
-              <tr class="hover:bg-slate-50/50 transition-all group">
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900 tracking-tight">
-                    2024.04.17 10:18
-                  </p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-widest leading-none">
-                    CAM-00302
-                  </p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900">西屯區</p>
-                </td>
-                <td class="px-6 py-5">
-                  <p class="text-sm font-semibold text-slate-900">西屯中心</p>
-                  <p class="text-[11px] text-slate-400">大型活動場</p>
-                </td>
-                <td class="px-6 py-5">
-                  <span class="px-2.5 py-0.5 bg-red-50 text-red-600 text-[10px] font-semibold rounded-full border border-red-100">
-                    鏡頭遮蔽
-                  </span>
-                </td>
-                <td class="px-6 py-5">
-                  <span class="px-2.5 py-0.5 bg-amber-50 text-amber-600 text-[10px] font-semibold rounded-full border border-amber-100">
-                    待處理
-                  </span>
-                </td>
-                <td class="px-6 py-5 text-right">
-                  <button onclick="openProcessModal('CAM-00302', '西屯中心', '鏡頭遮蔽')" class="px-4 py-1.5 bg-[#1F2937] text-white text-[11px] font-semibold rounded-lg hover:bg-[#374151] transition-all">
-                    處理
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+      <!-- 資料表 -->
+      <section class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-100">
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">告警時間</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">設備序號</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">行政區</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">場所名稱</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">偵測類型</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">處理狀態</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest text-right">功能</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-50">
+            <tr class="hover:bg-slate-50 transition-all">
+              <td class="px-6 py-5 text-sm font-semibold text-slate-900">2024.04.17 14:22</td>
+              <td class="px-6 py-5">
+                <span class="text-sm font-bold text-blue-500">CAM-00213</span>
+              </td>
+              <td class="px-6 py-5 text-sm font-semibold text-slate-700">北屯區</td>
+              <td class="px-6 py-5">
+                <p class="text-sm font-bold text-slate-900">北屯中心</p>
+                <p class="text-xs text-slate-400 mt-0.5">大班教室區域</p>
+              </td>
+              <td class="px-6 py-5">
+                <span class="inline-flex items-center px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg">鏡頭遮蔽</span>
+              </td>
+              <td class="px-6 py-5">
+                <span class="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-lg">待處理</span>
+              </td>
+              <td class="px-6 py-5 text-right">
+                <button onclick="openProcessModal('CAM-00213','北屯中心','鏡頭遮蔽')"
+                  class="px-5 py-2 bg-[#1F2937] text-white text-sm font-bold rounded-lg hover:bg-[#374151] transition-all">
+                  處理
+                </button>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-all">
+              <td class="px-6 py-5 text-sm font-semibold text-slate-900">2024.04.17 12:05</td>
+              <td class="px-6 py-5">
+                <span class="text-sm font-bold text-slate-500">CAM-00455</span>
+              </td>
+              <td class="px-6 py-5 text-sm font-semibold text-slate-700">太平區</td>
+              <td class="px-6 py-5">
+                <p class="text-sm font-bold text-slate-900">太平中心</p>
+                <p class="text-xs text-slate-400 mt-0.5">備餐區入口</p>
+              </td>
+              <td class="px-6 py-5">
+                <span class="inline-flex items-center px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-lg">訊號中斷</span>
+              </td>
+              <td class="px-6 py-5">
+                <span class="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-lg">待處理</span>
+              </td>
+              <td class="px-6 py-5 text-right">
+                <button onclick="openProcessModal('CAM-00455','太平中心','訊號中斷')"
+                  class="px-5 py-2 bg-[#1F2937] text-white text-sm font-bold rounded-lg hover:bg-[#374151] transition-all">
+                  處理
+                </button>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-all">
+              <td class="px-6 py-5 text-sm font-semibold text-slate-900">2024.04.17 10:18</td>
+              <td class="px-6 py-5">
+                <span class="text-sm font-bold text-slate-500">CAM-00302</span>
+              </td>
+              <td class="px-6 py-5 text-sm font-semibold text-slate-700">西屯區</td>
+              <td class="px-6 py-5">
+                <p class="text-sm font-bold text-slate-900">西屯中心</p>
+                <p class="text-xs text-slate-400 mt-0.5">大型活動場</p>
+              </td>
+              <td class="px-6 py-5">
+                <span class="inline-flex items-center px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg">鏡頭遮蔽</span>
+              </td>
+              <td class="px-6 py-5">
+                <span class="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-lg">待處理</span>
+              </td>
+              <td class="px-6 py-5 text-right">
+                <button onclick="openProcessModal('CAM-00302','西屯中心','鏡頭遮蔽')"
+                  class="px-5 py-2 bg-[#1F2937] text-white text-sm font-bold rounded-lg hover:bg-[#374151] transition-all">
+                  處理
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </div>
+    <div id="footer-placeholder" class="mt-16"></div>
+  </main>
+
+  <!-- 處理 Modal -->
+  <div id="process-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+    <div class="bg-white rounded-2xl shadow-2xl w-[440px] overflow-hidden">
+      <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
+        <h3 class="text-base font-bold text-slate-900">異常事件處理</h3>
+        <button onclick="closeProcessModal()" class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-200 transition-all">
+          <span class="material-symbols-outlined text-base">close</span>
+        </button>
       </div>
-
-      <div id="footer-placeholder" class="mt-16"></div>
-    </main>
-
-    <!-- 處理 Modal -->
-    <div id="process-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
-      <div class="bg-white rounded-2xl shadow-2xl w-[420px] overflow-hidden">
-        <!-- Modal Header -->
-        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-          <h3 class="text-base font-bold text-slate-900">異常事件處理</h3>
-          <button onclick="closeProcessModal()" class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-200 transition-all">
-            <span class="material-symbols-outlined text-base">close</span>
-          </button>
+      <div class="px-6 py-5 space-y-5">
+        <!-- 設備資訊 -->
+        <div class="bg-slate-50 rounded-xl p-4 space-y-1">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">設備序號</p>
+          <p class="text-sm font-bold text-slate-900" id="modal-device-id"></p>
+          <p class="text-sm text-slate-600" id="modal-location"></p>
+          <p class="text-xs text-slate-400" id="modal-type"></p>
         </div>
-        <!-- Modal Body -->
-        <div class="px-6 py-5 space-y-5">
-          <!-- 設備資訊 -->
-          <div class="bg-slate-50 rounded-xl p-4 space-y-1">
-            <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">設備序號</p>
-            <p class="text-sm font-bold text-slate-900" id="modal-device-id">CAM-00213</p>
-            <p class="text-xs text-slate-500" id="modal-location">北屯中心</p>
-            <p class="text-xs text-slate-500" id="modal-type">鏡頭遮蔽</p>
-          </div>
 
-          <!-- 處理方式：單選框 -->
-          <div class="space-y-3">
-            <p class="text-xs font-bold text-slate-900">選擇處理方式</p>
-            <label class="flex items-center p-3 rounded-xl border border-slate-200 hover:border-[#1F2937] cursor-pointer transition-all has-[:checked]:border-[#1F2937] has-[:checked]:bg-blue-50/30">
-              <input type="radio" name="process-action" value="notify-venue" class="w-4 h-4 text-[#1F2937] border-slate-300 focus:ring-[#1F2937]" checked />
-              <div class="ml-3">
-                <p class="text-sm font-semibold text-slate-900">通知場所回報</p>
-                <p class="text-[11px] text-slate-400">發送通知給該兒托場所，要求回報異常原因</p>
-              </div>
-            </label>
-            <label class="flex items-center p-3 rounded-xl border border-slate-200 hover:border-[#1F2937] cursor-pointer transition-all has-[:checked]:border-[#1F2937] has-[:checked]:bg-blue-50/30">
-              <input type="radio" name="process-action" value="notify-vendor" class="w-4 h-4 text-[#1F2937] border-slate-300 focus:ring-[#1F2937]" />
-              <div class="ml-3">
-                <p class="text-sm font-semibold text-slate-900">通知廠商維修</p>
-                <p class="text-[11px] text-slate-400">產生報修單並通知設備維護廠商到場維修</p>
-              </div>
-            </label>
-          </div>
+        <!-- 單選框 -->
+        <div class="space-y-3">
+          <p class="text-sm font-bold text-slate-900">選擇處理方式</p>
+          <label class="flex items-start p-4 rounded-xl border-2 border-slate-100 hover:border-[#1F2937] cursor-pointer transition-all has-[:checked]:border-[#1F2937] has-[:checked]:bg-slate-50">
+            <input type="radio" name="process-action" value="notify-venue" class="mt-0.5 w-4 h-4 text-[#1F2937] border-slate-300 focus:ring-[#1F2937]" checked/>
+            <div class="ml-3">
+              <p class="text-sm font-bold text-slate-900">通知場所回報</p>
+              <p class="text-xs text-slate-400 mt-0.5">發送通知給兒托場所，要求回報異常原因與現況</p>
+            </div>
+          </label>
+          <label class="flex items-start p-4 rounded-xl border-2 border-slate-100 hover:border-[#1F2937] cursor-pointer transition-all has-[:checked]:border-[#1F2937] has-[:checked]:bg-slate-50">
+            <input type="radio" name="process-action" value="notify-vendor" class="mt-0.5 w-4 h-4 text-[#1F2937] border-slate-300 focus:ring-[#1F2937]"/>
+            <div class="ml-3">
+              <p class="text-sm font-bold text-slate-900">通知廠商維修</p>
+              <p class="text-xs text-slate-400 mt-0.5">產生設備報修單並通知維護廠商現場維修</p>
+            </div>
+          </label>
+        </div>
 
-          <!-- 備註 -->
-          <div class="space-y-1.5">
-            <label class="text-xs font-semibold text-slate-500">備註說明</label>
-            <textarea class="w-full bg-slate-50 border-none rounded-xl py-2.5 px-4 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-slate-200 resize-none h-[60px]" placeholder="選填，可補充說明異常狀況..."></textarea>
-          </div>
+        <!-- 備註 -->
+        <div class="space-y-1.5">
+          <label class="text-xs font-bold text-slate-500">備註說明</label>
+          <textarea class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-slate-200 resize-none h-16" placeholder="選填，補充說明異常狀況..."></textarea>
         </div>
-        <!-- Modal Footer -->
-        <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3">
-          <button onclick="closeProcessModal()" class="px-4 py-2 bg-white border border-slate-200 text-slate-700 text-sm font-semibold rounded-lg hover:bg-slate-50 transition-all">
-            取消
-          </button>
-          <button onclick="submitProcess()" class="px-5 py-2 bg-[#1F2937] text-white text-sm font-semibold rounded-lg hover:bg-[#374151] transition-all">
-            確認送出
-          </button>
-        </div>
+      </div>
+      <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3">
+        <button onclick="closeProcessModal()" class="px-5 py-2 bg-white border border-slate-200 text-slate-700 text-sm font-bold rounded-lg hover:bg-slate-50 transition-all">取消</button>
+        <button onclick="submitProcess()" class="px-5 py-2 bg-[#1F2937] text-white text-sm font-bold rounded-lg hover:bg-[#374151] transition-all">確認送出</button>
       </div>
     </div>
+  </div>
 
-    <script>
-      // 處理 Modal 開啟/關閉邏輯
-      function openProcessModal(deviceId, location, type) {
-        document.getElementById('modal-device-id').textContent = deviceId;
-        document.getElementById('modal-location').textContent = location;
-        document.getElementById('modal-type').textContent = type;
-        document.getElementById('process-modal').classList.remove('hidden');
-      }
-      function closeProcessModal() {
-        document.getElementById('process-modal').classList.add('hidden');
-      }
-      function submitProcess() {
-        const action = document.querySelector('input[name="process-action"]:checked').value;
-        const actionText = action === 'notify-venue' ? '通知場所回報' : '通知廠商維修';
-        alert(`已送出處理：${actionText}`);
-        closeProcessModal();
-      }
-    </script>
-  </body>
+  <script>
+    // 昨天日期
+    function setYesterday() {
+      const d = new Date();
+      d.setDate(d.getDate() - 1);
+      const fmt = d.toISOString().split('T')[0];
+      document.getElementById('f-date-start').value = fmt;
+      document.getElementById('f-date-end').value = fmt;
+    }
+    document.addEventListener('DOMContentLoaded', setYesterday);
+
+    function openProcessModal(deviceId, location, type) {
+      document.getElementById('modal-device-id').textContent = deviceId;
+      document.getElementById('modal-location').textContent = location;
+      document.getElementById('modal-type').textContent = type;
+      document.getElementById('process-modal').classList.remove('hidden');
+    }
+    function closeProcessModal() {
+      document.getElementById('process-modal').classList.add('hidden');
+    }
+    function submitProcess() {
+      const action = document.querySelector('input[name="process-action"]:checked').value;
+      const text = action === 'notify-venue' ? '通知場所回報' : '通知廠商維修';
+      alert('已送出處理：' + text);
+      closeProcessModal();
+    }
+  </script>
+</body>
 </html>
