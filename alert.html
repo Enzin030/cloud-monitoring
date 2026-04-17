@@ -110,7 +110,7 @@
             <tr class="hover:bg-slate-50 transition-all">
               <td class="px-6 py-5 text-sm font-semibold text-slate-900">2024.04.17 14:22</td>
               <td class="px-6 py-5">
-                <span class="text-sm font-bold text-blue-500">CAM-00213</span>
+                <span class="text-sm font-bold text-slate-500">CAM-00213</span>
               </td>
               <td class="px-6 py-5 text-sm font-semibold text-slate-700">北屯區</td>
               <td class="px-6 py-5">
@@ -238,7 +238,7 @@
     // 昨天日期
     function setYesterday() {
       const d = new Date();
-      d.setDate(d.getDate() - 1);
+      d.setDate(d.getDate());
       const fmt = d.toISOString().split('T')[0];
       document.getElementById('f-date-start').value = fmt;
       document.getElementById('f-date-end').value = fmt;

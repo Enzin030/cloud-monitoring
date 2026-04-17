@@ -40,14 +40,14 @@
               class="side-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all text-slate-600 hover:bg-slate-50">
               <span class="material-symbols-outlined text-base">manage_accounts</span>帳號管理
             </button>
-            <button onclick="showSection('logs')" data-section="logs"
+            <!--<button onclick="showSection('logs')" data-section="logs"
               class="side-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all text-slate-600 hover:bg-slate-50">
               <span class="material-symbols-outlined text-base">history</span>操作日誌
             </button>
             <button onclick="showSection('settings')" data-section="settings"
               class="side-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all text-slate-600 hover:bg-slate-50">
               <span class="material-symbols-outlined text-base">tune</span>系統參數
-            </button>
+            </button>-->
           </div>
         </div>
 
@@ -72,7 +72,6 @@
                       <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">群組名稱</th>
                       <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">成員數</th>
                       <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">管轄範圍</th>
-                      <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">權限等級</th>
                       <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">狀態</th>
                       <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest text-right">功能</th>
                     </tr>
@@ -85,9 +84,6 @@
                       </td>
                       <td class="px-6 py-5"><span class="text-sm font-bold text-slate-900">3 人</span></td>
                       <td class="px-6 py-5 text-sm font-semibold text-slate-700">全區</td>
-                      <td class="px-6 py-5">
-                        <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg">最高權限</span>
-                      </td>
                       <td class="px-6 py-5">
                         <span class="flex items-center gap-1.5 text-sm font-semibold text-green-600">
                           <span class="w-2 h-2 rounded-full bg-green-500"></span>啟用
@@ -105,9 +101,6 @@
                       <td class="px-6 py-5"><span class="text-sm font-bold text-slate-900">8 人</span></td>
                       <td class="px-6 py-5 text-sm font-semibold text-slate-700">指定行政區</td>
                       <td class="px-6 py-5">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-lg">管理權限</span>
-                      </td>
-                      <td class="px-6 py-5">
                         <span class="flex items-center gap-1.5 text-sm font-semibold text-green-600">
                           <span class="w-2 h-2 rounded-full bg-green-500"></span>啟用
                         </span>
@@ -123,9 +116,6 @@
                       </td>
                       <td class="px-6 py-5"><span class="text-sm font-bold text-slate-900">15 人</span></td>
                       <td class="px-6 py-5 text-sm font-semibold text-slate-700">指定場所</td>
-                      <td class="px-6 py-5">
-                        <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-lg">唯讀檢視</span>
-                      </td>
                       <td class="px-6 py-5">
                         <span class="flex items-center gap-1.5 text-sm font-semibold text-green-600">
                           <span class="w-2 h-2 rounded-full bg-green-500"></span>啟用
@@ -181,9 +171,8 @@
                           <span class="w-2 h-2 rounded-full bg-green-500"></span>已啟用
                         </span>
                       </td>
-                      <td class="px-6 py-5 text-right space-x-2">
+                      <td class="px-6 py-5 text-right">
                         <button class="px-4 py-1.5 text-slate-500 text-sm font-bold rounded-lg hover:bg-slate-100 transition-all">編輯</button>
-                        <button class="px-4 py-1.5 text-red-500 text-sm font-bold rounded-lg hover:bg-red-50 transition-all">停用</button>
                       </td>
                     </tr>
                     <tr class="hover:bg-slate-50 transition-all">
@@ -203,9 +192,8 @@
                           <span class="w-2 h-2 rounded-full bg-green-500"></span>已啟用
                         </span>
                       </td>
-                      <td class="px-6 py-5 text-right space-x-2">
+                      <td class="px-6 py-5 text-right">
                         <button class="px-4 py-1.5 text-slate-500 text-sm font-bold rounded-lg hover:bg-slate-100 transition-all">編輯</button>
-                        <button class="px-4 py-1.5 text-red-500 text-sm font-bold rounded-lg hover:bg-red-50 transition-all">停用</button>
                       </td>
                     </tr>
                     <tr class="hover:bg-slate-50 transition-all">
@@ -225,9 +213,8 @@
                           <span class="w-2 h-2 rounded-full bg-slate-300"></span>已停用
                         </span>
                       </td>
-                      <td class="px-6 py-5 text-right space-x-2">
+                      <td class="px-6 py-5 text-right">
                         <button class="px-4 py-1.5 text-slate-500 text-sm font-bold rounded-lg hover:bg-slate-100 transition-all">編輯</button>
-                        <button class="px-4 py-1.5 text-green-600 text-sm font-bold rounded-lg hover:bg-green-50 transition-all">啟用</button>
                       </td>
                     </tr>
                   </tbody>
